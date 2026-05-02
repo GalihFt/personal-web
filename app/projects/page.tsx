@@ -114,17 +114,16 @@ export default function ProjectsPage() {
       <PageHero
         icon={LayoutDashboard}
         eyebrow="Projects"
-        title="Projects built around business problems, not just models."
-        description="Most of these projects started with a practical issue: slow reporting, inefficient allocation, unclear patterns, or data that was hard to trust."
+        title="Analytics, automation, optimization, and machine learning work."
+        description=""
       />
 
       <section className="section-band section-surface">
         <div className="container-shell">
           <Reveal>
             <SectionHeading
-              eyebrow="Project Library"
-              title="A visual pass through analytics, automation, and machine learning work."
-              description="Projects that were previously featured are shown first, followed by the rest in the same flow."
+              eyebrow="Project List"
+              title="Selected projects, ordered by relevance."
             />
           </Reveal>
           <div className="mt-10">

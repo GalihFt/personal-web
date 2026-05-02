@@ -25,8 +25,8 @@ export default function AchievementsPage() {
       <PageHero
         icon={Trophy}
         eyebrow="Achievements"
-        title="Honors and skill certifications, shown separately."
-        description="Awards stay under honors. Technical credentials stay under certifications."
+        title="Honors and skill certifications."
+        description=""
       />
 
       <section className="section-band section-surface">
@@ -35,7 +35,6 @@ export default function AchievementsPage() {
             <SectionHeading
               eyebrow="Honors"
               title="Awards, recognition, and competition results."
-              description="Pick one to preview the selected certificate."
             />
           </Reveal>
 
@@ -53,8 +52,7 @@ export default function AchievementsPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Skill Certifications"
-              title="Technical certifications with selected preview."
-              description="Dev ID is placed first, then the rest can be opened and verified."
+              title="Technical credentials and course certificates."
             />
           </Reveal>
 

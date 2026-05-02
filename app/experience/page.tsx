@@ -107,8 +107,8 @@ export default function ExperiencePage() {
       <PageHero
         icon={BriefcaseBusiness}
         eyebrow="Experience"
-        title="Experience built through operational, financial, and analytical work."
-        description="I have worked in environments where accuracy, reporting speed, and practical output mattered more than theory alone."
+        title="Operational, financial, and analytical work."
+        description=""
       />
 
       <section className="section-band section-surface">
@@ -116,8 +116,7 @@ export default function ExperiencePage() {
           <Reveal>
             <SectionHeading
               eyebrow="Work Experience"
-              title="Work focused on making data more useful for day-to-day decisions."
-              description="The pattern across these roles is consistent: reduce manual effort, improve clarity, and make reporting more reliable."
+              title="Reporting, validation, automation, and analysis."
             />
           </Reveal>
 
@@ -132,8 +131,7 @@ export default function ExperiencePage() {
           <Reveal>
             <SectionHeading
               eyebrow="Organization"
-              title="Leadership experience beyond technical delivery."
-              description="These roles helped me build ownership, coordination, and communication alongside analytical work."
+              title="Leadership, coordination, and student organization work."
             />
           </Reveal>
 

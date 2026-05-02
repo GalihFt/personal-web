@@ -15,7 +15,7 @@ import {
   Landmark,
   Linkedin,
   Mail,
-  MapPin,
+  MessageCircle,
   Network,
   PackageCheck,
   Route,
@@ -488,7 +488,7 @@ export const contactItems = [
   { label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}`, icon: Mail },
   { label: "LinkedIn", value: "linkedin.com/in/galih-fitriatmo", href: siteConfig.linkedin, icon: Linkedin },
   { label: "GitHub", value: "github.com/GalihFt", href: siteConfig.github, icon: Github },
-  { label: "Location", value: siteConfig.location, href: "#", icon: MapPin },
+  { label: "WhatsApp", value: "+62 812 5762 3853", href: "https://wa.me/6281257623853", icon: MessageCircle },
 ];
 
 export const focusAreas = [

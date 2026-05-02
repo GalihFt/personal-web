@@ -11,11 +11,9 @@ import {
   featuredProjects,
   focusAreas,
   homeStats,
-  profileSummary,
   siteConfig,
   skillGroups,
   socialLinks,
-  visualSystem,
   workExperiences,
 } from "@/lib/portfolio-data";
 
@@ -118,8 +116,7 @@ export default function HomePage() {
           <Reveal>
             <SectionHeading
               eyebrow="Profile"
-              title="From raw data to systems people can actually use."
-              description={profileSummary.join(" ")}
+              title="From raw data to usable systems."
             />
             <div className="mt-6 rounded-[20px] border border-[var(--line)] bg-[rgba(255,255,255,0.76)] p-5">
               <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">How I Usually Work</p>
@@ -150,8 +147,7 @@ export default function HomePage() {
             <Reveal>
               <SectionHeading
                 eyebrow="Featured Projects"
-                title="Projects that show both business context and technical depth."
-                description="These are the clearest examples of how I approach automation, optimization, and applied machine learning."
+                title="Selected work across automation, optimization, and machine learning."
               />
             </Reveal>
             <Reveal delay={0.06}>
@@ -177,8 +173,7 @@ export default function HomePage() {
           <Reveal>
             <SectionHeading
               eyebrow="Experience"
-              title="Experience shaped by operations, finance, and analytical problem-solving."
-              description="My roles have focused on making business data easier to validate, report, and act on."
+              title="Operations, finance, and analytical problem-solving."
             />
             <div className="mt-7">
               <ButtonLink href="/experience" label="Explore experience" variant="secondary" />
@@ -222,8 +217,7 @@ export default function HomePage() {
           <Reveal>
             <SectionHeading
               eyebrow="Skills"
-              title="Tools I use to automate reporting and support decisions."
-              description={visualSystem.reason}
+              title="Tools I use across analytics work."
             />
           </Reveal>
           <div className="grid gap-5">

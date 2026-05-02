@@ -12,8 +12,8 @@ export default function AboutPage() {
       <PageHero
         icon={BadgeCheck}
         eyebrow="About"
-        title="A statistics graduate focused on usable analytics systems."
-        description="I enjoy building tools that make reporting clearer, workflows lighter, and business decisions easier to support."
+        title="Statistics graduate focused on usable analytics systems."
+        description=""
       />
 
       <section className="section-band bg-white">
@@ -32,7 +32,7 @@ export default function AboutPage() {
             <Reveal>
               <SectionHeading
                 eyebrow="Profile"
-                title="I like work that sits between business questions and technical execution."
+                title="Business questions, technical execution, and practical output."
                 description={profileSummary[0]}
               />
               <p className="mt-4 text-base leading-8 text-[var(--muted)]">{profileSummary[1]}</p>
@@ -55,8 +55,7 @@ export default function AboutPage() {
           <Reveal>
               <SectionHeading
                 eyebrow="Education"
-                title="The academic base behind the practical work."
-                description="Statistics gave me the foundation. Projects and internships pushed that into real business use."
+                title="Academic background and technical training."
               />
           </Reveal>
 
@@ -83,8 +82,7 @@ export default function AboutPage() {
           <Reveal>
               <SectionHeading
                 eyebrow="Skills"
-                title="Skills grouped by how I use them in real work."
-                description="The deeper proof sits in the project and experience sections."
+                title="Tools and methods I use across analytics work."
               />
           </Reveal>
           <div className="grid gap-5">

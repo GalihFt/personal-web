@@ -11,8 +11,8 @@ export default function ContactPage() {
       <PageHero
         icon={ContactRound}
         eyebrow="Contact"
-        title="Direct contact, no extra steps."
-        description="If something here looks relevant, the fastest way to reach me is through the contact details below."
+        title="Direct links for email, profile, code, and CV."
+        description=""
       />
 
       <section className="section-band section-surface">
@@ -21,7 +21,6 @@ export default function ContactPage() {
             <SectionHeading
               eyebrow="Availability"
               title="Open for analytics roles, automation work, and collaboration."
-              description="Everything important is here: direct contact, professional profile, code portfolio, and current location."
             />
             <div className="mt-6 rounded-[24px] border border-[var(--line)] bg-[linear-gradient(180deg,rgba(237,244,255,0.72),rgba(255,255,255,0.9))] p-5">
               <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">Best Fit</p>
