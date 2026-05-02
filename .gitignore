@@ -1,0 +1,21 @@
+node_modules/
+.next/
+.next-build/
+
+*.log
+.next-dev.log
+.next-dev.err
+
+tsconfig.tsbuildinfo
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+.DS_Store
+Thumbs.db
+
+asstes/
+apa yang dibutuhkan.md
