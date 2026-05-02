@@ -57,7 +57,33 @@ a {
 }
 
 .section-band {
-  @apply border-t border-[var(--line)] bg-[rgba(250,252,255,0.86)] py-16 md:py-24;
+  @apply border-t border-[var(--line)] bg-[rgba(250,252,255,0.86)] py-10 md:py-14;
+}
+
+.home-snap {
+  height: calc(100dvh - 4rem);
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+
+.home-snap-section {
+  min-height: calc(100dvh - 4rem);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  align-items: center;
+}
+
+.home-snap-section > .container-shell {
+  width: 100%;
+}
+
+.home-section-scroll {
+  max-height: calc(100dvh - 11rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 0.25rem;
 }
 
 .surface-card {
@@ -135,4 +161,24 @@ a {
 
 .text-pretty {
   text-wrap: pretty;
+}
+
+@media (max-width: 767px) {
+  .home-snap {
+    height: auto;
+    overflow-y: visible;
+    scroll-snap-type: none;
+  }
+
+  .home-snap-section {
+    min-height: auto;
+    scroll-snap-align: none;
+    display: block;
+  }
+
+  .home-section-scroll {
+    max-height: none;
+    overflow-y: visible;
+    padding-right: 0;
+  }
 }

@@ -38,12 +38,6 @@ const iconMap = {
   "Medical Record Intern": CircleGauge,
 };
 
-const overviewStats = [
-  { value: "6", label: "roles across analytics and operations" },
-  { value: "30+ hrs", label: "reporting time reduced" },
-  { value: "2x", label: "faster validation workflow" },
-];
-
 export function ExperienceShowcase({ items }: ExperienceShowcaseProps) {
   const [selectedTitle, setSelectedTitle] = useState(items[0]?.title ?? "");
   const [imageIndexByTitle, setImageIndexByTitle] = useState<Record<string, number>>(
@@ -70,20 +64,8 @@ export function ExperienceShowcase({ items }: ExperienceShowcaseProps) {
 
   return (
     <div className="grid gap-6">
-      <div className="grid gap-4 md:grid-cols-3">
-        {overviewStats.map((stat) => (
-          <div
-            key={stat.label}
-            className="rounded-[24px] border border-[var(--line)] bg-[linear-gradient(180deg,rgba(255,255,255,0.88),rgba(242,247,255,0.96))] p-5 shadow-[0_12px_32px_rgba(34,50,74,0.06)]"
-          >
-            <p className="mono text-3xl font-semibold text-[var(--heading)]">{stat.value}</p>
-            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{stat.label}</p>
-          </div>
-        ))}
-      </div>
-
       <div className="grid gap-6 xl:grid-cols-[460px_minmax(0,1fr)] 2xl:grid-cols-[500px_minmax(0,1fr)]">
-        <div className="grid max-h-[700px] content-start gap-4 overflow-y-auto pr-3">
+        <div className="grid max-h-[calc(100dvh-15rem)] content-start gap-4 overflow-y-auto pr-3">
           {items.map((item, index) => {
             const active = item.title === selected.title;
             const Icon = iconMap[item.title as keyof typeof iconMap] ?? BriefcaseBusiness;

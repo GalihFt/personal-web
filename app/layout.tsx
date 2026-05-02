@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
-import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { siteConfig } from "@/lib/portfolio-data";
 
@@ -29,7 +28,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         </a>
         <SiteHeader />
         <main id="content">{children}</main>
-        <SiteFooter />
       </body>
     </html>
   );

@@ -28,6 +28,7 @@ import {
 export type NavItem = {
   href: string;
   label: string;
+  children?: NavItem[];
 };
 
 export type Stat = {
@@ -85,12 +86,27 @@ export type SelectableCredential = {
 };
 
 export const navItems: NavItem[] = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/experience", label: "Experience" },
-  { href: "/projects", label: "Projects" },
-  { href: "/achievements", label: "Achievements" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#home", label: "Home" },
+  { href: "/#profile", label: "Profile" },
+  { href: "/#education", label: "Education" },
+  {
+    href: "/#professional-experience",
+    label: "Experience",
+    children: [
+      { href: "/#professional-experience", label: "Professional" },
+      { href: "/#organization-experience", label: "Organization" },
+    ],
+  },
+  { href: "/#projects", label: "Projects" },
+  {
+    href: "/#honors",
+    label: "Certificates",
+    children: [
+      { href: "/#honors", label: "Honors & Awards" },
+      { href: "/#certifications", label: "Skill Certifications" },
+    ],
+  },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export const siteConfig = {

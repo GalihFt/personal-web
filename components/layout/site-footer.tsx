@@ -3,6 +3,8 @@ import { ArrowUpRight } from "lucide-react";
 import { navItems, siteConfig, socialLinks } from "@/lib/portfolio-data";
 
 export function SiteFooter() {
+  const footerNavItems = navItems.flatMap((item) => item.children ?? item);
+
   return (
     <footer className="border-t border-[var(--line)] bg-white">
       <div className="container-shell grid gap-8 py-10 md:grid-cols-[1.1fr_0.9fr] md:items-end">
@@ -21,7 +23,7 @@ export function SiteFooter() {
 
         <div className="grid gap-4 md:justify-items-end">
           <div className="flex flex-wrap gap-2">
-            {navItems.map((item) => (
+            {footerNavItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
