@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { type MouseEvent, useEffect, useState } from "react";
@@ -12,6 +12,12 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [activeHash, setActiveHash] = useState("#home");
   const [open, setOpen] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  useEffect(() => {
+    const current = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+    setTheme(current);
+  }, []);
 
   useEffect(() => {
     function syncHash() {
@@ -94,11 +100,18 @@ export function SiteHeader() {
     return isActive(item.href) || Boolean(item.children?.some((child) => isActive(child.href)));
   }
 
+  function toggleTheme() {
+    const next = theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem("theme", next);
+    setTheme(next);
+  }
+
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[rgba(248,250,255,0.82)] backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--header-bg)] backdrop-blur-xl">
       <div className="container-shell flex h-16 items-center justify-between gap-4">
         <Link href="/#home" onClick={(event) => handleNavClick(event, "/#home")} className="focus-ring flex items-center gap-3 rounded-md">
-          <span className="flex h-9 w-9 items-center justify-center rounded-md bg-[var(--heading)] text-sm font-extrabold text-white shadow-[0_10px_24px_rgba(63,111,184,0.18)]">
+          <span className="flex h-9 w-9 items-center justify-center rounded-md bg-[var(--button-bg)] text-sm font-extrabold text-[var(--button-text)] shadow-[0_10px_24px_rgba(63,111,184,0.18)]">
             {siteConfig.initials}
           </span>
           <span className="leading-tight">
@@ -127,7 +140,7 @@ export function SiteHeader() {
                   <ChevronDown className="h-3.5 w-3.5" />
                 </Link>
                 <div className="invisible absolute right-0 top-full z-50 min-w-52 pt-2 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-                  <div className="grid gap-1 rounded-lg border border-[var(--line)] bg-[rgba(255,255,255,0.96)] p-2 shadow-[0_18px_48px_rgba(34,50,74,0.14)] backdrop-blur-xl">
+                  <div className="grid gap-1 rounded-lg border border-[var(--line)] bg-[var(--popover-bg)] p-2 shadow-[0_18px_48px_rgba(34,50,74,0.14)] backdrop-blur-xl">
                     {item.children.map((child) => (
                       <Link
                         key={child.href}
@@ -164,15 +177,25 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <button
-          type="button"
-          className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-md border border-[var(--line)] bg-white text-[var(--heading)] lg:hidden"
-          aria-label={open ? "Close navigation" : "Open navigation"}
-          aria-expanded={open}
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-md border border-[var(--line)] bg-[var(--card-bg)] text-[var(--heading)] transition-colors hover:border-[var(--accent)]"
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            onClick={toggleTheme}
+          >
+            {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
+          <button
+            type="button"
+            className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-md border border-[var(--line)] bg-[var(--card-bg)] text-[var(--heading)] lg:hidden"
+            aria-label={open ? "Close navigation" : "Open navigation"}
+            aria-expanded={open}
+            onClick={() => setOpen((value) => !value)}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -196,7 +219,7 @@ export function SiteHeader() {
                       onClick={(event) => handleNavClick(event, item.href)}
                       className={cn(
                         "focus-ring rounded-md px-3 py-3 text-sm font-semibold",
-                        active ? "bg-[var(--accent-soft)] text-[var(--heading)]" : "bg-white text-[var(--muted)]",
+                        active ? "bg-[var(--accent-soft)] text-[var(--heading)]" : "bg-[var(--card-bg)] text-[var(--muted)]",
                       )}
                     >
                       {item.label}
@@ -210,7 +233,7 @@ export function SiteHeader() {
                             onClick={(event) => handleNavClick(event, child.href)}
                             className={cn(
                               "focus-ring rounded-md px-3 py-2 text-sm font-semibold",
-                              isActive(child.href) ? "bg-[var(--accent-soft)] text-[var(--heading)]" : "bg-white text-[var(--muted)]",
+                              isActive(child.href) ? "bg-[var(--accent-soft)] text-[var(--heading)]" : "bg-[var(--card-bg)] text-[var(--muted)]",
                             )}
                           >
                             {child.label}

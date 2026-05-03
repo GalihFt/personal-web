@@ -1,30 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  BarChart3,
-  Bot,
-  BrainCircuit,
-  ChartNoAxesCombined,
-  Code2,
-  Database,
-  Download,
-  FileSpreadsheet,
-  GitBranch,
-  MapPin,
-  MessageSquareText,
-  PieChart,
-  Presentation,
-  Sigma,
-  Sparkles,
-  Users,
-} from "lucide-react";
+import { ArrowUpRight, Download, MapPin } from "lucide-react";
 import { StatCard } from "@/components/cards/stat-card";
 import { Reveal } from "@/components/motion/reveal";
+import { EducationShowcase } from "@/components/sections/education-showcase";
 import { ExperienceShowcase } from "@/components/sections/experience-showcase";
 import { OrganizationShowcase } from "@/components/sections/organization-showcase";
 import { ProjectShowcaseGrid } from "@/components/sections/project-showcase-grid";
 import { SelectedCertificateGallery } from "@/components/sections/selected-certificate-gallery";
+import { SectionDots } from "@/components/sections/section-dots";
 import { ButtonLink } from "@/components/ui/button-link";
 import { Chip } from "@/components/ui/chip";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -45,41 +29,26 @@ import {
   workExperienceEntries,
 } from "@/lib/showcase-data";
 
-const skillIconMap = {
-  "Data Visualization": BarChart3,
-  "Statistical Modeling": Sigma,
-  Forecasting: ChartNoAxesCombined,
-  "Machine Learning": BrainCircuit,
-  "Predictive Analytics": Sparkles,
-  NLP: MessageSquareText,
-  "Data Storytelling": Presentation,
-  Python: Code2,
-  R: PieChart,
-  SQL: Database,
-  "Power BI": BarChart3,
-  Tableau: PieChart,
-  "Looker Studio": BarChart3,
-  Excel: FileSpreadsheet,
-  Minitab: Sigma,
-  SPSS: Sigma,
-  Git: GitBranch,
-  "Stakeholder Communication": Users,
-  "Problem Solving": Sparkles,
-  "Critical Thinking": BrainCircuit,
-  "Data-driven Decision Making": Bot,
-  "Team Management": Users,
-  "Basic Accounting": FileSpreadsheet,
-};
+function SectionKicker({ number, label }: { number: string; label: string }) {
+  return (
+    <p className="section-kicker">
+      <span>{number}</span>
+      {label}
+    </p>
+  );
+}
 
 export default function HomePage() {
   return (
     <div className="home-snap">
+      <SectionDots />
       <section id="home" className="home-snap-section section-grid relative overflow-hidden bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(244,248,255,0.98))]">
         <div className="blue-orbit -left-20 top-20 h-64 w-64" />
         <div className="blue-orbit right-10 top-12 h-72 w-72" />
         <div className="container-shell relative z-10 grid gap-6 py-8 md:py-10">
           <div className="grid gap-8 md:grid-cols-[1.05fr_0.95fr] md:items-center">
             <Reveal>
+              <SectionKicker number="01" label="Home" />
               <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(110,159,224,0.18)] bg-[rgba(255,255,255,0.82)] px-3 py-1.5">
                 <span className="h-2 w-2 rounded-full bg-[var(--accent)]" />
                 <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">{siteConfig.headline}</p>
@@ -120,6 +89,8 @@ export default function HomePage() {
                     <Link
                       key={link.label}
                       href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
                       className="focus-ring inline-flex items-center gap-2 rounded-md hover:text-[var(--heading)]"
                     >
                       <Icon className="h-4 w-4 text-[var(--accent-strong)]" />
@@ -155,60 +126,62 @@ export default function HomePage() {
       </section>
 
       <section id="profile" className="home-snap-section section-band section-tint">
-        <div className="container-shell grid gap-7 lg:grid-cols-[0.8fr_1.2fr]">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Profile"
-              title="From raw data to usable systems."
-            />
-            <div className="mt-6 rounded-[20px] border border-[var(--line)] bg-[rgba(255,255,255,0.76)] p-5">
-              <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">How I Usually Work</p>
-              <p className="mt-3 text-sm leading-7 text-[var(--text)]">
-                Understand the process, clean the data, remove repetitive steps, then build something the team can keep using.
-              </p>
+        <div className="container-shell grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
+          <Reveal className="relative overflow-hidden rounded-[28px] border border-[var(--line)] bg-white shadow-[0_20px_56px_rgba(34,50,74,0.1)]">
+            <div className="relative aspect-[4/5] max-h-[68vh] bg-[var(--surface)]">
+              <Image
+                src={siteConfig.graduationImage}
+                alt="Galih Fitriatmo portrait"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 34vw, 100vw"
+              />
             </div>
           </Reveal>
-          <div className="grid gap-4 md:grid-cols-2">
-            {focusAreas.map((area, index) => (
-              <Reveal
-                key={area}
-                delay={index * 0.03}
-                className="surface-card relative overflow-hidden p-5 transition-all duration-200 hover:-translate-y-1 hover:border-[var(--accent)]"
-              >
-                <div className="absolute left-0 top-0 h-full w-1 bg-[linear-gradient(180deg,var(--accent),transparent)]" />
-                <p className="mono pl-3 text-xs font-semibold uppercase tracking-widest text-[var(--accent-strong)]">0{index + 1}</p>
-                <h3 className="mt-3 pl-3 text-lg font-extrabold text-[var(--heading)]">{area}</h3>
-              </Reveal>
-            ))}
-          </div>
+
+          <Reveal delay={0.06}>
+            <SectionKicker number="02" label="Profile" />
+            <h2 className="text-4xl font-extrabold tracking-normal text-[var(--heading)] md:text-6xl">Hi, I am Galih!</h2>
+            <p className="mt-5 max-w-3xl text-base leading-8 text-[var(--muted)] md:text-lg">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem at erat tristique porta.
+              I work around analytics automation, reporting systems, and applied machine learning. Lorem ipsum dolor
+              sit amet, consectetur adipiscing elit. Donec non justo vitae ipsum facilisis tincidunt. Sed data, tools,
+              and business context into practical systems that teams can actually use.
+            </p>
+
+            <div className="mt-7 grid gap-4 lg:grid-cols-3">
+              {skillGroups.map((group) => (
+                <div key={group.title} className="surface-card p-4">
+                  <h3 className="text-base font-extrabold text-[var(--heading)]">{group.title}</h3>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {group.items.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-full border border-[rgba(110,159,224,0.18)] bg-[rgba(237,244,255,0.72)] px-3 py-1 text-xs font-bold text-[var(--heading)]"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
       <section id="education" className="home-snap-section section-band bg-white">
         <div className="container-shell">
           <Reveal>
+            <SectionKicker number="03" label="Education" />
             <SectionHeading
               eyebrow="Education"
-              title="Academic background and technical training."
+              title="Formal learning path that shaped my statistics, analytics, and machine learning foundation."
             />
           </Reveal>
 
-          <div className="mt-8 grid gap-6 lg:grid-cols-2">
-            {education.map((item, index) => (
-              <Reveal key={item.title} delay={index * 0.04} className="surface-card overflow-hidden">
-                <div className="grid gap-0">
-                  <div className="relative min-h-[340px] bg-[var(--surface)]">
-                    <Image src={item.image} alt={item.title} fill className="object-cover" sizes="(min-width: 1024px) 42vw, 100vw" />
-                  </div>
-                  <div className="flex min-h-[220px] flex-col justify-center p-6">
-                    <p className="mono text-xs font-semibold uppercase tracking-widest text-[var(--accent-strong)]">{item.period}</p>
-                    <h3 className="mt-3 text-3xl font-extrabold text-[var(--heading)]">{item.title}</h3>
-                    <p className="mt-1 text-sm font-bold text-[var(--text)]">{item.place}</p>
-                    <p className="mt-5 text-sm leading-7 text-[var(--muted)]">{item.note}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+          <div className="home-section-scroll mt-8">
+            <EducationShowcase items={education} />
           </div>
         </div>
       </section>
@@ -216,9 +189,10 @@ export default function HomePage() {
       <section id="professional-experience" className="home-snap-section section-band section-surface">
         <div className="container-shell">
           <Reveal>
+            <SectionKicker number="04" label="Professional Experience" />
             <SectionHeading
               eyebrow="Professional Experience"
-              title="Roles focused on reporting, validation, automation, and analysis."
+              title="Practical roles where accuracy, repeatability, and business usefulness mattered in daily operations."
             />
           </Reveal>
 
@@ -231,9 +205,10 @@ export default function HomePage() {
       <section id="organization-experience" className="home-snap-section section-band section-tint">
         <div className="container-shell">
           <Reveal>
+            <SectionKicker number="05" label="Leadership & Community Experience" />
             <SectionHeading
-              eyebrow="Organization Experience"
-              title="Leadership, coordination, and student organization work."
+              eyebrow="Leadership & Community Experience"
+              title="Leadership and coordination experience from turning ideas into organized student programs."
             />
           </Reveal>
 
@@ -246,9 +221,10 @@ export default function HomePage() {
       <section id="projects" className="home-snap-section section-band">
         <div className="container-shell">
           <Reveal>
+            <SectionKicker number="06" label="Projects" />
             <SectionHeading
               eyebrow="Projects"
-              title="Analytics, automation, optimization, and machine learning work."
+              title="Selected work that connects technical implementation with real operational and analytical problems."
             />
           </Reveal>
           <div className="home-section-scroll mt-6">
@@ -260,9 +236,10 @@ export default function HomePage() {
       <section id="honors" className="home-snap-section section-band section-surface">
         <div className="container-shell">
           <Reveal>
+            <SectionKicker number="07" label="Honors & Awards" />
             <SectionHeading
               eyebrow="Honors"
-              title="Awards, recognition, and competition results."
+              title="Achievements that reflect learning consistency, competition results, and program recognition."
             />
           </Reveal>
 
@@ -278,9 +255,10 @@ export default function HomePage() {
       <section id="certifications" className="home-snap-section section-band section-tint">
         <div className="container-shell">
           <Reveal>
+            <SectionKicker number="08" label="Skill Certifications" />
             <SectionHeading
               eyebrow="Certifications"
-              title="Technical credentials and course certificates."
+              title="Skill-based certificates that support my work across machine learning, analytics, and applied data tools."
             />
           </Reveal>
 
@@ -294,59 +272,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="skills" className="home-snap-section section-band">
-        <div className="container-shell">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Skills"
-              title="Tools I use across analytics work."
-            />
-          </Reveal>
-          <div className="mt-8 grid gap-5 lg:grid-cols-3">
-            {skillGroups.map((group, index) => (
-              <Reveal
-                key={group.title}
-                delay={index * 0.04}
-                className="surface-card relative min-h-[390px] overflow-hidden p-6"
-              >
-                <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,var(--accent),transparent)]" />
-                <h3 className="text-2xl font-extrabold text-[var(--heading)]">{group.title}</h3>
-                <div className="mt-6 grid gap-3">
-                  {group.items.map((item) => {
-                    const Icon = skillIconMap[item as keyof typeof skillIconMap] ?? Sparkles;
-
-                    return (
-                      <div
-                        key={item}
-                        className="flex items-center gap-3 rounded-lg border border-[rgba(110,159,224,0.16)] bg-[rgba(237,244,255,0.48)] px-3 py-2.5"
-                      >
-                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-white text-[var(--accent-strong)] shadow-[inset_0_0_0_1px_var(--line)]">
-                          <Icon className="h-4 w-4" />
-                        </span>
-                        <span className="text-sm font-bold text-[var(--heading)]">{item}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section id="contact" className="home-snap-section section-band section-surface">
         <div className="container-shell max-w-4xl">
           <Reveal>
+            <SectionKicker number="09" label="Contact" />
             <SectionHeading
-              eyebrow="Contact"
-              title="Direct links for email, profile, code, and CV."
+              eyebrow="Let's Connect!"
+              title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem at erat tristique porta. Donec non justo vitae ipsum facilisis tincidunt. Sed data, tools, and business context into practical systems that teams can actually use."
             />
-            <div className="mt-6 rounded-[24px] border border-[var(--line)] bg-[linear-gradient(180deg,rgba(237,244,255,0.72),rgba(255,255,255,0.9))] p-5">
-              <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">Best Fit</p>
-              <p className="mt-3 text-sm leading-7 text-[var(--text)]">
-                Teams that need reporting automation, cleaner validation flows, or practical analytics support for daily operations.
-              </p>
-            </div>
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               {contactItems.map((item) => {
                 const Icon = item.icon;
@@ -355,6 +288,8 @@ export default function HomePage() {
                   <Link
                     key={item.label}
                     href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
                     className="focus-ring surface-card flex items-center gap-4 p-4 hover:border-[var(--accent)]"
                   >
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[rgba(110,159,224,0.18)] bg-white text-[var(--accent-strong)]">
@@ -372,22 +307,13 @@ export default function HomePage() {
             </div>
             <Link
               href={siteConfig.cvHref}
-              className="focus-ring mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--heading)] px-4 py-3 text-sm font-bold text-white hover:bg-[var(--accent-strong)]"
+              target="_blank"
+              rel="noreferrer"
+              className="focus-ring mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--button-bg)] px-4 py-3 text-sm font-bold text-[var(--button-text)] hover:bg-[var(--button-hover)]"
             >
               Download CV
               <Download className="h-4 w-4" />
             </Link>
-            <div className="mt-8 rounded-lg border border-[var(--line)] bg-[var(--heading)] p-6 text-white">
-              <p className="mono text-xs font-semibold uppercase tracking-widest text-[var(--surface)]">
-                {siteConfig.role}
-              </p>
-              <h2 className="mt-3 text-2xl font-extrabold md:text-3xl">
-                Building analytical systems that make business decisions easier to trust.
-              </h2>
-              <p className="mt-3 max-w-2xl text-sm leading-7 text-[#d7e1ea]">
-                Available for analytics roles, automation work, and data-driven product collaboration.
-              </p>
-            </div>
           </Reveal>
         </div>
       </section>

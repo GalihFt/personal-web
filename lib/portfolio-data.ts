@@ -94,7 +94,7 @@ export const navItems: NavItem[] = [
     label: "Experience",
     children: [
       { href: "/#professional-experience", label: "Professional" },
-      { href: "/#organization-experience", label: "Organization" },
+      { href: "/#organization-experience", label: "Leadership & Community" },
     ],
   },
   { href: "/#projects", label: "Projects" },
@@ -413,6 +413,22 @@ export const education = [
     period: "Jun 2021 - Sep 2025",
     note: "GPA 3.68, Cum Laude. Specialized in computational statistics with thesis on feature-based and image-based deepfake speech detection.",
     image: "/assets/education/its-graduation.jpg",
+    relevantCourses: [
+      "Statistical Modeling",
+      "Machine Learning",
+      "Data Mining",
+      "Time Series",
+      "Database",
+      "Data Visualization",
+    ],
+    detail:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem at erat tristique porta. During this period, the learning focus moved from statistical foundations into applied analytics, computational modeling, and practical data communication.",
+    highlights: [
+      "Built statistical analysis workflows from raw datasets into interpretable reports and visual outputs.",
+      "Explored machine learning, forecasting, and classification methods through coursework and thesis work.",
+      "Worked with databases, dashboards, and computational tools to support data-driven problem solving.",
+      "Completed a thesis comparing feature-based and image-based approaches for deepfake speech detection.",
+    ],
   },
   {
     title: "Machine Learning Cohort",
@@ -420,6 +436,22 @@ export const education = [
     period: "Feb 2024 - Jun 2024",
     note: "Distinction Graduate, Top 10%, average score 95.78. Built MoodMate NLP capstone and reached Top 50 out of 588 teams.",
     image: "/assets/honors/bangkit-certificate.jpg",
+    relevantCourses: [
+      "TensorFlow",
+      "Deep Learning",
+      "NLP",
+      "Model Deployment",
+      "Data Pipeline",
+      "Capstone Project",
+    ],
+    detail:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non justo vitae ipsum facilisis tincidunt. The program centered on applied machine learning practice, project collaboration, and building models that could be deployed into real product experiences.",
+    highlights: [
+      "Completed structured machine learning training across supervised learning, deep learning, and TensorFlow workflows.",
+      "Built MoodMate's NLP model for emotion classification and prepared the model for web deployment.",
+      "Collaborated in a capstone team from problem framing to model delivery and presentation.",
+      "Graduated with distinction and placed in the top 10 percent of the Machine Learning path.",
+    ],
   },
 ];
 

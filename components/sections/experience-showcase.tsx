@@ -1,16 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  BarChart3,
-  BriefcaseBusiness,
-  ChevronLeft,
-  ChevronRight,
-  CircleGauge,
-  Database,
-  Landmark,
-  Sigma,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -27,15 +18,6 @@ export type ExperienceEntry = {
 
 type ExperienceShowcaseProps = {
   items: ExperienceEntry[];
-};
-
-const iconMap = {
-  "Accounting Data Analyst": BriefcaseBusiness,
-  "Data Analyst Intern": BarChart3,
-  "Assistant Lecturer of Data Warehouse": Database,
-  "Research Assistant": Sigma,
-  "Statistics Student Intern": Landmark,
-  "Medical Record Intern": CircleGauge,
 };
 
 export function ExperienceShowcase({ items }: ExperienceShowcaseProps) {
@@ -68,7 +50,6 @@ export function ExperienceShowcase({ items }: ExperienceShowcaseProps) {
         <div className="grid max-h-[calc(100dvh-15rem)] content-start gap-4 overflow-y-auto pr-3">
           {items.map((item, index) => {
             const active = item.title === selected.title;
-            const Icon = iconMap[item.title as keyof typeof iconMap] ?? BriefcaseBusiness;
 
             return (
               <button
@@ -81,20 +62,20 @@ export function ExperienceShowcase({ items }: ExperienceShowcaseProps) {
                 )}
               >
                 <div className="absolute left-0 top-0 h-full w-1 bg-[linear-gradient(180deg,var(--accent),transparent)]" />
-                <div className="grid h-full grid-cols-[48px_minmax(0,1fr)] items-start gap-4 pl-3">
-                  <span className="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[rgba(110,159,224,0.18)] bg-white text-[var(--accent-strong)]">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <div className="min-w-0">
-                    <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">
+                <div className="h-full pl-3">
+                  <div className="flex items-start justify-between gap-2">
+                    <p className="mono min-w-0 text-[10px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">
                       0{index + 1} . {item.period}
                     </p>
-                    <h4 className="mt-2 text-[1.05rem] font-extrabold leading-snug text-[var(--heading)] md:text-[1.15rem]">
-                      {item.title}
-                    </h4>
-                    <p className="mt-1 text-sm font-semibold text-[var(--muted)]">{item.place}</p>
-                    <p className="mt-2 line-clamp-2 text-sm leading-6 text-[var(--muted)]">{item.summary}</p>
+                    <span className="shrink-0 rounded-full border border-[rgba(110,159,224,0.22)] bg-[rgba(237,244,255,0.82)] px-2 py-0.5 text-[10px] font-bold text-[var(--accent-strong)]">
+                      {item.type}
+                    </span>
                   </div>
+                  <h4 className="mt-1.5 text-[1.08rem] font-extrabold leading-snug text-[var(--heading)] md:text-[1.16rem]">
+                    {item.title}
+                  </h4>
+                  <p className="mt-1 text-sm font-semibold text-[var(--muted)]">{item.place}</p>
+                  <p className="mt-2 line-clamp-2 text-sm leading-6 text-[var(--muted)]">{item.summary}</p>
                 </div>
               </button>
             );
@@ -127,13 +108,21 @@ export function ExperienceShowcase({ items }: ExperienceShowcaseProps) {
                       </div>
                     </div>
 
-                    <p className="text-sm leading-7 text-[var(--muted)]">{selected.summary}</p>
+                    <div className="border-l-4 border-[var(--accent)] bg-[rgba(237,244,255,0.5)] px-4 py-3">
+                      <p className="text-[0.95rem] font-semibold leading-7 text-[var(--heading)]">{selected.summary}</p>
+                    </div>
                   </div>
 
                   <div className="grid gap-3">
-                    <div className="relative overflow-hidden rounded-[26px] border border-[rgba(110,159,224,0.18)] bg-[linear-gradient(180deg,rgba(237,244,255,0.58),rgba(255,255,255,0.88))]">
-                      <div className="relative aspect-[16/8]">
-                        <Image src={selectedImage} alt={selected.title} fill className="object-cover" sizes="(min-width: 1280px) 36vw, 100vw" />
+                    <div className="relative overflow-hidden rounded-[26px] border border-[rgba(110,159,224,0.18)] bg-[var(--surface)]">
+                      <div className="relative aspect-[16/9]">
+                        <Image
+                          src={selectedImage}
+                          alt={selected.title}
+                          fill
+                          className="object-cover object-[center_38%]"
+                          sizes="(min-width: 1280px) 36vw, 100vw"
+                        />
                       </div>
                       {selected.gallery.length > 1 ? (
                         <div className="absolute inset-x-0 top-1/2 flex -translate-y-1/2 items-center justify-between px-3">
@@ -165,16 +154,21 @@ export function ExperienceShowcase({ items }: ExperienceShowcaseProps) {
                   </div>
                 </div>
 
-                <div className="rounded-[22px] border border-[rgba(110,159,224,0.16)] bg-[rgba(237,244,255,0.42)] p-4">
-                  <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--muted)]">Key Contributions</p>
-                  <ul className="mt-3 grid gap-3">
-                    {selected.points.map((point) => (
-                      <li key={point} className="flex gap-3 text-sm leading-7 text-[var(--text)]">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
-                        <span>{point}</span>
-                      </li>
+                <div className="rounded-[24px] border border-[rgba(110,159,224,0.16)] bg-[linear-gradient(180deg,rgba(237,244,255,0.62),rgba(255,255,255,0.86))] p-5">
+                  <p className="mono text-[11px] font-bold uppercase tracking-widest text-[var(--accent-strong)]">Key Contributions</p>
+                  <div className="mt-4 grid gap-4 md:grid-cols-2">
+                    {selected.points.map((point, index) => (
+                      <div
+                        key={point}
+                        className="flex gap-3 border-l border-[rgba(110,159,224,0.24)] pl-4"
+                      >
+                        <span className="mono shrink-0 text-xs font-extrabold text-[var(--accent-strong)]">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <p className="text-[0.92rem] font-semibold leading-7 text-[var(--heading)]">{point}</p>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </div>
             </motion.div>

@@ -89,7 +89,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={isPending}
-          className="focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-[var(--heading)] px-4 py-2.5 text-sm font-bold text-white hover:bg-[var(--accent-strong)] disabled:cursor-not-allowed disabled:opacity-60"
+          className="focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-[var(--button-bg)] px-4 py-2.5 text-sm font-bold text-[var(--button-text)] hover:bg-[var(--button-hover)] disabled:cursor-not-allowed disabled:opacity-60"
         >
           <Send className="h-4 w-4" />
           {isPending ? "Preparing" : "Send email"}

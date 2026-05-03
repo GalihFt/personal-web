@@ -170,7 +170,7 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-[rgba(17,25,40,0.55)] p-4 backdrop-blur-sm md:p-8"
+            className="fixed inset-0 z-[60] bg-[rgba(17,25,40,0.55)] p-4 pt-20 backdrop-blur-sm md:p-8 md:pt-24"
             onClick={() => setSelectedTitle(null)}
           >
             <motion.div
@@ -178,7 +178,7 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 18, scale: 0.98 }}
               transition={{ duration: 0.22 }}
-              className="mx-auto grid h-full max-w-6xl overflow-hidden rounded-[30px] border border-[rgba(255,255,255,0.4)] bg-[linear-gradient(180deg,rgba(255,255,255,0.95),rgba(246,250,255,0.98))] shadow-[0_28px_90px_rgba(17,25,40,0.25)] lg:grid-cols-[1.05fr_0.95fr]"
+              className="mx-auto grid h-[calc(100dvh-6rem)] max-w-6xl overflow-hidden rounded-[30px] border border-[rgba(255,255,255,0.4)] bg-[linear-gradient(180deg,rgba(255,255,255,0.95),rgba(246,250,255,0.98))] shadow-[0_28px_90px_rgba(17,25,40,0.25)] md:h-[calc(100dvh-7rem)] lg:grid-cols-[1.05fr_0.95fr]"
               onClick={(event) => event.stopPropagation()}
             >
               <div className="grid min-h-0 gap-4 border-b border-[var(--line)] p-5 lg:border-b-0 lg:border-r lg:p-6">
@@ -248,30 +248,39 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
                 </div>
               </div>
 
-              <div className="min-h-0 overflow-y-auto p-5 lg:p-6">
-                <h3 className="text-3xl font-extrabold text-[var(--heading)]">{selected.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{selected.summary}</p>
-
-                <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                  {selected.signals.map((signal) => (
-                    <div
-                      key={`${selected.title}-${signal.label}`}
-                      className="rounded-[20px] border border-[rgba(110,159,224,0.16)] bg-[rgba(237,244,255,0.48)] p-4"
-                    >
-                      <p className="text-2xl font-extrabold text-[var(--heading)]">{signal.value}</p>
-                      <p className="mt-1 text-sm leading-6 text-[var(--muted)]">{signal.label}</p>
-                    </div>
-                  ))}
+              <div className="min-h-0 overflow-y-auto p-5 lg:p-7">
+                <div className="mb-5 border-b border-[var(--line)] pb-4">
+                  <p className="mono text-[11px] font-bold uppercase tracking-widest text-[var(--accent-strong)]">
+                    Project Detail
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-[var(--muted)]">{selected.category}</p>
                 </div>
 
-                <div className="mt-6 rounded-[22px] border border-[rgba(110,159,224,0.16)] bg-[rgba(237,244,255,0.42)] p-4">
-                  <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--muted)]">Problem</p>
-                  <p className="mt-3 text-sm leading-7 text-[var(--text)]">{selected.problem}</p>
+                <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">{selected.category}</p>
+                <h3 className="mt-2 text-3xl font-extrabold leading-tight text-[var(--heading)]">{selected.title}</h3>
+                <div className="mt-4 border-l-4 border-[var(--accent)] bg-[rgba(237,244,255,0.5)] px-4 py-3">
+                  <p className="text-[0.98rem] font-semibold leading-7 text-[var(--heading)]">{selected.summary}</p>
                 </div>
 
-                <div className="mt-4 rounded-[22px] border border-[rgba(110,159,224,0.16)] bg-white p-4">
-                  <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--muted)]">Impact</p>
-                  <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{selected.impact}</p>
+                <div className="mt-6 rounded-[24px] border border-[rgba(110,159,224,0.18)] bg-white/82 p-5 shadow-[0_14px_34px_rgba(38,52,69,0.05)]">
+                  <p className="mono text-[11px] font-bold uppercase tracking-widest text-[var(--accent-strong)]">Project Notes</p>
+                  <p className="mt-3 text-[0.95rem] leading-8 text-[var(--text)]">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem at erat tristique
+                    porta. Donec non justo vitae ipsum facilisis tincidunt, sed data context into practical systems
+                    that are easier to understand, maintain, and improve.
+                  </p>
+                </div>
+
+                <div className="mt-4 grid gap-4">
+                  <div className="rounded-[20px] border border-[rgba(110,159,224,0.16)] bg-[rgba(237,244,255,0.5)] p-4">
+                    <p className="mono text-[11px] font-bold uppercase tracking-widest text-[var(--accent-strong)]">Problem</p>
+                    <p className="mt-2 text-[0.92rem] leading-7 text-[var(--text)]">{selected.problem}</p>
+                  </div>
+
+                  <div className="rounded-[20px] border border-[rgba(110,159,224,0.16)] bg-white/78 p-4">
+                    <p className="mono text-[11px] font-bold uppercase tracking-widest text-[var(--accent-strong)]">Impact</p>
+                    <p className="mt-2 text-[0.92rem] leading-7 text-[var(--text)]">{selected.impact}</p>
+                  </div>
                 </div>
 
                 <div className="mt-5 flex flex-wrap gap-2">
@@ -282,7 +291,9 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
 
                 <Link
                   href={selected.link}
-                  className="focus-ring mt-6 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[var(--heading)] px-5 text-sm font-bold text-white hover:bg-[var(--accent-strong)]"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="focus-ring mt-6 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[var(--button-bg)] px-5 text-sm font-bold text-[var(--button-text)] hover:bg-[var(--button-hover)]"
                 >
                   Open repository
                   <ArrowUpRight className="h-4 w-4" />

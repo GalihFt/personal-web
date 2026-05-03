@@ -80,7 +80,9 @@ export function SelectedCertificateGallery({
                 {selected.href ? (
                   <Link
                     href={selected.href}
-                    className="focus-ring inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[var(--heading)] px-4 text-sm font-bold text-white hover:bg-[var(--accent-strong)]"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="focus-ring inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[var(--button-bg)] px-4 text-sm font-bold text-[var(--button-text)] hover:bg-[var(--button-hover)]"
                   >
                     {actionLabel}
                     <ExternalLink className="h-4 w-4" />

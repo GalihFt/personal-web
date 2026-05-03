@@ -137,7 +137,7 @@ export function ProjectExplorer({ projects }: ProjectExplorerProps) {
                         </div>
                         <Link
                           href={project.link}
-                          className="focus-ring inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[var(--heading)] px-4 text-sm font-bold text-white hover:bg-[var(--accent-strong)]"
+                          className="focus-ring inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[var(--button-bg)] px-4 text-sm font-bold text-[var(--button-text)] hover:bg-[var(--button-hover)]"
                         >
                           Repo
                           <ArrowUpRight className="h-4 w-4" />

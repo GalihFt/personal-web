@@ -25,6 +25,8 @@ export function ProjectCard({ project, index = 0, compact = false }: ProjectCard
         </span>
         <Link
           href={project.link}
+          target="_blank"
+          rel="noreferrer"
           className="focus-ring rounded-full border border-transparent p-2 text-[var(--muted)] transition-colors hover:border-[rgba(110,159,224,0.18)] hover:bg-[var(--surface)] hover:text-[var(--heading)]"
           aria-label={`Open ${project.title} repository`}
         >

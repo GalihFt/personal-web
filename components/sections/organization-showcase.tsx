@@ -142,7 +142,7 @@ export function OrganizationShowcase({ items }: OrganizationShowcaseProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-[rgba(17,25,40,0.55)] p-4 backdrop-blur-sm md:p-8"
+            className="fixed inset-0 z-[60] bg-[rgba(17,25,40,0.55)] p-4 pt-20 backdrop-blur-sm md:p-8 md:pt-24"
             onClick={() => setSelectedTitle(null)}
           >
             <motion.div
@@ -150,7 +150,7 @@ export function OrganizationShowcase({ items }: OrganizationShowcaseProps) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 18, scale: 0.98 }}
               transition={{ duration: 0.22 }}
-              className="mx-auto grid h-full max-w-6xl overflow-hidden rounded-[30px] border border-[rgba(255,255,255,0.4)] bg-[linear-gradient(180deg,rgba(255,255,255,0.95),rgba(246,250,255,0.98))] shadow-[0_28px_90px_rgba(17,25,40,0.25)] lg:grid-cols-[1.05fr_0.95fr]"
+              className="mx-auto grid h-[calc(100dvh-6rem)] max-w-6xl overflow-hidden rounded-[30px] border border-[rgba(255,255,255,0.4)] bg-[linear-gradient(180deg,rgba(255,255,255,0.95),rgba(246,250,255,0.98))] shadow-[0_28px_90px_rgba(17,25,40,0.25)] md:h-[calc(100dvh-7rem)] lg:grid-cols-[1.05fr_0.95fr]"
               onClick={(event) => event.stopPropagation()}
             >
               <div className="grid min-h-0 gap-4 border-b border-[var(--line)] p-5 lg:border-b-0 lg:border-r lg:p-6">
@@ -221,21 +221,38 @@ export function OrganizationShowcase({ items }: OrganizationShowcaseProps) {
               </div>
 
               <div className="min-h-0 overflow-y-auto p-5 lg:p-6">
+                <div className="mb-5 border-b border-[var(--line)] pb-4">
+                  <p className="mono text-[11px] font-bold uppercase tracking-widest text-[var(--accent-strong)]">
+                    Organization Detail
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-[var(--muted)]">{selected.period}</p>
+                </div>
+
                 <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">{selected.type}</p>
                 <h3 className="mt-3 text-3xl font-extrabold text-[var(--heading)]">{selected.title}</h3>
                 <p className="mt-2 text-sm font-semibold text-[var(--text)]">{selected.place}</p>
-                <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{selected.summary}</p>
+                <div className="mt-4 rounded-[18px] border border-[rgba(110,159,224,0.14)] bg-white/70 p-4 shadow-[0_12px_30px_rgba(38,52,69,0.04)]">
+                  <p className="text-[0.95rem] leading-7 text-[var(--text)]">{selected.summary}</p>
+                </div>
 
-                <div className="mt-6 rounded-[22px] border border-[rgba(110,159,224,0.16)] bg-[rgba(237,244,255,0.42)] p-4">
-                  <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--muted)]">Detailed Contributions</p>
-                  <ul className="mt-3 grid gap-3">
-                    {selected.points.map((point) => (
-                      <li key={point} className="flex gap-3 text-sm leading-7 text-[var(--text)]">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
-                        <span>{point}</span>
-                      </li>
+                <div className="mt-5 rounded-[24px] border border-[rgba(110,159,224,0.16)] bg-[linear-gradient(180deg,rgba(237,244,255,0.64),rgba(255,255,255,0.82))] p-4">
+                  <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">Detailed Contributions</p>
+                  <div className="mt-4 grid gap-3">
+                    {selected.points.map((point, index) => (
+                      <div
+                        key={point}
+                        className="group relative overflow-hidden rounded-[18px] border border-[rgba(110,159,224,0.16)] bg-white/82 p-4 shadow-[0_10px_26px_rgba(38,52,69,0.04)] transition duration-200 hover:-translate-y-0.5 hover:border-[rgba(110,159,224,0.38)] hover:shadow-[0_16px_36px_rgba(38,52,69,0.08)]"
+                      >
+                        <div className="absolute inset-y-0 left-0 w-1 bg-[linear-gradient(180deg,var(--accent),transparent)]" />
+                        <div className="flex gap-3 pl-1">
+                          <span className="mono flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--button-bg)] text-[11px] font-extrabold text-[var(--button-text)] shadow-[0_8px_18px_rgba(34,50,74,0.14)]">
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
+                          <p className="text-[0.95rem] font-semibold leading-7 text-[var(--heading)]">{point}</p>
+                        </div>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </div>
             </motion.div>

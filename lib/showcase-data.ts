@@ -97,33 +97,33 @@ const projectSignalMap: Record<string, { value: string; label: string }[]> = {
 
 const workGalleryMap: Record<string, string[]> = {
   "Accounting Data Analyst": [
-    "/assets/profile/galih-analyst.png",
     "/assets/profile/galih-graduation.jpg",
     "/assets/education/its-graduation.jpg",
+    "/assets/profile/galih-graduation.jpg",
   ],
   "Data Analyst Intern": [
+    "/assets/education/its-graduation.jpg",
     "/assets/profile/galih-graduation.jpg",
     "/assets/education/its-graduation.jpg",
-    "/assets/honors/top-50-bangkit.jpg",
   ],
   "Assistant Lecturer of Data Warehouse": [
     "/assets/education/its-graduation.jpg",
     "/assets/profile/galih-graduation.jpg",
-    "/assets/profile/galih-analyst.png",
+    "/assets/education/its-graduation.jpg",
   ],
   "Research Assistant": [
-    "/assets/profile/galih-analyst.png",
-    "/assets/honors/bangkit-certificate.jpg",
+    "/assets/profile/galih-graduation.jpg",
+    "/assets/education/its-graduation.jpg",
     "/assets/profile/galih-graduation.jpg",
   ],
   "Statistics Student Intern": [
     "/assets/profile/galih-graduation.jpg",
     "/assets/education/its-graduation.jpg",
-    "/assets/profile/galih-analyst.png",
+    "/assets/profile/galih-graduation.jpg",
   ],
   "Medical Record Intern": [
+    "/assets/education/its-graduation.jpg",
     "/assets/profile/galih-graduation.jpg",
-    "/assets/profile/galih-analyst.png",
     "/assets/education/its-graduation.jpg",
   ],
 };
