@@ -33,19 +33,18 @@ export function SelectedCertificateGallery({
               type="button"
               onClick={() => setSelected(item)}
               className={cn(
-                "focus-ring surface-card grid grid-cols-[88px_1fr] gap-4 p-3 text-left transition-all duration-200 hover:border-[var(--accent)] hover:-translate-y-0.5",
+                "focus-ring surface-card grid grid-cols-[78px_1fr] gap-3 px-3 py-2.5 text-left transition-all duration-200 hover:border-[var(--accent)] hover:-translate-y-0.5",
                 active && "border-[var(--accent-strong)] bg-[linear-gradient(180deg,rgba(237,244,255,0.72),rgba(255,255,255,0.92))]",
               )}
             >
-              <span className="relative aspect-[4/3] overflow-hidden rounded-md bg-[var(--surface)]">
+              <span className="relative aspect-[4/3] self-center overflow-hidden rounded-md bg-[var(--surface)]">
                 <Image src={item.image} alt="" fill className="object-cover" sizes="88px" />
               </span>
-              <span className="min-w-0">
+              <span className="flex min-w-0 flex-col justify-center self-center">
                 <span className="mono block text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">
                   {item.issuer}
                 </span>
                 <span className="mt-1 block text-sm font-extrabold leading-6 text-[var(--heading)]">{item.title}</span>
-                <span className="mt-1 line-clamp-2 block text-xs leading-5 text-[var(--muted)]">{item.detail}</span>
               </span>
             </button>
           );

@@ -75,6 +75,7 @@ export type Certification = {
   issuer: string;
   href: string;
   image: string;
+  detail: string;
 };
 
 export type SelectableCredential = {
@@ -112,8 +113,8 @@ export const navItems: NavItem[] = [
 export const siteConfig = {
   name: "Galih Fitriatmo",
   initials: "GF",
-  role: "Data Analyst | Analytics Automation",
-  headline: "Certified Data Analytics & Machine Learning Engineering",
+  role: "Data Analyst ",
+  headline: "Data Analyst",
   location: "Surabaya, Indonesia",
   email: "galihfitriatmo2611@gmail.com",
   linkedin: "https://www.linkedin.com/in/galih-fitriatmo/",
@@ -123,7 +124,7 @@ export const siteConfig = {
   heroImage: "/assets/profile/galih-analyst.png",
   graduationImage: "/assets/profile/galih-graduation.jpg",
   description:
-    "I build reporting systems, analytics automation, and machine learning solutions that help teams work faster and decide with more confidence.",
+    "Statistics graduate bridging technical data pipelines with business strategy. Experienced in developing statistical models, automated workflows, and predictive analytics to drive cost efficiency, operational optimization, and financial accuracy.",
 };
 
 export const socialLinks = [
@@ -133,10 +134,10 @@ export const socialLinks = [
 ];
 
 export const homeStats: Stat[] = [
-  { value: "1+ yr", label: "Practical analytics experience" },
-  { value: "30+ hrs", label: "Monthly reporting time reduced" },
-  { value: "2x", label: "Faster financial data validation" },
-  { value: "Top 10%", label: "Bangkit ML distinction graduate" },
+  { value: "1+ Years Experience", label: "Practical data analytics background across corporate and academic projects." },
+  { value: "Cum Laude Graduate", label: "Bachelor's degree in Statistics from Institut Teknologi Sepuluh Nopember (ITS)." },
+  { value: "Top 10% Graduate", label: "Distinction graduate in the Machine Learning path at Bangkit Academy." },
+  { value: "Process Optimization", label: "Built analytical models to reduce time and operational costs." },
 ];
 
 export const profileSummary = [
@@ -150,11 +151,9 @@ export const skillGroups: SkillGroup[] = [
     items: [
       "Data Visualization",
       "Statistical Modeling",
-      "Forecasting",
       "Machine Learning",
       "Predictive Analytics",
-      "NLP",
-      "Data Storytelling",
+      "NLP", "Basic Accounting"
     ],
   },
   {
@@ -164,12 +163,11 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "Business & Collaboration",
     items: [
-      "Stakeholder Communication",
+      "Communication",
       "Problem Solving",
       "Critical Thinking",
       "Data-driven Decision Making",
       "Team Management",
-      "Basic Accounting",
     ],
   },
 ];
@@ -412,7 +410,7 @@ export const education = [
     place: "Institut Teknologi Sepuluh Nopember",
     period: "Jun 2021 - Sep 2025",
     note: "GPA 3.68, Cum Laude. Specialized in computational statistics with thesis on feature-based and image-based deepfake speech detection.",
-    image: "/assets/education/its-graduation.jpg",
+    image: "/assets/education/logo-its.png",
     relevantCourses: [
       "Statistical Modeling",
       "Machine Learning",
@@ -422,12 +420,14 @@ export const education = [
       "Data Visualization",
     ],
     detail:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem at erat tristique porta. During this period, the learning focus moved from statistical foundations into applied analytics, computational modeling, and practical data communication.",
+      "Studying Statistics at ITS gave me a strong analytical foundation, but the experience went beyond coursework. I was involved in teaching, research, student programs, and collaborative projects that helped me develop both technical depth and communication skills. These experiences taught me how to explain complex ideas clearly, work with different teams, and apply statistical thinking to practical problems.",
     highlights: [
-      "Built statistical analysis workflows from raw datasets into interpretable reports and visual outputs.",
-      "Explored machine learning, forecasting, and classification methods through coursework and thesis work.",
-      "Worked with databases, dashboards, and computational tools to support data-driven problem solving.",
-      "Completed a thesis comparing feature-based and image-based approaches for deepfake speech detection.",
+      "Academic Mentorship & Teaching: Served as a Teaching Assistant for Calculus I & II, Database, and Data Warehouse, while also mentoring peers through HIMASTA-ITS learning programs.",
+      "Research & Analytical Work: Conducted sentiment analysis research on the Indonesian Government Securities (SUN) market in collaboration with DJPPR.",
+      "Student Leadership & Community Engagement: Contributed to student organizations, committee-based programs, and peer-learning activities through leadership roles, event coordination, and academic mentoring, including Vice Chairman of the PSt Division, CS Division Head for DAC, and exam preparation mentorship.",
+      "Data Visualization & Competition Achievement: Earned 1st Place at Visual Quest UNAIR and 3rd Place at ACTION UNESA through infographic and data storytelling competitions.",
+      "Practical Analytics Experience: Completed analytics-related internships at PT SPIL and KPPN Sanggau, applying data analysis to operational and public finance contexts.",
+      "Thesis: Developed a deep learning-based deepfake speech detection study comparing feature-based and image-based methodologies.",
     ],
   },
   {
@@ -435,7 +435,7 @@ export const education = [
     place: "Bangkit Academy by Google",
     period: "Feb 2024 - Jun 2024",
     note: "Distinction Graduate, Top 10%, average score 95.78. Built MoodMate NLP capstone and reached Top 50 out of 588 teams.",
-    image: "/assets/honors/bangkit-certificate.jpg",
+    image: "/assets/education/logo-bangkit.png",
     relevantCourses: [
       "TensorFlow",
       "Deep Learning",
@@ -445,12 +445,13 @@ export const education = [
       "Capstone Project",
     ],
     detail:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non justo vitae ipsum facilisis tincidunt. The program centered on applied machine learning practice, project collaboration, and building models that could be deployed into real product experiences.",
+      "Bangkit Academy helped me turn machine learning concepts into practical product development. Through structured learning and a team-based capstone project, I worked on TensorFlow workflows, NLP modeling, and model deployment for a journaling application. The experience strengthened my ability to experiment with models, collaborate across technical tracks, and build machine learning outputs that can support real user-facing products.",
     highlights: [
-      "Completed structured machine learning training across supervised learning, deep learning, and TensorFlow workflows.",
-      "Built MoodMate's NLP model for emotion classification and prepared the model for web deployment.",
-      "Collaborated in a capstone team from problem framing to model delivery and presentation.",
-      "Graduated with distinction and placed in the top 10 percent of the Machine Learning path.",
+      "Machine Learning Foundations: Completed structured learning in supervised learning, deep learning, TensorFlow, NLP, model evaluation, and deployment workflows.",
+      "Capstone & NLP Deployment: Built the machine learning component for MoodMate, a journaling application that classifies user emotions from text input and prepares the model for web deployment.",
+      "Team Collaboration: Collaborated with a multidisciplinary team across machine learning, cloud computing, and mobile development tracks.",
+      "Program & Capstone Recognition: Graduated as a Top 10% Distinction Graduate in the Machine Learning path, while MoodMate was selected as a Top 50 capstone project out of 588 teams.",
+      "Product-Oriented Thinking: Learned to connect model performance with usability, application flow, and the needs of real users.",
     ],
   },
 ];
@@ -464,11 +465,11 @@ export const achievements: Achievement[] = [
     icon: Trophy,
   },
   {
-    title: "Top 50 Capstone Project",
-    issuer: "Bangkit Academy",
-    detail: "MoodMate selected as Top 50 capstone project out of 588 teams.",
-    image: "/assets/honors/top-50-bangkit.jpg",
-    icon: Award,
+    title: "Third Place Winner - ACTION",
+    issuer: "ACTION Competition",
+    detail: "Competition recognition shown with a full certificate preview for recruiter verification.",
+    image: "/assets/honors/action-third-place.png",
+    icon: Trophy,
   },
   {
     title: "Distinction Graduate",
@@ -478,11 +479,11 @@ export const achievements: Achievement[] = [
     icon: GraduationCap,
   },
   {
-    title: "Third Place Winner - ACTION",
-    issuer: "ACTION Competition",
-    detail: "Competition recognition shown with a full certificate preview for recruiter verification.",
-    image: "/assets/honors/action-third-place.png",
-    icon: Trophy,
+    title: "Top 50 Capstone Project",
+    issuer: "Bangkit Academy",
+    detail: "MoodMate selected as Top 50 capstone project out of 588 teams.",
+    image: "/assets/honors/top-50-bangkit.jpg",
+    icon: Award,
   },
   {
     title: "Semifinalist - NSC UB",
@@ -498,37 +499,49 @@ export const certifications: Certification[] = [
     name: "Dev Certified for Machine Learning with TensorFlow",
     issuer: "Dev Certification",
     href: "https://dev.id/certificate/verify/ZJE0PXGV75",
-    image: "/assets/certification/devcert-tensorflow.png",
-  },
-  {
-    name: "DeepLearning.AI TensorFlow Developer Specialization",
-    issuer: "Coursera",
-    href: "https://www.coursera.org/account/accomplishments/specialization/FZRTLFU4HHUM",
-    image: "/assets/certification/tensorflow-developer.png",
-  },
-  {
-    name: "TensorFlow: Data and Deployment Specialization",
-    issuer: "Coursera",
-    href: "https://www.coursera.org/account/accomplishments/specialization/BVZHGZNWR23Z",
-    image: "/assets/certification/tensorflow-data-deployment.png",
-  },
-  {
-    name: "TensorFlow: Advanced Techniques Specialization",
-    issuer: "Coursera",
-    href: "https://www.coursera.org/account/accomplishments/specialization/BUN676LVLZAW",
-    image: "/assets/certification/tensorflow-advanced.png",
-  },
-  {
-    name: "Machine Learning Specialization",
-    issuer: "Coursera",
-    href: "https://www.coursera.org/account/accomplishments/specialization/MM3M7M6QDK2F",
-    image: "/assets/certification/machine-learning.png",
+    image: "/assets/certification/dev_cert_dcml.png",
+    detail:
+      "Assesses practical TensorFlow proficiency across neural networks, image classification, natural language processing, time series prediction, and machine learning model development best practices.",
   },
   {
     name: "Mathematics for Machine Learning and Data Science Specialization",
     issuer: "Coursera",
     href: "https://www.coursera.org/account/accomplishments/specialization/L2LAVZ82NSG4",
-    image: "/assets/certification/math-ml-ds.png",
+    image: "/assets/certification/math_ml_ds.png",
+    detail:
+      "Strengthens the mathematical and statistical foundations behind machine learning, including linear algebra, calculus, Bayesian statistics, dimensionality reduction, data transformation, descriptive statistics, and model optimization.",
+  },
+  {
+    name: "Machine Learning Specialization",
+    issuer: "Coursera",
+    href: "https://www.coursera.org/account/accomplishments/specialization/MM3M7M6QDK2F",
+    image: "/assets/certification/machine_learning.png",
+    detail:
+      "Builds core machine learning foundations using NumPy, scikit-learn, and TensorFlow, covering supervised learning, classification, decision trees, unsupervised learning, anomaly detection, recommender systems, and reinforcement learning.",
+  },
+  {
+    name: "DeepLearning.AI TensorFlow Developer Specialization",
+    issuer: "Coursera",
+    href: "https://www.coursera.org/account/accomplishments/specialization/FZRTLFU4HHUM",
+    image: "/assets/certification/tensorflow_developer.png",
+    detail:
+      "Covers applied deep learning with TensorFlow, including computer vision, image augmentation, overfitting prevention, NLP systems, sequence models, embeddings, forecasting, and Keras-based neural network development.",
+  },
+  {
+    name: "TensorFlow: Advanced Techniques Specialization",
+    issuer: "Coursera",
+    href: "https://www.coursera.org/account/accomplishments/specialization/BUN676LVLZAW",
+    image: "/assets/certification/tensorflow_advanced.png",
+    detail:
+      "Explores advanced TensorFlow techniques such as the Functional API, custom losses and layers, GradientTape, distributed training optimization, object detection, segmentation, model interpretation, and generative deep learning.",
+  },
+  {
+    name: "TensorFlow: Data and Deployment Specialization",
+    issuer: "Coursera",
+    href: "https://www.coursera.org/account/accomplishments/specialization/BVZHGZNWR23Z",
+    image: "/assets/certification/tensorflow_data_and_deployment.png",
+    detail:
+      "Focuses on deploying TensorFlow models across browser, mobile, and serving environments using TensorFlow.js, TensorFlow Lite, TensorFlow Serving, TensorFlow Hub, TensorBoard, and data pipeline workflows.",
   },
 ];
 
@@ -540,9 +553,9 @@ export const contactItems = [
 ];
 
 export const focusAreas = [
-  "Financial data automation",
-  "Business intelligence dashboards",
-  "Machine learning experimentation",
+  "Statistical Data Analysis",
+  "Predictive Modeling",
+  "Financial Data Automation",
   "Operational optimization",
   "Statistical forecasting",
   "Decision-support analytics",

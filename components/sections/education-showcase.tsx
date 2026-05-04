@@ -43,7 +43,7 @@ export function EducationShowcase({ items }: EducationShowcaseProps) {
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover transition duration-300 group-hover:scale-[1.03]"
+                  className="object-contain p-4 transition duration-300 group-hover:scale-[1.04]"
                   sizes="(min-width: 1024px) 42vw, 100vw"
                 />
               </div>
@@ -100,7 +100,7 @@ export function EducationShowcase({ items }: EducationShowcaseProps) {
                     src={selected.image}
                     alt={selected.title}
                     fill
-                    className="object-cover"
+                    className="object-contain p-6"
                     sizes="(min-width: 1024px) 45vw, 100vw"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,25,40,0.02),rgba(17,25,40,0.42))]" />

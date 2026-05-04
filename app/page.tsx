@@ -49,14 +49,10 @@ export default function HomePage() {
           <div className="grid gap-8 md:grid-cols-[1.05fr_0.95fr] md:items-center">
             <Reveal>
               <SectionKicker number="01" label="Home" />
-              <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(110,159,224,0.18)] bg-[rgba(255,255,255,0.82)] px-3 py-1.5">
-                <span className="h-2 w-2 rounded-full bg-[var(--accent)]" />
-                <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">{siteConfig.headline}</p>
-              </div>
-              <h1 className="mt-5 max-w-3xl text-5xl font-extrabold tracking-normal text-[var(--heading)] md:text-7xl">
+              <h1 className="mt-3 max-w-3xl text-5xl font-extrabold tracking-normal text-[var(--heading)] md:text-7xl">
                 {siteConfig.name}
               </h1>
-              <p className="mt-5 max-w-2xl text-xl font-semibold leading-8 text-[var(--text)]">{siteConfig.role}</p>
+              <p className="mt-5 max-w-2xl text-xl font-semibold leading-8 text-[var(--text)]">{siteConfig.headline}</p>
               <p className="mt-4 max-w-2xl text-pretty text-base leading-8 text-[var(--muted)] md:text-lg">
                 {siteConfig.description}
               </p>
@@ -142,11 +138,14 @@ export default function HomePage() {
           <Reveal delay={0.06}>
             <SectionKicker number="02" label="Profile" />
             <h2 className="text-4xl font-extrabold tracking-normal text-[var(--heading)] md:text-6xl">Hi, I am Galih!</h2>
-            <p className="mt-5 max-w-3xl text-base leading-8 text-[var(--muted)] md:text-lg">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem at erat tristique porta.
-              I work around analytics automation, reporting systems, and applied machine learning. Lorem ipsum dolor
-              sit amet, consectetur adipiscing elit. Donec non justo vitae ipsum facilisis tincidunt. Sed data, tools,
-              and business context into practical systems that teams can actually use.
+            <p className="mt-5 max-w-3xl text-base leading-[1.75] text-[var(--muted)] md:text-lg">
+              As a <strong className="font-extrabold text-[var(--heading)]">Statistics graduate from ITS</strong> with over a year of{" "}
+              <strong className="font-extrabold text-[var(--heading)]">practical analytics experience</strong>, I see data as a
+              strategic tool for bridging technical infrastructure and business operations. My work focuses on turning chaotic,
+              fragmented datasets into <strong className="font-extrabold text-[var(--heading)]">standardized insights</strong>,
+              automated workflows, and decision-ready outputs. Over the past year, I have applied{" "}
+              <strong className="font-extrabold text-[var(--heading)]">statistical analysis and process automation</strong>{" "}
+              to improve <strong className="font-extrabold text-[var(--heading)]">operational efficiency, financial accuracy, and measurable business impact</strong>.
             </p>
 
             <div className="mt-7 grid gap-4 lg:grid-cols-3">
@@ -273,25 +272,20 @@ export default function HomePage() {
       </section>
 
       <section id="contact" className="home-snap-section section-band section-surface">
-        <div className="container-shell max-w-4xl">
+        <div className="container-shell max-w-6xl">
           <Reveal>
             <SectionKicker number="09" label="Contact" />
             <SectionHeading
               eyebrow="Let's Connect!"
-              title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem at erat tristique porta. Donec non justo vitae ipsum facilisis tincidunt. Sed data, tools, and business context into practical systems that teams can actually use."
+              title="I am open to career opportunities in data analytics, business intelligence, machine learning, and analytics automation. I enjoy working on problems that involve messy data, operational processes, and business decisions that need clearer evidence. If you are looking for someone who can combine statistical thinking, technical execution, and practical communication, feel free to reach out. I would be happy to connect, collaborate, or discuss potential opportunities."
+              wide
             />
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               {contactItems.map((item) => {
                 const Icon = item.icon;
-
-                return (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="focus-ring surface-card flex items-center gap-4 p-4 hover:border-[var(--accent)]"
-                  >
+                const isEmail = item.label === "Email";
+                const content = (
+                  <>
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[rgba(110,159,224,0.18)] bg-white text-[var(--accent-strong)]">
                       <Icon className="h-5 w-5" />
                     </span>
@@ -301,6 +295,26 @@ export default function HomePage() {
                       </span>
                       <span className="mt-1 block text-sm font-bold text-[var(--heading)]">{item.value}</span>
                     </span>
+                  </>
+                );
+
+                if (isEmail) {
+                  return (
+                    <div key={item.label} className="surface-card flex items-center gap-4 p-4">
+                      {content}
+                    </div>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="focus-ring surface-card flex items-center gap-4 p-4 hover:border-[var(--accent)]"
+                  >
+                    {content}
                   </Link>
                 );
               })}

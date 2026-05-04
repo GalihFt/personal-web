@@ -219,7 +219,7 @@ export const honorCertificates = achievements.map((item) => ({
 export const skillCertifications = certifications.map((item) => ({
   title: item.name,
   issuer: item.issuer,
-  detail: "Sertifikasi keahlian yang bisa dipreview lalu diverifikasi lewat link credential.",
+  detail: item.detail,
   image: item.image,
   href: item.href,
 }));

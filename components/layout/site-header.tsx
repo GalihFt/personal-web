@@ -109,7 +109,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--header-bg)] backdrop-blur-xl">
-      <div className="container-shell flex h-16 items-center justify-between gap-4">
+      <div className="container-shell flex h-16 items-center gap-4">
         <Link href="/#home" onClick={(event) => handleNavClick(event, "/#home")} className="focus-ring flex items-center gap-3 rounded-md">
           <span className="flex h-9 w-9 items-center justify-center rounded-md bg-[var(--button-bg)] text-sm font-extrabold text-[var(--button-text)] shadow-[0_10px_24px_rgba(63,111,184,0.18)]">
             {siteConfig.initials}
@@ -120,7 +120,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary navigation">
+        <nav className="ml-auto hidden items-center gap-0.5 lg:flex" aria-label="Primary navigation">
           {navItems.map((item) => {
             const active = isGroupActive(item);
 
@@ -177,7 +177,7 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 lg:ml-1">
           <button
             type="button"
             className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-md border border-[var(--line)] bg-[var(--card-bg)] text-[var(--heading)] transition-colors hover:border-[var(--accent)]"
