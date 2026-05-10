@@ -58,7 +58,14 @@
 }
 
 html {
+  font-size: 80%;
   scroll-behavior: smooth;
+}
+
+@media (max-width: 767px) {
+  html {
+    font-size: 100%;
+  }
 }
 
 body {
@@ -118,7 +125,7 @@ a {
 .home-snap-section {
   min-height: calc(100dvh - 4rem);
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
   display: flex;
   align-items: center;
   position: relative;
@@ -135,11 +142,11 @@ a {
   content: "";
   position: absolute;
   inset: auto auto 8% -8rem;
-  width: 30rem;
-  height: 30rem;
+  width: 34rem;
+  height: 34rem;
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(110, 159, 224, 0.28), rgba(110, 159, 224, 0.08) 46%, transparent 72%);
-  filter: blur(24px);
+  background: radial-gradient(circle, rgba(110, 159, 224, 0.36), rgba(110, 159, 224, 0.12) 46%, transparent 72%);
+  filter: blur(22px);
   pointer-events: none;
 }
 
@@ -148,11 +155,11 @@ a {
   position: absolute;
   top: 8%;
   right: -9rem;
-  width: 34rem;
-  height: 34rem;
+  width: 38rem;
+  height: 38rem;
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(79, 127, 192, 0.2), rgba(219, 232, 251, 0.14) 42%, transparent 70%);
-  filter: blur(28px);
+  background: radial-gradient(circle, rgba(79, 127, 192, 0.28), rgba(219, 232, 251, 0.18) 42%, transparent 70%);
+  filter: blur(26px);
   pointer-events: none;
 }
 
@@ -192,11 +199,81 @@ a {
   height: 34rem;
 }
 
+#education::before {
+  box-shadow: 42rem -7rem 0 -7rem rgba(110, 159, 224, 0.2);
+}
+
+#professional-experience::before {
+  box-shadow: 36rem 10rem 0 -6.5rem rgba(110, 159, 224, 0.22);
+}
+
+#projects::before {
+  inset: 8% auto auto -10rem;
+  width: 28rem;
+  height: 28rem;
+  box-shadow:
+    66rem 7rem 0 -8rem rgba(110, 159, 224, 0.2),
+    38rem 28rem 0 -10rem rgba(79, 127, 192, 0.16);
+}
+
+#projects::after {
+  inset: auto -12rem -8rem auto;
+  width: 30rem;
+  height: 30rem;
+}
+
+#certifications::before {
+  inset: 10% auto auto -9rem;
+  width: 26rem;
+  height: 26rem;
+  box-shadow:
+    54rem -4rem 0 -8rem rgba(110, 159, 224, 0.18),
+    34rem 26rem 0 -10rem rgba(79, 127, 192, 0.16);
+}
+
+#certifications::after {
+  inset: auto -10rem 6% auto;
+  width: 30rem;
+  height: 30rem;
+}
+
+#contact::before {
+  box-shadow: 34rem 6rem 0 -6.5rem rgba(110, 159, 224, 0.22);
+}
+
 .home-section-scroll {
   max-height: calc(100dvh - 11rem);
   overflow-y: auto;
-  overscroll-behavior: contain;
+  overscroll-behavior-y: auto;
   padding-right: 0.25rem;
+}
+
+.home-section-scroll,
+.experience-timeline-scroll,
+.panel-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(110, 159, 224, 0.28) transparent;
+}
+
+.home-section-scroll::-webkit-scrollbar,
+.experience-timeline-scroll::-webkit-scrollbar,
+.panel-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.home-section-scroll::-webkit-scrollbar-track,
+.experience-timeline-scroll::-webkit-scrollbar-track,
+.panel-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.home-section-scroll::-webkit-scrollbar-thumb,
+.experience-timeline-scroll::-webkit-scrollbar-thumb,
+.panel-scroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background: rgba(110, 159, 224, 0.28);
+  background-clip: padding-box;
 }
 
 .surface-card {

@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Chip } from "@/components/ui/chip";
 import { cn } from "@/lib/utils";
 
@@ -51,25 +51,22 @@ const iconMap = {
 
 export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
   const [selectedTitle, setSelectedTitle] = useState<string | null>(null);
-  const [startIndex, setStartIndex] = useState(0);
-  const [slideDirection, setSlideDirection] = useState<1 | -1>(1);
   const [imageIndexByTitle, setImageIndexByTitle] = useState<Record<string, number>>(
     Object.fromEntries(projects.map((project) => [project.title, 0])),
   );
 
   const selected = projects.find((project) => project.title === selectedTitle) ?? null;
-  const visibleSlice = projects.slice(startIndex, startIndex + 4);
 
-  function shiftCards(direction: -1 | 1) {
-    const next = startIndex + direction;
-
-    if (next < 0 || next > Math.max(projects.length - 4, 0)) {
-      return;
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setSelectedTitle(null);
+      }
     }
 
-    setSlideDirection(direction);
-    setStartIndex(next);
-  }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   function shiftImage(direction: -1 | 1) {
     if (!selected) {
@@ -89,44 +86,14 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
   return (
     <>
       <div className="grid gap-6">
-        <div className="flex items-center justify-between gap-4">
-          <p className="text-sm font-semibold text-[var(--muted)]">
-            Showing {visibleSlice.length} of {projects.length} projects
-          </p>
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={() => shiftCards(-1)}
-              className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--line)] bg-white text-[var(--heading)] disabled:opacity-40"
-              disabled={startIndex === 0}
-              aria-label="Previous projects"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <button
-              type="button"
-              onClick={() => shiftCards(1)}
-              className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--line)] bg-white text-[var(--heading)] disabled:opacity-40"
-              disabled={startIndex >= Math.max(projects.length - 4, 0)}
-              aria-label="Next projects"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </div>
-        </div>
+        <p className="text-sm font-semibold text-[var(--muted)]">
+          {projects.length} selected projects. Click a card to review the details.
+        </p>
 
-        <div className="overflow-hidden">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={startIndex}
-              initial={{ opacity: 0, x: slideDirection > 0 ? 48 : -48 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: slideDirection > 0 ? -48 : 48 }}
-              transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
-              className="grid gap-5 md:grid-cols-2 xl:grid-cols-4"
-            >
-              {visibleSlice.map((project) => {
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+              {projects.map((project) => {
                 const Icon = iconMap[project.title as keyof typeof iconMap] ?? FileSpreadsheet;
+                const primarySignal = project.signals[0];
 
                 return (
                   <motion.button
@@ -134,14 +101,19 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
                     key={project.title}
                     type="button"
                     onClick={() => setSelectedTitle(project.title)}
-                    className="focus-ring overflow-hidden rounded-[26px] border border-[var(--line)] bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(246,250,255,0.98))] text-left shadow-[0_16px_48px_rgba(34,50,74,0.08)] transition-transform duration-200 hover:-translate-y-1"
+                    className="focus-ring overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--card-bg)] text-left shadow-[0_12px_34px_rgba(34,50,74,0.06)] transition-all duration-200 hover:-translate-y-1 hover:border-[var(--accent)] hover:shadow-[0_18px_44px_rgba(34,50,74,0.1)]"
                   >
                     <div className="relative aspect-[16/10]">
                       <Image src={project.gallery[0]} alt={project.title} fill className="object-cover" sizes="(min-width: 1024px) 50vw, 100vw" />
+                      {project.featured ? (
+                        <span className="absolute left-3 top-3 rounded-md border border-[rgba(255,255,255,0.56)] bg-[rgba(255,255,255,0.86)] px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-widest text-[var(--accent-strong)] backdrop-blur">
+                          Featured
+                        </span>
+                      ) : null}
                     </div>
                     <div className="p-4">
                       <div className="flex items-center gap-3">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(110,159,224,0.18)] bg-white text-[var(--accent-strong)]">
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[rgba(110,159,224,0.18)] bg-white text-[var(--accent-strong)]">
                           <Icon className="h-5 w-5" />
                         </span>
                         <div className="min-w-0">
@@ -149,6 +121,12 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
                           <h3 className="mt-1 line-clamp-2 text-lg font-extrabold text-[var(--heading)]">{project.title}</h3>
                         </div>
                       </div>
+                      {primarySignal ? (
+                        <div className="mt-4 rounded-xl border border-[rgba(110,159,224,0.16)] bg-[rgba(237,244,255,0.42)] px-3 py-2">
+                          <p className="text-sm font-extrabold text-[var(--heading)]">{primarySignal.value}</p>
+                          <p className="mt-0.5 text-xs leading-5 text-[var(--muted)]">{primarySignal.label}</p>
+                        </div>
+                      ) : null}
                       <p className="mt-3 line-clamp-3 text-sm leading-7 text-[var(--muted)]">{project.summary}</p>
                       <div className="mt-4 flex flex-wrap gap-2">
                         {project.tools.slice(0, 3).map((tool) => (
@@ -159,8 +137,6 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
                   </motion.button>
                 );
               })}
-            </motion.div>
-          </AnimatePresence>
         </div>
       </div>
 
@@ -178,12 +154,12 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 18, scale: 0.98 }}
               transition={{ duration: 0.22 }}
-              className="mx-auto grid h-[calc(100dvh-6rem)] max-w-6xl overflow-hidden rounded-[30px] border border-[rgba(255,255,255,0.4)] bg-[linear-gradient(180deg,rgba(255,255,255,0.95),rgba(246,250,255,0.98))] shadow-[0_28px_90px_rgba(17,25,40,0.25)] md:h-[calc(100dvh-7rem)] lg:grid-cols-[1.05fr_0.95fr]"
+              className="mx-auto grid h-[calc(100dvh-6rem)] max-w-6xl overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.4)] bg-[var(--card-bg)] shadow-[0_28px_90px_rgba(17,25,40,0.25)] md:h-[calc(100dvh-7rem)] lg:grid-cols-[1.04fr_0.96fr]"
               onClick={(event) => event.stopPropagation()}
             >
               <div className="grid min-h-0 gap-4 border-b border-[var(--line)] p-5 lg:border-b-0 lg:border-r lg:p-6">
                 <div className="flex items-center justify-between gap-4">
-                  <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">{selected.category}</p>
+                  <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">Project Preview</p>
                   <button
                     type="button"
                     onClick={() => setSelectedTitle(null)}
@@ -194,7 +170,7 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
                   </button>
                 </div>
 
-                <div className="relative overflow-hidden rounded-[24px] border border-[rgba(110,159,224,0.18)] bg-[linear-gradient(180deg,rgba(237,244,255,0.58),rgba(255,255,255,0.88))]">
+                <div className="relative overflow-hidden rounded-2xl border border-[rgba(110,159,224,0.18)] bg-[rgba(237,244,255,0.42)]">
                   <div className="relative aspect-[16/9]">
                     <Image
                       src={selected.gallery[imageIndexByTitle[selected.title] ?? 0]}
@@ -238,7 +214,7 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
                         }))
                       }
                       className={cn(
-                        "relative aspect-[16/10] overflow-hidden rounded-[18px] border border-[var(--line)] bg-white",
+                        "relative aspect-[16/10] overflow-hidden rounded-xl border border-[var(--line)] bg-white",
                         (imageIndexByTitle[selected.title] ?? 0) === index && "border-[var(--accent-strong)]",
                       )}
                     >
@@ -248,36 +224,29 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
                 </div>
               </div>
 
-              <div className="min-h-0 overflow-y-auto p-5 lg:p-7">
-                <div className="mb-5 border-b border-[var(--line)] pb-4">
-                  <p className="mono text-[11px] font-bold uppercase tracking-widest text-[var(--accent-strong)]">
-                    Project Detail
-                  </p>
-                  <p className="mt-1 text-sm font-semibold text-[var(--muted)]">{selected.category}</p>
-                </div>
-
+              <div className="panel-scroll min-h-0 overflow-y-auto p-5 lg:p-7">
                 <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">{selected.category}</p>
                 <h3 className="mt-2 text-3xl font-extrabold leading-tight text-[var(--heading)]">{selected.title}</h3>
-                <div className="mt-4 border-l-4 border-[var(--accent)] bg-[rgba(237,244,255,0.5)] px-4 py-3">
+                <div className="mt-4 border-l-2 border-[var(--accent)] bg-[rgba(237,244,255,0.34)] px-4 py-3">
                   <p className="text-[0.98rem] font-semibold leading-7 text-[var(--heading)]">{selected.summary}</p>
                 </div>
 
-                <div className="mt-6 rounded-[24px] border border-[rgba(110,159,224,0.18)] bg-white/82 p-5 shadow-[0_14px_34px_rgba(38,52,69,0.05)]">
-                  <p className="mono text-[11px] font-bold uppercase tracking-widest text-[var(--accent-strong)]">Project Notes</p>
-                  <p className="mt-3 text-[0.95rem] leading-8 text-[var(--text)]">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem at erat tristique
-                    porta. Donec non justo vitae ipsum facilisis tincidunt, sed data context into practical systems
-                    that are easier to understand, maintain, and improve.
-                  </p>
+                <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                  {selected.signals.map((signal) => (
+                    <div key={`${selected.title}-${signal.value}`} className="rounded-xl border border-[rgba(110,159,224,0.16)] bg-white/78 p-3">
+                      <p className="text-sm font-extrabold text-[var(--heading)]">{signal.value}</p>
+                      <p className="mt-1 text-xs leading-5 text-[var(--muted)]">{signal.label}</p>
+                    </div>
+                  ))}
                 </div>
 
-                <div className="mt-4 grid gap-4">
-                  <div className="rounded-[20px] border border-[rgba(110,159,224,0.16)] bg-[rgba(237,244,255,0.5)] p-4">
+                <div className="mt-5 grid gap-4">
+                  <div className="rounded-2xl border border-[rgba(110,159,224,0.16)] bg-[rgba(237,244,255,0.34)] p-4">
                     <p className="mono text-[11px] font-bold uppercase tracking-widest text-[var(--accent-strong)]">Problem</p>
                     <p className="mt-2 text-[0.92rem] leading-7 text-[var(--text)]">{selected.problem}</p>
                   </div>
 
-                  <div className="rounded-[20px] border border-[rgba(110,159,224,0.16)] bg-white/78 p-4">
+                  <div className="rounded-2xl border border-[rgba(110,159,224,0.16)] bg-white/78 p-4">
                     <p className="mono text-[11px] font-bold uppercase tracking-widest text-[var(--accent-strong)]">Impact</p>
                     <p className="mt-2 text-[0.92rem] leading-7 text-[var(--text)]">{selected.impact}</p>
                   </div>

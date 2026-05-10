@@ -119,7 +119,7 @@ export function EducationShowcase({ items }: EducationShowcaseProps) {
                   </button>
                 </div>
 
-                <div className="min-h-0 overflow-y-auto p-5 lg:p-7">
+                <div className="panel-scroll min-h-0 overflow-y-auto p-5 lg:p-7">
                   <div className="mb-5 border-b border-[var(--line)] pb-4">
                     <p className="mono text-[11px] font-bold uppercase tracking-widest text-[var(--accent-strong)]">
                       Education Detail

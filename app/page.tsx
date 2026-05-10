@@ -195,7 +195,7 @@ export default function HomePage() {
             />
           </Reveal>
 
-          <div className="home-section-scroll mt-6">
+          <div className="mt-5">
             <ExperienceShowcase items={workExperienceEntries} />
           </div>
         </div>

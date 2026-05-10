@@ -111,6 +111,16 @@ const workGalleryMap: Record<string, string[]> = {
     "/assets/profile/galih-graduation.jpg",
     "/assets/education/its-graduation.jpg",
   ],
+  "Assistant Lecturer of Database": [
+    "/assets/education/its-graduation.jpg",
+    "/assets/profile/galih-graduation.jpg",
+    "/assets/education/its-graduation.jpg",
+  ],
+  "Assistant Lecturer of Mathematics I and Calculus II": [
+    "/assets/education/its-graduation.jpg",
+    "/assets/profile/galih-graduation.jpg",
+    "/assets/education/its-graduation.jpg",
+  ],
   "Research Assistant": [
     "/assets/profile/galih-graduation.jpg",
     "/assets/education/its-graduation.jpg",
@@ -130,17 +140,21 @@ const workGalleryMap: Record<string, string[]> = {
 
 const workSummaryMap: Record<string, string> = {
   "Accounting Data Analyst":
-    "Focused on reconciliation automation, fragmented financial data cleanup, and tools that reduce repetitive monthly work.",
+    "Built reconciliation automation, Python validation pipelines, master data classification, and budgeting frameworks for accounting operations.",
   "Data Analyst Intern":
-    "Worked on optimization logic, dashboarding, and operational analysis to support vendor and repair decisions.",
+    "Improved container repair decisions through vendor allocation optimization, Power BI monitoring, EDA, modeling, and data preparation.",
   "Assistant Lecturer of Data Warehouse":
     "Helped students understand SQL, ETL workflows, and dashboard output through practical sessions.",
+  "Assistant Lecturer of Database":
+    "Supported database learning through DBMS fundamentals, MySQL practice, and structured classroom guidance.",
+  "Assistant Lecturer of Mathematics I and Calculus II":
+    "Built experience in mentoring foundational quantitative courses through teaching support, tutoring, and guided problem-solving.",
   "Research Assistant":
-    "Turned scraped public data into sentiment signals and visual insight for research use.",
+    "Collected online news data, applied VADER sentiment analysis, and visualized public opinion findings for research use.",
   "Statistics Student Intern":
-    "Translated public finance data into accessible analysis and publication-ready reporting.",
+    "Analyzed APBN data, created bulletin-ready visuals, and improved presentation materials for clearer public finance reporting.",
   "Medical Record Intern":
-    "Combined administrative accuracy with forecasting and dashboard work in a healthcare setting.",
+    "Built inpatient arrival forecasting, improved medical record completeness, and developed a dashboard for hospital statistics.",
 };
 
 const organizationGalleryMap: Record<string, string[]> = {
@@ -149,25 +163,46 @@ const organizationGalleryMap: Record<string, string[]> = {
     "/assets/profile/galih-portrait.jpg",
     "/assets/honors/visual-quest.png",
   ],
-  "Staff of Research and Data Analytics": [
+  "Staff of Research and Data Analytics Division": [
     "/assets/profile/galih-portrait.jpg",
     "/assets/honors/top-50-bangkit.jpg",
     "/assets/profile/galih-analyst.png",
   ],
-  "Head of Conference Subject Data Analytics Competition": [
+  "Head of Conference Subject Subdivision of DAC 2023": [
     "/assets/honors/visual-quest.png",
     "/assets/honors/action-third-place.png",
     "/assets/profile/galih-graduation.jpg",
+  ],
+  "Expert Staff of Equipment Division": [
+    "/assets/profile/galih-graduation.jpg",
+    "/assets/profile/galih-portrait.jpg",
+    "/assets/honors/visual-quest.png",
+  ],
+  "Staff of Equipment Division": [
+    "/assets/profile/galih-portrait.jpg",
+    "/assets/profile/galih-graduation.jpg",
+    "/assets/honors/action-third-place.png",
+  ],
+  "Academic Course Mentor": [
+    "/assets/education/its-graduation.jpg",
+    "/assets/profile/galih-graduation.jpg",
+    "/assets/profile/galih-portrait.jpg",
   ],
 };
 
 const organizationSummaryMap: Record<string, string> = {
   "Vice Chairman":
-    "A leadership role centered on aligning people, programs, and execution across a large student organization.",
-  "Staff of Research and Data Analytics":
-    "Focused on learning support, coordination, and operational management for a high-participation academic program.",
-  "Head of Conference Subject Data Analytics Competition":
-    "Led preparation, stakeholder communication, and strategic direction for a data analytics competition track.",
+    "Led organizational programs with 50 members, improved inter-divisional alignment, and helped shape a revenue-generating collaboration concept.",
+  "Staff of Research and Data Analytics Division":
+    "Coordinated tutors, facilities, schedules, and participant communication for SITASI, a high-participation peer learning program.",
+  "Head of Conference Subject Subdivision of DAC 2023":
+    "Led material development, question quality control, data partnership coordination, and external communication for a data analytics competition.",
+  "Expert Staff of Equipment Division":
+    "Supported Scientist Championship 2023 by coordinating resource needs, supervising staff tasks, and maintaining equipment readiness.",
+  "Staff of Equipment Division":
+    "Handled procurement, cross-division equipment coordination, and item monitoring for Scientist Championship 2022.",
+  "Academic Course Mentor":
+    "Mentored students in calculus and statistics through peer-learning and exam preparation support.",
 };
 
 const orderedProjects = [...projects].sort((a, b) => Number(b.featured) - Number(a.featured));
