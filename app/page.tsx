@@ -226,7 +226,7 @@ export default function HomePage() {
               title="Selected work that connects technical implementation with real operational and analytical problems."
             />
           </Reveal>
-          <div className="home-section-scroll mt-6">
+          <div className="mt-5">
             <ProjectShowcaseGrid projects={showcaseProjects} />
           </div>
         </div>
@@ -246,6 +246,7 @@ export default function HomePage() {
             <SelectedCertificateGallery
               items={honorCertificates}
               emptyText="Select an honor certificate to preview."
+              actionLabel="View work"
             />
           </div>
         </div>

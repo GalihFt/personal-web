@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { BookOpen, ChevronLeft, ChevronRight, Trophy, Users, X } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { ModalPortal } from "@/components/ui/modal-portal";
 import { cn } from "@/lib/utils";
 
 export type OrganizationEntry = {
@@ -38,6 +39,7 @@ export function OrganizationShowcase({ items }: OrganizationShowcaseProps) {
   );
 
   const selected = items.find((item) => item.title === selectedTitle) ?? null;
+  const selectedIndex = selected ? items.findIndex((item) => item.title === selected.title) : -1;
   const visibleItems = items.slice(startIndex, startIndex + 3);
   const canGoBack = startIndex > 0;
   const canGoNext = startIndex < Math.max(items.length - 3, 0);
@@ -52,6 +54,21 @@ export function OrganizationShowcase({ items }: OrganizationShowcaseProps) {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
+
+  useEffect(() => {
+    const scrollRoot = document.querySelector<HTMLElement>(".home-snap");
+
+    if (!selected || !scrollRoot) {
+      return;
+    }
+
+    const previousOverflowY = scrollRoot.style.overflowY;
+    scrollRoot.style.overflowY = "hidden";
+
+    return () => {
+      scrollRoot.style.overflowY = previousOverflowY;
+    };
+  }, [selected]);
 
   function shiftCards(direction: -1 | 1) {
     const next = startIndex + direction;
@@ -77,6 +94,19 @@ export function OrganizationShowcase({ items }: OrganizationShowcaseProps) {
       ...current,
       [selected.title]: nextIndex,
     }));
+  }
+
+  function shiftSelectedExperience(direction: -1 | 1) {
+    if (!selected || selectedIndex < 0) {
+      return;
+    }
+
+    const nextIndex = (selectedIndex + direction + items.length) % items.length;
+    const nextStart = Math.min(Math.max(nextIndex - 1, 0), Math.max(items.length - 3, 0));
+
+    setSelectedTitle(items[nextIndex]?.title ?? null);
+    setSlideDirection(direction);
+    setStartIndex(nextStart);
   }
 
   return (
@@ -156,7 +186,7 @@ export function OrganizationShowcase({ items }: OrganizationShowcaseProps) {
                           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                           sizes="(min-width: 1024px) 33vw, 100vw"
                         />
-                        <span className="absolute left-3 top-3 rounded-full border border-[rgba(255,255,255,0.56)] bg-[rgba(255,255,255,0.86)] px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-[var(--accent-strong)] backdrop-blur">
+                        <span className="absolute left-3 top-3 border-l-2 border-[var(--accent)] bg-[rgba(255,255,255,0.82)] px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-widest text-[var(--heading)] shadow-[0_10px_24px_rgba(34,50,74,0.08)] backdrop-blur">
                           {item.type}
                         </span>
                       </div>
@@ -215,24 +245,42 @@ export function OrganizationShowcase({ items }: OrganizationShowcaseProps) {
         </div>
       </div>
 
-      <AnimatePresence>
-        {selected ? (
-          <motion.div
+      <ModalPortal>
+        <AnimatePresence>
+          {selected ? (
+            <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-[rgba(17,25,40,0.55)] p-4 pt-20 backdrop-blur-sm md:p-8 md:pt-24"
+            className="fixed inset-0 z-[100] bg-[rgba(17,25,40,0.55)] p-4 pt-20 backdrop-blur-sm md:p-8 md:pt-24"
             onClick={() => setSelectedTitle(null)}
           >
-            <motion.div
-              initial={{ opacity: 0, y: 18, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 18, scale: 0.98 }}
-              transition={{ duration: 0.22 }}
-              className="mx-auto grid h-[calc(100dvh-6rem)] max-w-6xl overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.4)] bg-[var(--card-bg)] shadow-[0_28px_90px_rgba(17,25,40,0.25)] md:h-[calc(100dvh-7rem)] lg:grid-cols-[1.02fr_0.98fr]"
-              onClick={(event) => event.stopPropagation()}
-            >
-              <div className="grid min-h-0 gap-4 border-b border-[var(--line)] p-5 lg:border-b-0 lg:border-r lg:p-6">
+            <div className="relative mx-auto max-w-6xl" onClick={(event) => event.stopPropagation()}>
+              <button
+                type="button"
+                onClick={() => shiftSelectedExperience(-1)}
+                className="focus-ring absolute left-0 top-1/2 z-30 hidden h-11 w-11 -translate-x-[135%] -translate-y-1/2 items-center justify-center rounded-full border border-[rgba(110,159,224,0.24)] bg-[rgba(255,255,255,0.94)] text-[var(--heading)] shadow-[0_16px_36px_rgba(34,50,74,0.14)] backdrop-blur md:inline-flex"
+                aria-label="Previous community experience"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                type="button"
+                onClick={() => shiftSelectedExperience(1)}
+                className="focus-ring absolute right-0 top-1/2 z-30 hidden h-11 w-11 -translate-y-1/2 translate-x-[135%] items-center justify-center rounded-full border border-[rgba(110,159,224,0.24)] bg-[rgba(255,255,255,0.94)] text-[var(--heading)] shadow-[0_16px_36px_rgba(34,50,74,0.14)] backdrop-blur md:inline-flex"
+                aria-label="Next community experience"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+              <motion.div
+                key={selected.title}
+                initial={{ opacity: 0, y: 18, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 18, scale: 0.98 }}
+                transition={{ duration: 0.22 }}
+                className="grid h-[calc(100dvh-6rem)] overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.4)] bg-[var(--card-bg)] shadow-[0_28px_90px_rgba(17,25,40,0.25)] md:h-[calc(100dvh-7rem)] lg:grid-cols-[1.02fr_0.98fr]"
+              >
+                <div className="grid min-h-0 gap-4 border-b border-[var(--line)] p-5 lg:border-b-0 lg:border-r lg:p-6">
                 <div className="flex items-center justify-between gap-4">
                   <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">
                     Community Preview
@@ -302,10 +350,16 @@ export function OrganizationShowcase({ items }: OrganizationShowcaseProps) {
                 </div>
               </div>
 
-              <div className="panel-scroll min-h-0 overflow-y-auto p-5 lg:p-7">
-                <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">
-                  {selected.type} . {selected.period}
-                </p>
+                <div className="panel-scroll min-h-0 overflow-y-auto p-5 lg:p-7">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="mono border-l-2 border-[var(--accent)] pl-2 text-[11px] font-bold uppercase tracking-widest text-[var(--heading)]">
+                    {selected.type}
+                  </span>
+                  <span className="h-1 w-1 rounded-full bg-[rgba(110,159,224,0.5)]" />
+                  <span className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">
+                    {selected.period}
+                  </span>
+                </div>
                 <h3 className="mt-2 text-3xl font-extrabold leading-tight text-[var(--heading)]">{selected.title}</h3>
                 <p className="mt-2 text-sm font-semibold text-[var(--text)]">{selected.place}</p>
 
@@ -329,11 +383,13 @@ export function OrganizationShowcase({ items }: OrganizationShowcaseProps) {
                     </div>
                   ))}
                 </div>
-              </div>
+                </div>
+              </motion.div>
+            </div>
             </motion.div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+          ) : null}
+        </AnimatePresence>
+      </ModalPortal>
     </>
   );
 }

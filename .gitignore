@@ -3,8 +3,6 @@ node_modules/
 .next-build/
 
 *.log
-.next-dev.log
-.next-dev.err
 
 tsconfig.tsbuildinfo
 
@@ -16,7 +14,3 @@ tsconfig.tsbuildinfo
 
 .DS_Store
 Thumbs.db
-
-asstes/
-apa yang dibutuhkan.md
-*.md

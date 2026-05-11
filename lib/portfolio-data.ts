@@ -68,6 +68,7 @@ export type Achievement = {
   detail: string;
   image: string;
   icon: LucideIcon;
+  href?: string;
 };
 
 export type Certification = {
@@ -298,11 +299,11 @@ export const workExperiences: TimelineItem[] = [
     type: "Full-time",
     icon: BriefcaseBusiness,
     points: [
+      "Turned cross-functional data into actionable analysis that supported procurement, control, and efficiency-related decisions.",
       "Developed web applications to automate end-to-end reconciliation workflows, enabling the accounting team to instantly process disparate financial data and reducing monthly reporting time by 30+ hours.",
       "Resolved critical data fragmentation across independent financial systems by building Python pipelines, increasing data validation speed by 2x and enhancing overall accounting accuracy.",
       "Architected a standardized master data framework by developing complex heuristic-based algorithms to parse and classify chaotic procurement records, enabling precise financial granularity.",
       "Developed a highly precise financial budgeting framework utilizing advanced statistical methods, significantly minimizing budget variance.",
-      "Bridged the gap between technical data structures and business operations by translating complex financial datasets into accessible, actionable insights for cross-functional accounting teams.",
     ],
   },
   {
@@ -424,7 +425,7 @@ export const organizationExperiences: TimelineItem[] = [
     title: "Head of Conference Subject Subdivision of DAC 2023",
     place: "Pekan Raya Statistika 2023",
     period: "Nov 2022 - Oct 2023",
-    type: "Competition Committee",
+    type: "Committee",
     icon: Trophy,
     points: [
       "Led a team of 9 in the end-to-end development of competition materials for an international data analytics event.",
@@ -436,7 +437,7 @@ export const organizationExperiences: TimelineItem[] = [
     title: "Expert Staff of Equipment Division",
     place: "Scientist Championship 2023",
     period: "May 2023 - Jun 2023",
-    type: "Event Committee",
+    type: "Committee",
     icon: Users,
     points: [
       "Coordinated with the Mobile Legends Division to identify and fulfill required items and resources.",
@@ -448,7 +449,7 @@ export const organizationExperiences: TimelineItem[] = [
     title: "Staff of Equipment Division",
     place: "Scientist Championship 2022",
     period: "Sep 2022 - Oct 2022",
-    type: "Event Committee",
+    type: "Committee",
     icon: Users,
     points: [
       "Handled procurement of required goods and monitored items to prevent loss or damage.",
@@ -463,9 +464,9 @@ export const organizationExperiences: TimelineItem[] = [
     type: "Mentoring",
     icon: BookOpen,
     points: [
-      "Mentored students in exam preparation across calculus and statistics subjects.",
-      "Supported both departmental and cross-departmental students through peer-learning sessions.",
-      "Explained foundational quantitative concepts in a practical and accessible way to help students prepare more confidently.",
+      "Actively mentored students preparing for exams, especially in statistics and mathematics subjects.",
+      "Supported both departmental and cross-departmental students through peer-learning sessions focused on exam readiness.",
+      "Explained core statistical and mathematical concepts in a practical, accessible way to help students build confidence before exams.",
     ],
   },
 ];
@@ -477,6 +478,7 @@ export const education = [
     period: "Jun 2021 - Sep 2025",
     note: "GPA 3.68, Cum Laude. Specialized in computational statistics with thesis on feature-based and image-based deepfake speech detection.",
     image: "/assets/education/logo-its.png",
+    gallery: ["/assets/education/logo-its.png", "/assets/education/its-graduation.jpg"],
     relevantCourses: [
       "Statistical Modeling",
       "Machine Learning",
@@ -488,12 +490,12 @@ export const education = [
     detail:
       "Studying Statistics at ITS gave me a strong analytical foundation, but the experience went beyond coursework. I was involved in teaching, research, student programs, and collaborative projects that helped me develop both technical depth and communication skills. These experiences taught me how to explain complex ideas clearly, work with different teams, and apply statistical thinking to practical problems.",
     highlights: [
-      "Academic Mentorship & Teaching: Served as a Teaching Assistant for Calculus I & II, Database, and Data Warehouse, while also mentoring peers through HIMASTA-ITS learning programs.",
-      "Research & Analytical Work: Conducted sentiment analysis research on the Indonesian Government Securities (SUN) market in collaboration with DJPPR.",
-      "Student Leadership & Community Engagement: Contributed to student organizations, committee-based programs, and peer-learning activities through leadership roles, event coordination, and academic mentoring, including Vice Chairman of the PSt Division, CS Division Head for DAC, and exam preparation mentorship.",
-      "Data Visualization & Competition Achievement: Earned 1st Place at Visual Quest UNAIR and 3rd Place at ACTION UNESA through infographic and data storytelling competitions.",
-      "Practical Analytics Experience: Completed analytics-related internships at PT SPIL and KPPN Sanggau, applying data analysis to operational and public finance contexts.",
-      "Thesis: Developed a deep learning-based deepfake speech detection study comparing feature-based and image-based methodologies.",
+      "Served as a Teaching Assistant for Calculus I & II, Database, and Data Warehouse, while also mentoring peers through HIMASTA-ITS learning programs.",
+      "Conducted sentiment analysis research on the Indonesian Government Securities (SUN) market in collaboration with DJPPR.",
+      "Contributed to student organizations, committee-based programs, and peer-learning activities through leadership roles, event coordination, and academic mentoring, including Vice Chairman of the PSt Division, CS Division Head for DAC, and exam preparation mentorship.",
+      "Earned 1st Place at Visual Quest UNAIR and 3rd Place at ACTION UNESA through infographic and data storytelling competitions.",
+      "Completed analytics-related internships at PT SPIL and KPPN Sanggau, applying data analysis to operational and public finance contexts.",
+      "Developed a deep learning-based deepfake speech detection study comparing feature-based and image-based methodologies.",
     ],
   },
   {
@@ -502,6 +504,7 @@ export const education = [
     period: "Feb 2024 - Jun 2024",
     note: "Distinction Graduate, Top 10%, average score 95.78. Built MoodMate NLP capstone and reached Top 50 out of 588 teams.",
     image: "/assets/education/logo-bangkit.png",
+    gallery: ["/assets/education/logo-bangkit.png", "/assets/education/bangkit/bangkit-moodmate-meet.jpg"],
     relevantCourses: [
       "TensorFlow",
       "Deep Learning",
@@ -513,11 +516,11 @@ export const education = [
     detail:
       "Bangkit Academy helped me turn machine learning concepts into practical product development. Through structured learning and a team-based capstone project, I worked on TensorFlow workflows, NLP modeling, and model deployment for a journaling application. The experience strengthened my ability to experiment with models, collaborate across technical tracks, and build machine learning outputs that can support real user-facing products.",
     highlights: [
-      "Machine Learning Foundations: Completed structured learning in supervised learning, deep learning, TensorFlow, NLP, model evaluation, and deployment workflows.",
-      "Capstone & NLP Deployment: Built the machine learning component for MoodMate, a journaling application that classifies user emotions from text input and prepares the model for web deployment.",
-      "Team Collaboration: Collaborated with a multidisciplinary team across machine learning, cloud computing, and mobile development tracks.",
-      "Program & Capstone Recognition: Graduated as a Top 10% Distinction Graduate in the Machine Learning path, while MoodMate was selected as a Top 50 capstone project out of 588 teams.",
-      "Product-Oriented Thinking: Learned to connect model performance with usability, application flow, and the needs of real users.",
+      "Completed structured learning in supervised learning, deep learning, TensorFlow, NLP, model evaluation, and deployment workflows.",
+      "Built the machine learning component for MoodMate, a journaling application that classifies user emotions from text input and prepares the model for web deployment.",
+      "Collaborated with a multidisciplinary team across machine learning, cloud computing, and mobile development tracks.",
+      "Graduated as a Top 10% Distinction Graduate in the Machine Learning path, while MoodMate was selected as a Top 50 capstone project out of 588 teams.",
+      "Learned to connect model performance with usability, application flow, and the needs of real users.",
     ],
   },
 ];
@@ -526,30 +529,37 @@ export const achievements: Achievement[] = [
   {
     title: "First Place Winner - Visual Quest",
     issuer: "Dataquest 3.0, Airnology 3.0",
-    detail: "Winner in Visual Quest category organized by BEM FTMM Universitas Airlangga.",
+    detail:
+      "Won first place with TALAS SUPER, a three-member infographic project for Visual Quest by FTMM UNAIR. The project highlighted the dangers of smoking, with my role focused on collecting data from multiple sources, analyzing patterns and relationships, and turning the findings into cohesive, reader-friendly visual information.",
     image: "/assets/honors/visual-quest.png",
     icon: Trophy,
+    href: "https://www.behance.net/gallery/216517133/Infographics-on-the-Dangers-of-Smoking-and-Solutions/modules/1232858515",
   },
   {
     title: "Third Place Winner - ACTION",
     issuer: "ACTION Competition",
-    detail: "Competition recognition shown with a full certificate preview for recruiter verification.",
+    detail:
+      "Won third place with CLIMATE HERO, a three-member infographic project for ACTION by Data Science UNESA. The work explored how data science can help map and reduce the negative impact of CO2 emissions in Indonesia, with my role focused on gathering data, analyzing patterns and relationships, and visualizing the insights in an engaging graphic format.",
     image: "/assets/honors/action-third-place.png",
     icon: Trophy,
+    href: "https://www.behance.net/gallery/216517711/Infographics-on-the-Dangers-of-Carbon-Emissions/modules/1232861319",
   },
   {
     title: "Distinction Graduate",
     issuer: "Bangkit Academy Machine Learning Path",
-    detail: "Graduated in the top 10% with an average score of 95.78.",
+    detail:
+      "Graduated as a Distinction Graduate in the Machine Learning path at Bangkit Academy by Google, placing in the Top 10% with an average score of 95.78. The program strengthened my foundation in end-to-end machine learning production, AI, data analytics, TensorFlow workflows, NLP, model evaluation, and deployment-oriented development.",
     image: "/assets/honors/bangkit-certificate.jpg",
     icon: GraduationCap,
   },
   {
     title: "Top 50 Capstone Project",
     issuer: "Bangkit Academy",
-    detail: "MoodMate selected as Top 50 capstone project out of 588 teams.",
+    detail:
+      "MoodMate was selected as a Top 50 capstone project out of 588 teams. I worked on the machine learning component for a journaling application, building an NLP-based mood detection model that classifies journal entries into anger, sadness, fear, and joy, while also supporting chatbot interaction. The model achieved 92.60% testing accuracy and was converted to TensorFlow.js for web deployment.",
     image: "/assets/honors/top-50-bangkit.jpg",
     icon: Award,
+    href: "https://github.com/MoodMate-Bangkit-2024",
   },
   {
     title: "Semifinalist - NSC UB",
@@ -565,7 +575,7 @@ export const certifications: Certification[] = [
     name: "Dev Certified for Machine Learning with TensorFlow",
     issuer: "Dev Certification",
     href: "https://dev.id/certificate/verify/ZJE0PXGV75",
-    image: "/assets/certification/dev_cert_dcml.png",
+    image: "/assets/certifications/dev_cert_dcml.png",
     detail:
       "Assesses practical TensorFlow proficiency across neural networks, image classification, natural language processing, time series prediction, and machine learning model development best practices.",
   },
@@ -573,7 +583,7 @@ export const certifications: Certification[] = [
     name: "Mathematics for Machine Learning and Data Science Specialization",
     issuer: "Coursera",
     href: "https://www.coursera.org/account/accomplishments/specialization/L2LAVZ82NSG4",
-    image: "/assets/certification/math_ml_ds.png",
+    image: "/assets/certifications/math_ml_ds.png",
     detail:
       "Strengthens the mathematical and statistical foundations behind machine learning, including linear algebra, calculus, Bayesian statistics, dimensionality reduction, data transformation, descriptive statistics, and model optimization.",
   },
@@ -581,7 +591,7 @@ export const certifications: Certification[] = [
     name: "Machine Learning Specialization",
     issuer: "Coursera",
     href: "https://www.coursera.org/account/accomplishments/specialization/MM3M7M6QDK2F",
-    image: "/assets/certification/machine_learning.png",
+    image: "/assets/certifications/machine_learning.png",
     detail:
       "Builds core machine learning foundations using NumPy, scikit-learn, and TensorFlow, covering supervised learning, classification, decision trees, unsupervised learning, anomaly detection, recommender systems, and reinforcement learning.",
   },
@@ -589,7 +599,7 @@ export const certifications: Certification[] = [
     name: "DeepLearning.AI TensorFlow Developer Specialization",
     issuer: "Coursera",
     href: "https://www.coursera.org/account/accomplishments/specialization/FZRTLFU4HHUM",
-    image: "/assets/certification/tensorflow_developer.png",
+    image: "/assets/certifications/tensorflow_developer.png",
     detail:
       "Covers applied deep learning with TensorFlow, including computer vision, image augmentation, overfitting prevention, NLP systems, sequence models, embeddings, forecasting, and Keras-based neural network development.",
   },
@@ -597,7 +607,7 @@ export const certifications: Certification[] = [
     name: "TensorFlow: Advanced Techniques Specialization",
     issuer: "Coursera",
     href: "https://www.coursera.org/account/accomplishments/specialization/BUN676LVLZAW",
-    image: "/assets/certification/tensorflow_advanced.png",
+    image: "/assets/certifications/tensorflow_advanced.png",
     detail:
       "Explores advanced TensorFlow techniques such as the Functional API, custom losses and layers, GradientTape, distributed training optimization, object detection, segmentation, model interpretation, and generative deep learning.",
   },
@@ -605,7 +615,7 @@ export const certifications: Certification[] = [
     name: "TensorFlow: Data and Deployment Specialization",
     issuer: "Coursera",
     href: "https://www.coursera.org/account/accomplishments/specialization/BVZHGZNWR23Z",
-    image: "/assets/certification/tensorflow_data_and_deployment.png",
+    image: "/assets/certifications/tensorflow_data_and_deployment.png",
     detail:
       "Focuses on deploying TensorFlow models across browser, mobile, and serving environments using TensorFlow.js, TensorFlow Lite, TensorFlow Serving, TensorFlow Hub, TensorBoard, and data pipeline workflows.",
   },

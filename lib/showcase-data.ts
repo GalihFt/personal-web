@@ -159,34 +159,27 @@ const workSummaryMap: Record<string, string> = {
 
 const organizationGalleryMap: Record<string, string[]> = {
   "Vice Chairman": [
-    "/assets/profile/galih-graduation.jpg",
-    "/assets/profile/galih-portrait.jpg",
-    "/assets/honors/visual-quest.png",
+    "/assets/community/pst/pst-2025-01.jpeg",
+    "/assets/community/pst/pst-2025-03.jpg",
+    "/assets/community/pst/pst-2025-02.jpeg",
   ],
   "Staff of Research and Data Analytics Division": [
-    "/assets/profile/galih-portrait.jpg",
-    "/assets/honors/top-50-bangkit.jpg",
-    "/assets/profile/galih-analyst.png",
+    "/assets/community/pst/pst-2024-01.jpeg",
+    "/assets/community/pst/pst-2024-02.jpg",
   ],
   "Head of Conference Subject Subdivision of DAC 2023": [
-    "/assets/honors/visual-quest.png",
-    "/assets/honors/action-third-place.png",
-    "/assets/profile/galih-graduation.jpg",
+    "/assets/community/dac/dac-01.jpeg",
+    "/assets/community/dac/dac-02.jpeg",
+    "/assets/community/dac/dac-03.jpeg",
   ],
   "Expert Staff of Equipment Division": [
-    "/assets/profile/galih-graduation.jpg",
-    "/assets/profile/galih-portrait.jpg",
-    "/assets/honors/visual-quest.png",
+    "/assets/community/scetch/scetch-2025-01.jpg",
   ],
   "Staff of Equipment Division": [
-    "/assets/profile/galih-portrait.jpg",
-    "/assets/profile/galih-graduation.jpg",
-    "/assets/honors/action-third-place.png",
+    "/assets/community/scetch/scetch-2023-01.jpeg",
   ],
   "Academic Course Mentor": [
-    "/assets/education/its-graduation.jpg",
-    "/assets/profile/galih-graduation.jpg",
-    "/assets/profile/galih-portrait.jpg",
+    "/assets/community/mentoring/academic-course-mentor-lab.png",
   ],
 };
 
@@ -202,7 +195,7 @@ const organizationSummaryMap: Record<string, string> = {
   "Staff of Equipment Division":
     "Handled procurement, cross-division equipment coordination, and item monitoring for Scientist Championship 2022.",
   "Academic Course Mentor":
-    "Mentored students in calculus and statistics through peer-learning and exam preparation support.",
+    "Actively mentored students preparing for exams, especially across statistics and mathematics subjects.",
 };
 
 const orderedProjects = [...projects].sort((a, b) => Number(b.featured) - Number(a.featured));
@@ -249,6 +242,7 @@ export const honorCertificates = achievements.map((item) => ({
   issuer: item.issuer,
   detail: item.detail,
   image: item.image,
+  href: item.href,
 }));
 
 export const skillCertifications = certifications.map((item) => ({

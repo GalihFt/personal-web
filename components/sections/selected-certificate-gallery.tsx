@@ -22,8 +22,8 @@ export function SelectedCertificateGallery({
   const [selected, setSelected] = useState<SelectableCredential | null>(items[0] ?? null);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[360px_1fr]">
-      <div className="grid gap-3">
+    <div className="grid gap-6 lg:h-[44rem] lg:grid-cols-[360px_minmax(0,1fr)] lg:items-stretch">
+      <div className="grid gap-3 lg:min-h-0 lg:content-start lg:overflow-y-auto lg:pr-1">
         {items.map((item) => {
           const active = selected?.title === item.title;
 
@@ -51,7 +51,7 @@ export function SelectedCertificateGallery({
         })}
       </div>
 
-      <div className="overflow-hidden rounded-[24px] border border-[var(--line)] bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(246,250,255,0.98))] shadow-[0_20px_60px_rgba(38,52,69,0.10)]">
+      <div className="overflow-hidden rounded-[24px] border border-[var(--line)] bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(246,250,255,0.98))] shadow-[0_20px_60px_rgba(38,52,69,0.10)] lg:h-full">
         <AnimatePresence mode="wait">
           {selected ? (
             <motion.div
@@ -60,8 +60,9 @@ export function SelectedCertificateGallery({
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.985 }}
               transition={{ duration: 0.22 }}
+              className="lg:grid lg:h-full lg:grid-rows-[minmax(0,1fr)_auto]"
             >
-              <div className="relative aspect-[16/11] bg-[linear-gradient(180deg,rgba(110,159,224,0.08),rgba(255,255,255,0.78))] p-3">
+              <div className="relative aspect-[16/11] bg-[linear-gradient(180deg,rgba(110,159,224,0.08),rgba(255,255,255,0.78))] p-3 lg:h-full lg:aspect-auto">
                 <Image
                   src={selected.image}
                   alt={selected.title}
@@ -70,7 +71,7 @@ export function SelectedCertificateGallery({
                   sizes="(min-width: 1024px) 60vw, 100vw"
                 />
               </div>
-              <div className="grid gap-4 border-t border-[var(--line)] p-5 md:grid-cols-[1fr_auto] md:items-center">
+              <div className="border-t border-[var(--line)] p-5 lg:min-h-[14.5rem]">
                 <div>
                   <p className="mono text-xs font-semibold uppercase tracking-widest text-[var(--accent-strong)]">{selected.issuer}</p>
                   <h3 className="mt-2 text-xl font-extrabold text-[var(--heading)]">{selected.title}</h3>
@@ -81,16 +82,16 @@ export function SelectedCertificateGallery({
                     href={selected.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="focus-ring inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[var(--button-bg)] px-4 text-sm font-bold text-[var(--button-text)] hover:bg-[var(--button-hover)]"
+                    className="focus-ring mt-4 inline-flex h-9 items-center justify-center gap-2 rounded-full bg-[var(--button-bg)] px-3.5 text-xs font-bold text-[var(--button-text)] hover:bg-[var(--button-hover)]"
                   >
                     {actionLabel}
-                    <ExternalLink className="h-4 w-4" />
+                    <ExternalLink className="h-3.5 w-3.5" />
                   </Link>
                 ) : null}
               </div>
             </motion.div>
           ) : (
-            <div className="p-8 text-sm font-semibold text-[var(--muted)]">{emptyText}</div>
+            <div className="p-8 text-sm font-semibold text-[var(--muted)] lg:h-full">{emptyText}</div>
           )}
         </AnimatePresence>
       </div>

@@ -241,6 +241,11 @@ a {
   box-shadow: 34rem 6rem 0 -6.5rem rgba(110, 159, 224, 0.22);
 }
 
+#contact {
+  align-items: flex-start;
+  padding-top: 6.5rem;
+}
+
 .home-section-scroll {
   max-height: calc(100dvh - 11rem);
   overflow-y: auto;
@@ -465,6 +470,10 @@ a {
     min-height: auto;
     scroll-snap-align: none;
     display: block;
+  }
+
+  #contact {
+    padding-top: 3rem;
   }
 
   .home-section-scroll {

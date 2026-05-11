@@ -65,6 +65,17 @@ export function SiteHeader() {
     return () => observer.disconnect();
   }, [pathname]);
 
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    }
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
   function handleNavClick(event: MouseEvent<HTMLAnchorElement>, href: string) {
     const [targetPath, targetHash] = href.split("#");
 

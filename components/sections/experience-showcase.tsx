@@ -169,9 +169,9 @@ export function ExperienceShowcase({ items }: ExperienceShowcaseProps) {
               </div>
             </div>
 
-            <div className="rounded-[24px] border border-[rgba(110,159,224,0.16)] bg-[linear-gradient(180deg,rgba(237,244,255,0.62),rgba(255,255,255,0.86))] p-4 xl:min-h-0 xl:overflow-y-auto">
+            <div className="panel-scroll rounded-[24px] border border-[rgba(110,159,224,0.16)] bg-[linear-gradient(180deg,rgba(237,244,255,0.62),rgba(255,255,255,0.86))] p-4 xl:min-h-0 xl:overflow-y-auto">
               <p className="mono text-[11px] font-bold uppercase tracking-widest text-[var(--accent-strong)]">Key Contributions</p>
-              <div className="mt-3 grid gap-3 md:grid-cols-2">
+              <div className="mt-3 grid gap-3">
                 {selected.points.map((point, index) => (
                   <div key={point} className="flex gap-3 border-l border-[rgba(110,159,224,0.24)] pl-4">
                     <span className="mono shrink-0 text-xs font-extrabold text-[var(--accent-strong)]">
