@@ -176,20 +176,6 @@ export const skillGroups: SkillGroup[] = [
 
 export const projects: Project[] = [
   {
-    title: "Roundtrip Mapping Optimization",
-    category: "Logistics Optimization",
-    featured: true,
-    summary:
-      "A web-based optimization system that maps unloading and loading activities into efficient trucking roundtrips.",
-    problem:
-      "Trucks often return to port empty after unloading. The system matches eligible unload-load pairs under distance, time, route, and branch constraints.",
-    impact:
-      "Designed to reduce empty trips, optimize trucking routes, and support logistics teams with map-based visualization and downloadable mapping results.",
-    tools: ["Next.js", "FastAPI", "Python", "TypeScript", "Leaflet", "Valhalla", "Hungarian Algorithm"],
-    link: "https://github.com/GalihFt/roundtrip-optimization",
-    icon: Route,
-  },
-  {
     title: "Deepfake Speech Detection",
     category: "Machine Learning Research",
     featured: true,
@@ -234,7 +220,7 @@ export const projects: Project[] = [
   {
     title: "Auto RK Branch",
     category: "Finance Reconciliation",
-    featured: false,
+    featured: true,
     summary:
       "A Streamlit reconciliation tool for affiliate receivable and payable balances between head office and branches.",
     problem:
@@ -272,6 +258,20 @@ export const projects: Project[] = [
     tools: ["Python", "Streamlit", "Excel", "Pandas"],
     link: "https://github.com/GalihFt/kbm-accrual-automation",
     icon: FileSpreadsheet,
+  },
+  {
+    title: "Roundtrip Mapping Optimization",
+    category: "Logistics Optimization",
+    featured: false,
+    summary:
+      "A handed-over logistics optimization prototype that I refined into a more usable roundtrip mapping tool for operational review.",
+    problem:
+      "Trucks often return to port empty after unloading. The system matches eligible unload-load pairs under distance, time, route, and branch constraints.",
+    impact:
+      "Designed to reduce empty trips, optimize trucking routes, and support logistics teams with map-based visualization and downloadable mapping results.",
+    tools: ["Next.js", "FastAPI", "Python", "TypeScript", "Leaflet", "Valhalla", "Hungarian Algorithm"],
+    link: "https://github.com/GalihFt/roundtrip-optimization",
+    icon: Route,
   },
   {
     title: "Hotel Reservation Cancellation Dashboard",

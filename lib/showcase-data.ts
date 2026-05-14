@@ -130,17 +130,19 @@ const projectSignalMap: Record<string, { value: string; label: string }[]> = {
 
 const projectDescriptionMap: Record<string, { text: string; strong?: boolean }[]> = {
   "Roundtrip Mapping Optimization": [
-    { text: "This project is a " },
-    { text: "web-based route optimization system", strong: true },
-    { text: " for matching unloading and loading activities into more efficient truck roundtrips. It addresses a common logistics problem where " },
+    { text: "Roundtrip Mapping Optimization is a " },
+    { text: "handed-over internship prototype initially developed by Ivan", strong: true },
+    { text: " and later continued as a web-based route optimization system for matching unloading and loading activities into more efficient truck roundtrips. My contribution focused on " },
+    { text: "refining the optimization workflow, improving usability, validating operational constraints, and aligning the system with user needs", strong: true },
+    { text: ". The project addresses a common logistics problem where " },
     { text: "trucks return empty after completing deliveries", strong: true },
-    { text: ", creating unnecessary distance, cost, and idle capacity. The application processes Excel inputs, geocodes locations, calculates route distances with " },
+    { text: ", creating unnecessary distance, cost, and idle capacity. The refined application processes Excel inputs, geocodes locations, calculates route distances with " },
     { text: "Valhalla", strong: true },
     { text: ", and uses the " },
     { text: "Hungarian Algorithm", strong: true },
-    { text: " to recommend the best unload-load pairs under branch, distance, time, and route constraints. The result is a " },
+    { text: " to recommend unload-load pairs under branch, distance, time, and route constraints. The result is a " },
     { text: "map-based decision tool", strong: true },
-    { text: " that helps logistics teams identify practical roundtrip opportunities, estimate savings, and export structured mapping results for execution." },
+    { text: " that helps logistics teams review practical roundtrip opportunities, estimate savings, and export structured mapping results." },
   ],
   "Deepfake Speech Detection": [
     { text: "This research project compares " },
