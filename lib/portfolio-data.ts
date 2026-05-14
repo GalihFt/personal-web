@@ -18,6 +18,7 @@ import {
   MessageCircle,
   Network,
   PackageCheck,
+  ReceiptText,
   Route,
   Sigma,
   Sparkles,
@@ -245,6 +246,20 @@ export const projects: Project[] = [
     icon: Network,
   },
   {
+    title: "Piutang Reconciliation Automation",
+    category: "Finance Reconciliation",
+    featured: false,
+    summary:
+      "A Streamlit reconciliation app for matching General Ledger accounts receivable records with Program Piutang BM transaction data.",
+    problem:
+      "Accounts receivable reconciliation requires comparing GL records, payment data, and payment cancellation data across fixed-format Excel sheets.",
+    impact:
+      "Generates structured Excel outputs with matched, unmatched, cancellation, batch summary, and checking sections so finance teams can trace differences faster.",
+    tools: ["Python", "Streamlit", "Pandas", "NumPy", "OpenPyXL", "XlsxWriter"],
+    link: "https://github.com/GalihFt/piutang-reconciliation-automation",
+    icon: ReceiptText,
+  },
+  {
     title: "KBM Accrual Automation",
     category: "Accounting Automation",
     featured: false,
@@ -285,6 +300,62 @@ export const projects: Project[] = [
     tools: ["R", "SARIMA", "Time Series", "Box-Cox", "RMSE", "MAPE"],
     link: "https://github.com/GalihFt/time-series-inpatient-admissions",
     icon: ChartNoAxesCombined,
+  },
+  {
+    title: "TALAS SUPER",
+    category: "Data Storytelling",
+    featured: false,
+    summary:
+      "A first-place infographic project for Visual Quest by FTMM UNAIR, presenting data-driven insights on the dangers of smoking.",
+    problem:
+      "The competition required a clear, engaging, and evidence-based infographic that could communicate the health risks of smoking to a broad audience.",
+    impact:
+      "Collected and analyzed data from multiple sources, helped shape the visual narrative, and contributed to a reader-friendly infographic that won first place.",
+    tools: ["Data Analysis", "Data Visualization", "Infographic", "Research", "Storytelling"],
+    link: "https://www.behance.net/gallery/216517133/Infographics-on-the-Dangers-of-Smoking-and-Solutions/modules/1232858515",
+    icon: BarChart3,
+  },
+  {
+    title: "CLIMATE HERO",
+    category: "Data Storytelling",
+    featured: false,
+    summary:
+      "A third-place infographic project for ACTION by Data Science UNESA about mapping and reducing the negative impact of CO2 emissions in Indonesia.",
+    problem:
+      "The project needed to translate CO2 emissions data into an accessible visual story that connected environmental patterns with practical public awareness.",
+    impact:
+      "Gathered and analyzed emissions-related data, identified key relationships, and helped turn the findings into an attractive infographic that earned third place.",
+    tools: ["Data Analysis", "Data Visualization", "Infographic", "Environmental Data", "Storytelling"],
+    link: "https://www.behance.net/gallery/216517711/Infographics-on-the-Dangers-of-Carbon-Emissions/modules/1232861319",
+    icon: BarChart3,
+  },
+  {
+    title: "Buletin Kapuas",
+    category: "Public Finance Reporting",
+    featured: false,
+    summary:
+      "A KPPN Sanggau bulletin project combining APBN data analysis, narrative writing, and publication design for the first semester of 2024.",
+    problem:
+      "Public finance information and stakeholder activities needed to be presented in a clearer, more engaging format for KPPN, stakeholders, and general readers.",
+    impact:
+      "Analyzed APBN data, strengthened activity narratives, and created most of the bulletin designs to make the publication more informative and reader-friendly.",
+    tools: ["APBN Analysis", "Data Visualization", "Publication Design", "Reporting", "Narrative Writing"],
+    link: "https://drive.google.com/file/d/1qSi-c8XGTH-16x7kVetM7xr6piYw5QoM/view?usp=sharing",
+    icon: Landmark,
+  },
+  {
+    title: "Management Information System Excel Dashboard",
+    category: "Resource Analytics Dashboard",
+    featured: false,
+    summary:
+      "A team-based Excel dashboard final project for the Management Information Systems course, focused on Indonesia's energy and mining resources.",
+    problem:
+      "Energy and mining resource data from BPS and ministry publications needed to be organized into a clearer analytical view for exploration and presentation.",
+    impact:
+      "Built an Excel dashboard that transforms public resource data into visual insights, making Indonesia's energy and mining information easier to interpret.",
+    tools: ["Excel", "Dashboard", "BPS Data", "Ministry Publications", "Data Visualization"],
+    link: "https://drive.google.com/file/d/1GthdrgalsdatUqsMIX99Vt-uFMyuRzwq/view?usp=sharing",
+    icon: BarChart3,
   },
 ];
 

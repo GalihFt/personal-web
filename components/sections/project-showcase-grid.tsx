@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowUpRight,
+  BarChart3,
   BrainCircuit,
   Building2,
   ChevronDown,
@@ -10,8 +11,10 @@ import {
   ChevronRight,
   ChevronUp,
   FileSpreadsheet,
+  Landmark,
   Network,
   PackageCheck,
+  ReceiptText,
   Route,
   Sparkles,
   X,
@@ -31,6 +34,7 @@ export type ShowcaseProject = {
   summary: string;
   problem: string;
   impact: string;
+  description: { text: string; strong?: boolean }[];
   tools: string[];
   link: string;
   gallery: string[];
@@ -47,13 +51,17 @@ const iconMap = {
   "MoodMate Machine Learning": Sparkles,
   "Container Repair Optimizer": PackageCheck,
   "Auto RK Branch": Network,
+  "Piutang Reconciliation Automation": ReceiptText,
   "KBM Accrual Automation": FileSpreadsheet,
   "Hotel Reservation Cancellation Dashboard": Building2,
   "Inpatient Admission Forecasting": ChartNoAxesCombined,
+  "TALAS SUPER": BarChart3,
+  "CLIMATE HERO": BarChart3,
+  "Buletin Kapuas": Landmark,
+  "Management Information System Excel Dashboard": BarChart3,
 };
 
 export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
-  const cardImage = "/assets/projects/foto-project.jpg";
   const [selectedTitle, setSelectedTitle] = useState<string | null>(null);
   const [pageIndex, setPageIndex] = useState(0);
   const [pageDirection, setPageDirection] = useState<1 | -1>(1);
@@ -67,6 +75,8 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
   const visibleProjects = projects.slice(pageIndex * projectsPerPage, pageIndex * projectsPerPage + projectsPerPage);
   const canGoUp = pageIndex > 0;
   const canGoDown = pageIndex < pageCount - 1;
+  const selectedImageIndex = selected ? imageIndexByTitle[selected.title] ?? 0 : 0;
+  const selectedImage = selected?.gallery[selectedImageIndex] ?? selected?.gallery[0] ?? "";
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -158,7 +168,8 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
             >
               {visibleProjects.map((project) => {
                 const Icon = iconMap[project.title as keyof typeof iconMap] ?? FileSpreadsheet;
-                const primarySignal = project.signals[0];
+                const projectImage = project.gallery[0];
+                const cardDescription = `${project.summary} ${project.problem} ${project.impact}`;
 
                 return (
                   <motion.button
@@ -166,17 +177,17 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
                     key={project.title}
                     type="button"
                     onClick={() => setSelectedTitle(project.title)}
-                    className="focus-ring overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--card-bg)] text-left shadow-[0_12px_34px_rgba(34,50,74,0.06)] transition-all duration-200 hover:-translate-y-1 hover:border-[var(--accent)] hover:shadow-[0_18px_44px_rgba(34,50,74,0.1)]"
+                    className="focus-ring flex h-full min-h-[410px] flex-col overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--card-bg)] text-left shadow-[0_12px_34px_rgba(34,50,74,0.06)] transition-all duration-200 hover:-translate-y-1 hover:border-[var(--accent)] hover:shadow-[0_18px_44px_rgba(34,50,74,0.1)]"
                   >
                     <div className="relative aspect-[16/9]">
-                      <Image src={cardImage} alt={project.title} fill className="object-cover" sizes="(min-width: 1024px) 50vw, 100vw" />
+                      <Image src={projectImage} alt={project.title} fill className="object-cover" sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw" />
                       {project.featured ? (
                         <span className="absolute left-3 top-3 border-l-2 border-[var(--accent)] bg-[rgba(255,255,255,0.82)] px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-widest text-[var(--heading)] shadow-[0_10px_24px_rgba(34,50,74,0.08)] backdrop-blur">
                           Featured
                         </span>
                       ) : null}
                     </div>
-                    <div className="p-4">
+                    <div className="flex flex-1 flex-col p-4">
                       <div className="flex items-center gap-3">
                         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[rgba(110,159,224,0.18)] bg-white text-[var(--accent-strong)]">
                           <Icon className="h-4 w-4" />
@@ -185,14 +196,8 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
                           <h3 className="line-clamp-2 text-xl font-extrabold leading-tight text-[var(--heading)]">{project.title}</h3>
                         </div>
                       </div>
-                      {primarySignal ? (
-                        <div className="mt-3.5 rounded-xl border border-[rgba(110,159,224,0.16)] bg-[rgba(237,244,255,0.42)] px-3 py-2">
-                          <p className="text-sm font-extrabold text-[var(--heading)]">{primarySignal.value}</p>
-                          <p className="mt-0.5 text-xs leading-5 text-[var(--muted)]">{primarySignal.label}</p>
-                        </div>
-                      ) : null}
-                      <p className="mt-3.5 line-clamp-2 text-sm leading-6 text-[var(--muted)]">{project.summary}</p>
-                      <div className="mt-3 flex flex-wrap gap-1.5">
+                      <p className="mt-3.5 line-clamp-6 text-sm leading-6 text-[var(--muted)]">{cardDescription}</p>
+                      <div className="mt-auto flex flex-wrap gap-1.5 pt-3">
                         {project.tools.slice(0, 3).map((tool) => (
                           <Chip key={tool}>{tool}</Chip>
                         ))}
@@ -245,29 +250,16 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
               className="mx-auto grid h-[calc(100dvh-6rem)] max-w-6xl overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.4)] bg-[var(--card-bg)] shadow-[0_28px_90px_rgba(17,25,40,0.25)] md:h-[calc(100dvh-7rem)] lg:grid-cols-[1.04fr_0.96fr]"
               onClick={(event) => event.stopPropagation()}
             >
-              <div className="grid min-h-0 gap-4 border-b border-[var(--line)] p-5 lg:border-b-0 lg:border-r lg:p-6">
-                <div className="flex items-center justify-between gap-4">
-                  <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">Project Preview</p>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedTitle(null)}
-                    className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--line)] bg-white text-[var(--heading)]"
-                    aria-label="Close project detail"
-                  >
-                    <X className="h-5 w-5" />
-                  </button>
-                </div>
-
-                <div className="relative overflow-hidden rounded-2xl border border-[rgba(110,159,224,0.18)] bg-[rgba(237,244,255,0.42)]">
-                  <div className="relative aspect-[16/9]">
-                    <Image
-                      src={selected.gallery[imageIndexByTitle[selected.title] ?? 0]}
-                      alt={selected.title}
-                      fill
-                      className="object-cover"
-                      sizes="(min-width: 1024px) 50vw, 100vw"
-                    />
-                  </div>
+              <div className="grid h-full min-h-0 border-b border-[var(--line)] bg-[var(--surface)] p-4 lg:border-b-0 lg:border-r">
+                <div className="relative min-h-0 overflow-hidden rounded-[24px] bg-[var(--surface)]">
+                  <Image
+                    src={selectedImage}
+                    alt={selected.title}
+                    fill
+                    className="object-contain p-6"
+                    sizes="(min-width: 1024px) 45vw, 100vw"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,25,40,0.02),rgba(17,25,40,0.42))]" />
                   {selected.gallery.length > 1 ? (
                     <div className="absolute inset-x-0 top-1/2 flex -translate-y-1/2 items-center justify-between px-3">
                       <button
@@ -288,27 +280,18 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
                       </button>
                     </div>
                   ) : null}
-                </div>
-
-                <div className="grid grid-cols-3 gap-3">
-                  {selected.gallery.map((image, index) => (
-                    <button
-                      key={`${selected.title}-gallery-${image}`}
-                      type="button"
-                      onClick={() =>
-                        setImageIndexByTitle((current) => ({
-                          ...current,
-                          [selected.title]: index,
-                        }))
-                      }
-                      className={cn(
-                        "relative aspect-[16/10] overflow-hidden rounded-xl border border-[var(--line)] bg-white",
-                        (imageIndexByTitle[selected.title] ?? 0) === index && "border-[var(--accent-strong)]",
-                      )}
-                    >
-                      <Image src={image} alt="" fill className="object-cover" sizes="140px" />
-                    </button>
-                  ))}
+                  <div className="absolute inset-x-0 bottom-0 p-5 text-white lg:p-6">
+                    <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[#dbeafe]">{selected.category}</p>
+                    <h3 className="mt-2 text-3xl font-extrabold leading-tight">{selected.title}</h3>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedTitle(null)}
+                    className="focus-ring absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(255,255,255,0.45)] bg-[rgba(255,255,255,0.84)] text-[var(--heading)] backdrop-blur-md"
+                    aria-label="Close project detail"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
                 </div>
               </div>
 
@@ -319,24 +302,20 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
                   <p className="text-[0.98rem] font-semibold leading-7 text-[var(--heading)]">{selected.summary}</p>
                 </div>
 
-                <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                  {selected.signals.map((signal) => (
-                    <div key={`${selected.title}-${signal.value}`} className="rounded-xl border border-[rgba(110,159,224,0.16)] bg-white/78 p-3">
-                      <p className="text-sm font-extrabold text-[var(--heading)]">{signal.value}</p>
-                      <p className="mt-1 text-xs leading-5 text-[var(--muted)]">{signal.label}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-5 grid gap-4">
+                <div className="mt-5">
                   <div className="rounded-2xl border border-[rgba(110,159,224,0.16)] bg-[rgba(237,244,255,0.34)] p-4">
-                    <p className="mono text-[11px] font-bold uppercase tracking-widest text-[var(--accent-strong)]">Problem</p>
-                    <p className="mt-2 text-[0.92rem] leading-7 text-[var(--text)]">{selected.problem}</p>
-                  </div>
-
-                  <div className="rounded-2xl border border-[rgba(110,159,224,0.16)] bg-white/78 p-4">
-                    <p className="mono text-[11px] font-bold uppercase tracking-widest text-[var(--accent-strong)]">Impact</p>
-                    <p className="mt-2 text-[0.92rem] leading-7 text-[var(--text)]">{selected.impact}</p>
+                    <p className="mono text-[11px] font-bold uppercase tracking-widest text-[var(--accent-strong)]">Description</p>
+                    <p className="mt-2 text-[0.92rem] leading-7 text-[var(--text)]">
+                      {selected.description.map((part, index) =>
+                        part.strong ? (
+                          <strong key={`${selected.title}-description-${index}`} className="font-extrabold text-[var(--heading)]">
+                            {part.text}
+                          </strong>
+                        ) : (
+                          <span key={`${selected.title}-description-${index}`}>{part.text}</span>
+                        ),
+                      )}
+                    </p>
                   </div>
                 </div>
 

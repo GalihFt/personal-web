@@ -3,13 +3,16 @@
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowUpRight,
+  BarChart3,
   BrainCircuit,
   Building2,
   ChartNoAxesCombined,
   ChevronDown,
   FileSpreadsheet,
+  Landmark,
   Network,
   PackageCheck,
+  ReceiptText,
   Route,
   Search,
   Sparkles,
@@ -32,9 +35,14 @@ const projectIcons = {
   "MoodMate Machine Learning": Sparkles,
   "Container Repair Optimizer": PackageCheck,
   "Auto RK Branch": Network,
+  "Piutang Reconciliation Automation": ReceiptText,
   "KBM Accrual Automation": FileSpreadsheet,
   "Hotel Reservation Cancellation Dashboard": Building2,
   "Inpatient Admission Forecasting": ChartNoAxesCombined,
+  "TALAS SUPER": BarChart3,
+  "CLIMATE HERO": BarChart3,
+  "Buletin Kapuas": Landmark,
+  "Management Information System Excel Dashboard": BarChart3,
 };
 
 export function ProjectExplorer({ projects }: ProjectExplorerProps) {
