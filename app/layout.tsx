@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: `${siteConfig.name} | ${siteConfig.role}`,
   description: siteConfig.description,
   metadataBase: new URL("https://galih-fitriatmo.vercel.app"),
+  icons: {
+    icon: "/icon.svg",
+  },
   openGraph: {
     title: `${siteConfig.name} | ${siteConfig.role}`,
     description: siteConfig.description,
