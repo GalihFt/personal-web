@@ -21,7 +21,7 @@ const typeFilters = ["All", "Full-time", "Internship", "Contract"] as const;
 type TypeFilter = (typeof typeFilters)[number];
 
 const roleFocusMap: Record<string, string[]> = {
-  "Accounting Data Analyst": ["Reconciliation automation", "Financial data cleanup", "Validation pipeline"],
+  "Accounting Data Analyst": ["Operational data analysis", "Reporting accuracy", "Procurement control"],
   "Data Analyst Intern": ["Optimization logic", "Operational dashboards", "Repair cost analysis"],
   "Assistant Lecturer of Data Warehouse": ["SQL & ETL guidance", "Hands-on data systems", "Teaching support"],
   "Research Assistant": ["Sentiment analysis", "Scraped data processing", "Research visualization"],

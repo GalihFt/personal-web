@@ -24,7 +24,7 @@ type OrganizationShowcaseProps = {
 const iconMap = {
   "Vice Chairman": Users,
   "Staff of Research and Data Analytics Division": BookOpen,
-  "Head of Conference Subject Subdivision of DAC 2023": Trophy,
+  "Head of Conference Subject Data Analytics Competition": Trophy,
   "Expert Staff of Equipment Division": Users,
   "Staff of Equipment Division": Users,
   "Academic Course Mentor": BookOpen,

@@ -32,9 +32,10 @@ export type NavItem = {
   children?: NavItem[];
 };
 
-export type Stat = {
-  value: string;
-  label: string;
+export type ToolStackItem = {
+  name: string;
+  icon: string;
+  group: string;
 };
 
 export type Project = {
@@ -121,12 +122,12 @@ export const siteConfig = {
   email: "galihfitriatmo2611@gmail.com",
   linkedin: "https://www.linkedin.com/in/galih-fitriatmo/",
   github: "https://github.com/GalihFt",
-  cvHref: "/assets/documents/cv-galih-fitriatmo.pdf",
+  cvHref: "/assets/documents/GALIH-FITRIATMO_CV.pdf",
   portrait: "/assets/profile/galih-portrait.jpg",
   heroImage: "/assets/profile/galih-analyst.png",
   graduationImage: "/assets/profile/galih-graduation.jpg",
   description:
-    "Statistics graduate bridging technical data pipelines with business strategy. Experienced in developing statistical models, automated workflows, and predictive analytics to drive cost efficiency, operational optimization, and financial accuracy.",
+    "Statistics graduate who turns operational, financial, and business data into clear analysis for reporting accuracy, cost control, and data-driven decision-making. Experienced in analyzing cross-functional data, identifying inefficiencies, and translating complex records into practical business insights, with a strong interest in continuous improvement and making work processes more effective.",
 };
 
 export const socialLinks = [
@@ -135,11 +136,17 @@ export const socialLinks = [
   { label: "Email", href: `mailto:${siteConfig.email}`, icon: Mail },
 ];
 
-export const homeStats: Stat[] = [
-  { value: "1+ Years Experience", label: "Practical data analytics background across corporate and academic projects." },
-  { value: "Cum Laude Graduate", label: "Bachelor's degree in Statistics from Institut Teknologi Sepuluh Nopember (ITS)." },
-  { value: "Top 10% Graduate", label: "Distinction graduate in the Machine Learning path at Bangkit Academy." },
-  { value: "Process Optimization", label: "Built analytical models to reduce time and operational costs." },
+export const toolStack: ToolStackItem[] = [
+  { name: "Excel", icon: "/assets/tools/excel.svg", group: "Analysis" },
+  { name: "Python", icon: "/assets/tools/python.svg", group: "Analysis" },
+  { name: "R", icon: "/assets/tools/r.svg", group: "Analysis" },
+  { name: "SQL", icon: "/assets/tools/sql.svg", group: "Analysis" },
+  { name: "Power BI", icon: "/assets/tools/power-bi.svg", group: "Reporting" },
+  { name: "Tableau", icon: "/assets/tools/tableau.svg", group: "Reporting" },
+  { name: "Looker Studio", icon: "/assets/tools/looker.svg", group: "Reporting" },
+  { name: "Minitab", icon: "/assets/tools/minitab.png", group: "Statistics" },
+  { name: "SPSS", icon: "/assets/tools/spss.png", group: "Statistics" },
+  { name: "Git", icon: "/assets/tools/git.svg", group: "Workflow" },
 ];
 
 export const profileSummary = [
@@ -232,20 +239,6 @@ export const projects: Project[] = [
     icon: Network,
   },
   {
-    title: "Piutang Reconciliation Automation",
-    category: "Finance Reconciliation",
-    featured: false,
-    summary:
-      "A Streamlit reconciliation app for matching General Ledger accounts receivable records with Program Piutang BM transaction data.",
-    problem:
-      "Accounts receivable reconciliation requires comparing GL records, payment data, and payment cancellation data across fixed-format Excel sheets.",
-    impact:
-      "Generates structured Excel outputs with matched, unmatched, cancellation, batch summary, and checking sections so finance teams can trace differences faster.",
-    tools: ["Python", "Streamlit", "Pandas", "NumPy", "OpenPyXL", "XlsxWriter"],
-    link: "https://github.com/GalihFt/piutang-reconciliation-automation",
-    icon: ReceiptText,
-  },
-  {
     title: "KBM Accrual Automation",
     category: "Accounting Automation",
     featured: false,
@@ -258,6 +251,20 @@ export const projects: Project[] = [
     tools: ["Python", "Streamlit", "Excel", "Pandas"],
     link: "https://github.com/GalihFt/kbm-accrual-automation",
     icon: FileSpreadsheet,
+  },
+  {
+    title: "Piutang Reconciliation Automation",
+    category: "Finance Reconciliation",
+    featured: false,
+    summary:
+      "A Streamlit reconciliation app for matching General Ledger accounts receivable records with Program Piutang BM transaction data.",
+    problem:
+      "Accounts receivable reconciliation requires comparing GL records, payment data, and payment cancellation data across fixed-format Excel sheets.",
+    impact:
+      "Generates structured Excel outputs with matched, unmatched, cancellation, batch summary, and checking sections so finance teams can trace differences faster.",
+    tools: ["Python", "Streamlit", "Pandas", "NumPy", "OpenPyXL", "XlsxWriter"],
+    link: "https://github.com/GalihFt/piutang-reconciliation-automation",
+    icon: ReceiptText,
   },
   {
     title: "Roundtrip Mapping Optimization",
@@ -274,32 +281,18 @@ export const projects: Project[] = [
     icon: Route,
   },
   {
-    title: "Hotel Reservation Cancellation Dashboard",
-    category: "Predictive Dashboard",
+    title: "Buletin Kapuas",
+    category: "Public Finance Reporting",
     featured: false,
     summary:
-      "An R Shiny dashboard for exploring hotel reservation behavior and predicting cancellation probability.",
+      "A KPPN Sanggau bulletin project combining APBN data analysis, narrative writing, and publication design for the first semester of 2024.",
     problem:
-      "Hotels need to understand cancellation patterns and identify high-risk reservations to improve retention and revenue planning.",
+      "Public finance information and stakeholder activities needed to be presented in a clearer, more engaging format for KPPN, stakeholders, and general readers.",
     impact:
-      "Combines KPI monitoring, interactive filters, model comparison, ROC evaluation, and customer-level cancellation prediction.",
-    tools: ["R", "Shiny", "XGBoost", "Decision Tree", "Naive Bayes", "Logistic Regression"],
-    link: "https://github.com/GalihFt/hotel-booking-churn-dashboard",
-    icon: Building2,
-  },
-  {
-    title: "Inpatient Admission Forecasting",
-    category: "Time Series Forecasting",
-    featured: false,
-    summary:
-      "A time series project analyzing and forecasting hospital inpatient admissions using SARIMA models.",
-    problem:
-      "Hospital resource planning benefits from understanding seasonal inpatient admission patterns and expected future arrivals.",
-    impact:
-      "SARIMA(0,0,2)(0,1,1)7 produced the best result with RMSE 28.57 and MAPE 22.19% on test data.",
-    tools: ["R", "SARIMA", "Time Series", "Box-Cox", "RMSE", "MAPE"],
-    link: "https://github.com/GalihFt/time-series-inpatient-admissions",
-    icon: ChartNoAxesCombined,
+      "Analyzed APBN data, strengthened activity narratives, and created most of the bulletin designs to make the publication more informative and reader-friendly.",
+    tools: ["APBN Analysis", "Data Visualization", "Publication Design", "Reporting", "Narrative Writing"],
+    link: "https://drive.google.com/file/d/1qSi-c8XGTH-16x7kVetM7xr6piYw5QoM/view?usp=sharing",
+    icon: Landmark,
   },
   {
     title: "TALAS SUPER",
@@ -330,18 +323,18 @@ export const projects: Project[] = [
     icon: BarChart3,
   },
   {
-    title: "Buletin Kapuas",
-    category: "Public Finance Reporting",
+    title: "Inpatient Admission Forecasting",
+    category: "Time Series Forecasting",
     featured: false,
     summary:
-      "A KPPN Sanggau bulletin project combining APBN data analysis, narrative writing, and publication design for the first semester of 2024.",
+      "A time series project analyzing and forecasting hospital inpatient admissions using SARIMA models.",
     problem:
-      "Public finance information and stakeholder activities needed to be presented in a clearer, more engaging format for KPPN, stakeholders, and general readers.",
+      "Hospital resource planning benefits from understanding seasonal inpatient admission patterns and expected future arrivals.",
     impact:
-      "Analyzed APBN data, strengthened activity narratives, and created most of the bulletin designs to make the publication more informative and reader-friendly.",
-    tools: ["APBN Analysis", "Data Visualization", "Publication Design", "Reporting", "Narrative Writing"],
-    link: "https://drive.google.com/file/d/1qSi-c8XGTH-16x7kVetM7xr6piYw5QoM/view?usp=sharing",
-    icon: Landmark,
+      "SARIMA(0,0,2)(0,1,1)7 produced the best result with RMSE 28.57 and MAPE 22.19% on test data.",
+    tools: ["R", "SARIMA", "Time Series", "Box-Cox", "RMSE", "MAPE"],
+    link: "https://github.com/GalihFt/time-series-inpatient-admissions",
+    icon: ChartNoAxesCombined,
   },
   {
     title: "Management Information System Excel Dashboard",
@@ -357,6 +350,20 @@ export const projects: Project[] = [
     link: "https://drive.google.com/file/d/1GthdrgalsdatUqsMIX99Vt-uFMyuRzwq/view?usp=sharing",
     icon: BarChart3,
   },
+  {
+    title: "Hotel Reservation Cancellation Dashboard",
+    category: "Predictive Dashboard",
+    featured: false,
+    summary:
+      "An R Shiny dashboard for exploring hotel reservation behavior and predicting cancellation probability.",
+    problem:
+      "Hotels need to understand cancellation patterns and identify high-risk reservations to improve retention and revenue planning.",
+    impact:
+      "Combines KPI monitoring, interactive filters, model comparison, ROC evaluation, and customer-level cancellation prediction.",
+    tools: ["R", "Shiny", "XGBoost", "Decision Tree", "Naive Bayes", "Logistic Regression"],
+    link: "https://github.com/GalihFt/hotel-booking-churn-dashboard",
+    icon: Building2,
+  },
 ];
 
 export const featuredProjects = projects.filter((project) => project.featured);
@@ -370,11 +377,11 @@ export const workExperiences: TimelineItem[] = [
     type: "Full-time",
     icon: BriefcaseBusiness,
     points: [
-      "Turned cross-functional data into actionable analysis that supported procurement, control, and efficiency-related decisions.",
-      "Developed web applications to automate end-to-end reconciliation workflows, enabling the accounting team to instantly process disparate financial data and reducing monthly reporting time by 30+ hours.",
-      "Resolved critical data fragmentation across independent financial systems by building Python pipelines, increasing data validation speed by 2x and enhancing overall accounting accuracy.",
-      "Architected a standardized master data framework by developing complex heuristic-based algorithms to parse and classify chaotic procurement records, enabling precise financial granularity.",
-      "Developed a highly precise financial budgeting framework utilizing advanced statistical methods, significantly minimizing budget variance.",
+      "Analyzed cross-functional operational, procurement, and financial data to support cost control, reporting accuracy, and strategic decision-making in a shipping and logistics business environment.",
+      "Developed web applications to automate end-to-end reconciliation and reporting workflows, reducing monthly reporting time by more than 30 hours and improving reporting accuracy.",
+      "Developed an anomaly detection framework for procurement data by standardizing and classifying highly unstructured item descriptions, helping the accounting department identify unusual transaction patterns and strengthen procurement control.",
+      "Refined a handed-over roundtrip mapping prototype into a practical operational tool for analyzing unloading and loading activities, helping logistics teams identify more efficient trucking pairings and reduce empty-trip opportunities.",
+      "Partnered with internal departments to clarify data issues, align reporting requirements, and turn unclear operational records into structured insights for stakeholder review.",
     ],
   },
   {
@@ -409,9 +416,9 @@ export const workExperiences: TimelineItem[] = [
     type: "Contract",
     icon: Sigma,
     points: [
-      "Conducted news scraping from various online platforms to collect relevant data.",
-      "Performed sentiment analysis on the gathered news articles using VADER to assess public opinion.",
-      "Created visualizations of sentiment analysis results to present the findings in a clear and insightful manner.",
+      "Contributed to sentiment analysis research on the Indonesian Government Securities (SUN) market as part of an ITS-DJPPR research collaboration.",
+      "Collected online news data through scraping from multiple platforms and performed sentiment analysis using VADER to assess public opinion.",
+      "Analyzed sentiment patterns and translated the results into clear visualizations for research reporting and stakeholder discussion.",
     ],
   },
   {
@@ -468,45 +475,44 @@ export const workExperiences: TimelineItem[] = [
 export const organizationExperiences: TimelineItem[] = [
   {
     title: "Vice Chairman",
-    place: "Professional Statistics (PSt)",
+    place: "Professional Statistics (PSt) 2024",
     period: "Mar 2024 - Feb 2025",
     type: "Organization",
     icon: Users,
     points: [
-      "Partnered with the Chairman to lead and oversee all work programs and agendas executed by 50 members.",
-      "Contributed to evaluating and restructuring organizational programs, refining several initiatives to better align with team capacity and strategic goals.",
-      "Resolved inter-divisional communication gaps through monthly alignment meetings.",
-      "Played a key role in developing a collaboration program concept with the Sidoarjo Regency Office of Cooperatives, helping generate a new revenue stream for the organization.",
+      "Partnered with the Chairman to lead and oversee work programs executed by 50 members across multiple functions.",
+      "Improved inter-divisional coordination through regular alignment meetings, helping teams resolve communication gaps and maintain program execution.",
+      "Contributed to the development of a collaboration program concept with the Sidoarjo Regency Office of Cooperatives, creating a new revenue stream opportunity for the organization.",
+      "Supported program evaluation and organizational improvement by reviewing team capacity, execution challenges, and strategic priorities.",
     ],
   },
   {
     title: "Staff of Research and Data Analytics Division",
-    place: "Professional Statistics HIMASTA-ITS",
+    place: "Professional Statistics (PSt) 2023",
     period: "Mar 2023 - Mar 2024",
     type: "Organization",
     icon: BookOpen,
     points: [
       "Managed SITASI, a free statistics study and consultation program for ITS Statistics students.",
-      "Identified competent tutors, prepared learning facilities, organized schedules, and served as the main contact person for the agenda.",
-      "Coordinated participant communication for more than 170 student registrations.",
-      "Helped SITASI earn a performance appraisal score above 90.",
+      "Coordinated tutor selection, learning facilities, schedules, and participant communication for more than 170 student registrations.",
+      "Contributed to a performance appraisal score above 90 through structured execution and coordination of the SITASI program.",
     ],
   },
   {
-    title: "Head of Conference Subject Subdivision of DAC 2023",
-    place: "Pekan Raya Statistika 2023",
+    title: "Head of Conference Subject Data Analytics Competition",
+    place: "Pekan Raya Statistika (PRS) 2023",
     period: "Nov 2022 - Oct 2023",
     type: "Committee",
     icon: Trophy,
     points: [
-      "Led a team of 9 in the end-to-end development of competition materials for an international data analytics event.",
-      "Led the question development process by overseeing team contributions and incorporating supervisor feedback to ensure quality and relevance.",
+      "Led a team of 9 in developing competition materials for an ASEAN-level data analytics competition.",
+      "Coordinated team contributions, supervisor feedback, and quality review to ensure competition materials were relevant, structured, and well-executed.",
       "Directed project strategy, established data partnerships through negotiation, and served as the main communication liaison with external stakeholders.",
     ],
   },
   {
     title: "Expert Staff of Equipment Division",
-    place: "Scientist Championship 2023",
+    place: "Scientist Championship (SCETCH) 2023",
     period: "May 2023 - Jun 2023",
     type: "Committee",
     icon: Users,
@@ -518,7 +524,7 @@ export const organizationExperiences: TimelineItem[] = [
   },
   {
     title: "Staff of Equipment Division",
-    place: "Scientist Championship 2022",
+    place: "Scientist Championship (SCETCH) 2022",
     period: "Sep 2022 - Oct 2022",
     type: "Committee",
     icon: Users,
@@ -701,8 +707,8 @@ export const contactItems = [
 
 export const focusAreas = [
   "Statistical Data Analysis",
-  "Predictive Modeling",
-  "Financial Data Automation",
+  "Operational Data Analysis",
+  "Business Reporting",
   "Operational optimization",
   "Statistical forecasting",
   "Decision-support analytics",

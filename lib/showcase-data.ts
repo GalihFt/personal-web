@@ -40,8 +40,8 @@ const projectGalleryMap: Record<string, string[]> = {
     "/assets/projects/hotel/hotel-home-page.png",
   ],
   "Inpatient Admission Forecasting": [
-    "/assets/projects/inpatient/inpatient-01.png",
     "/assets/projects/inpatient/inpatient-02.png",
+    "/assets/projects/inpatient/inpatient-01.png",
   ],
   "TALAS SUPER": [
     "/assets/projects/talas-super/talas-super-01.png",
@@ -315,7 +315,7 @@ const workGalleryMap: Record<string, string[]> = {
 
 const workSummaryMap: Record<string, string> = {
   "Accounting Data Analyst":
-    "Built reconciliation automation, Python validation pipelines, master data classification, and budgeting frameworks for accounting operations.",
+    "Analyzed operational, procurement, and financial data to improve reporting accuracy, strengthen control, and support decision-making in shipping and logistics.",
   "Data Analyst Intern":
     "Improved container repair decisions through vendor allocation optimization, Power BI monitoring, EDA, modeling, and data preparation.",
   "Assistant Lecturer of Data Warehouse":
@@ -342,7 +342,7 @@ const organizationGalleryMap: Record<string, string[]> = {
     "/assets/community/pst/pst-2024-01.jpeg",
     "/assets/community/pst/pst-2024-02.jpg",
   ],
-  "Head of Conference Subject Subdivision of DAC 2023": [
+  "Head of Conference Subject Data Analytics Competition": [
     "/assets/community/dac/dac-01.jpeg",
     "/assets/community/dac/dac-02.jpeg",
     "/assets/community/dac/dac-03.jpeg",
@@ -363,7 +363,7 @@ const organizationSummaryMap: Record<string, string> = {
     "Led organizational programs with 50 members, improved inter-divisional alignment, and helped shape a revenue-generating collaboration concept.",
   "Staff of Research and Data Analytics Division":
     "Coordinated tutors, facilities, schedules, and participant communication for SITASI, a high-participation peer learning program.",
-  "Head of Conference Subject Subdivision of DAC 2023":
+  "Head of Conference Subject Data Analytics Competition":
     "Led material development, question quality control, data partnership coordination, and external communication for a data analytics competition.",
   "Expert Staff of Equipment Division":
     "Supported Scientist Championship 2023 by coordinating resource needs, supervising staff tasks, and maintaining equipment readiness.",

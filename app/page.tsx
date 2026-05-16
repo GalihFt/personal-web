@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Download, MapPin } from "lucide-react";
-import { StatCard } from "@/components/cards/stat-card";
 import { Reveal } from "@/components/motion/reveal";
 import { EducationShowcase } from "@/components/sections/education-showcase";
 import { ExperienceShowcase } from "@/components/sections/experience-showcase";
@@ -16,10 +15,10 @@ import {
   contactItems,
   education,
   focusAreas,
-  homeStats,
   siteConfig,
   skillGroups,
   socialLinks,
+  toolStack,
 } from "@/lib/portfolio-data";
 import {
   honorCertificates,
@@ -113,11 +112,27 @@ export default function HomePage() {
             </Reveal>
           </div>
 
-          <div className="grid gap-3 md:grid-cols-4">
-            {homeStats.map((stat, index) => (
-              <StatCard key={stat.label} value={stat.value} label={stat.label} delay={index * 0.04} />
-            ))}
-          </div>
+          <Reveal delay={0.12} className="rounded-[26px] border border-[var(--line)] bg-[rgba(255,255,255,0.76)] p-4 shadow-[0_18px_48px_rgba(34,50,74,0.07)] backdrop-blur md:p-5">
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[var(--accent-strong)]">Tool Stack</p>
+                <p className="mt-1 text-sm font-semibold text-[var(--muted)]">Practical tools for analysis, reporting, statistics, and workflow support.</p>
+              </div>
+            </div>
+            <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-5 lg:grid-cols-10">
+              {toolStack.map((tool) => (
+                <div
+                  key={tool.name}
+                  className="flex min-h-24 flex-col items-center justify-center gap-2 rounded-[18px] border border-[rgba(110,159,224,0.14)] bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(248,251,255,0.9))] p-3 text-center shadow-[0_8px_22px_rgba(34,50,74,0.045)]"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[rgba(237,244,255,0.72)]">
+                    <Image src={tool.icon} alt="" width={30} height={30} className="max-h-7 max-w-7 object-contain" />
+                  </div>
+                  <span className="text-[13px] font-semibold leading-tight text-[var(--heading)]">{tool.name}</span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 

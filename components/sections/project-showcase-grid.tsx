@@ -6,10 +6,8 @@ import {
   BarChart3,
   BrainCircuit,
   Building2,
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
-  ChevronUp,
   FileSpreadsheet,
   Landmark,
   Network,
@@ -70,11 +68,12 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
   );
 
   const selected = projects.find((project) => project.title === selectedTitle) ?? null;
+  const selectedIndex = selected ? projects.findIndex((project) => project.title === selected.title) : -1;
   const projectsPerPage = 4;
-  const pageCount = Math.max(Math.ceil(projects.length / projectsPerPage), 1);
-  const visibleProjects = projects.slice(pageIndex * projectsPerPage, pageIndex * projectsPerPage + projectsPerPage);
+  const maxPageIndex = Math.max(projects.length - projectsPerPage, 0);
+  const visibleProjects = projects.slice(pageIndex, pageIndex + projectsPerPage);
   const canGoUp = pageIndex > 0;
-  const canGoDown = pageIndex < pageCount - 1;
+  const canGoDown = pageIndex < maxPageIndex;
   const selectedImageIndex = selected ? imageIndexByTitle[selected.title] ?? 0 : 0;
   const selectedImage = selected?.gallery[selectedImageIndex] ?? selected?.gallery[0] ?? "";
 
@@ -122,7 +121,7 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
   function shiftProjectPage(direction: -1 | 1) {
     const nextPage = pageIndex + direction;
 
-    if (nextPage < 0 || nextPage >= pageCount) {
+    if (nextPage < 0 || nextPage > maxPageIndex) {
       return;
     }
 
@@ -130,42 +129,78 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
     setPageIndex(nextPage);
   }
 
+  function shiftSelectedProject(direction: -1 | 1) {
+    if (selectedIndex < 0) {
+      return;
+    }
+
+    const nextIndex = (selectedIndex + direction + projects.length) % projects.length;
+    const nextPage = Math.min(Math.max(nextIndex - 1, 0), maxPageIndex);
+
+    setSelectedTitle(projects[nextIndex]?.title ?? null);
+    setPageDirection(direction);
+    setPageIndex(nextPage);
+  }
+
   return (
     <>
-      <div className="grid gap-4">
+    <div className="grid gap-4">
         <div className="flex items-center justify-between gap-4">
           <p className="text-sm font-semibold text-[var(--muted)]">
             Showing {visibleProjects.length} of {projects.length} selected projects
           </p>
           <div className="hidden gap-1.5 sm:flex">
-              {Array.from({ length: pageCount }).map((_, index) => (
-                <button
-                  key={`project-page-${index}`}
-                  type="button"
-                  onClick={() => {
-                    setPageDirection(index >= pageIndex ? 1 : -1);
-                    setPageIndex(index);
-                  }}
-                  className={cn(
-                    "h-2 rounded-full transition-all",
-                    pageIndex === index ? "w-6 bg-[var(--accent-strong)]" : "w-2 bg-[rgba(110,159,224,0.28)]",
+            {projects.map((project, index) => (
+              <button
+                key={`${project.title}-project-dot`}
+                type="button"
+                onClick={() => {
+                  const nextPage = Math.min(index, maxPageIndex);
+                  setPageDirection(nextPage >= pageIndex ? 1 : -1);
+                  setPageIndex(nextPage);
+                }}
+                className={cn(
+                  "h-2 rounded-full transition-all",
+                  index >= pageIndex && index < pageIndex + projectsPerPage
+                    ? "w-6 bg-[var(--accent-strong)]"
+                    : "w-2 bg-[rgba(110,159,224,0.28)]",
                 )}
-                aria-label={`Show project page ${index + 1}`}
+                aria-label={`Show project ${index + 1}`}
               />
-              ))}
+            ))}
           </div>
         </div>
 
-        <div className="relative">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={pageIndex}
-              initial={{ opacity: 0, y: pageDirection > 0 ? 36 : -36 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: pageDirection > 0 ? -36 : 36 }}
-              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-              className="grid gap-4 md:grid-cols-2 xl:grid-cols-4"
-            >
+        <div className="relative px-0 md:px-7">
+          <button
+            type="button"
+            onClick={() => shiftProjectPage(-1)}
+            disabled={!canGoUp}
+            className="focus-ring absolute left-0 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[rgba(110,159,224,0.24)] bg-[rgba(255,255,255,0.92)] text-[var(--heading)] shadow-[0_16px_36px_rgba(34,50,74,0.12)] backdrop-blur disabled:opacity-35 md:inline-flex"
+            aria-label="Previous project page"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => shiftProjectPage(1)}
+            disabled={!canGoDown}
+            className="focus-ring absolute right-0 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[rgba(110,159,224,0.24)] bg-[rgba(255,255,255,0.92)] text-[var(--heading)] shadow-[0_16px_36px_rgba(34,50,74,0.12)] backdrop-blur disabled:opacity-35 md:inline-flex"
+            aria-label="Next project page"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+
+          <div className="overflow-hidden">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={pageIndex}
+                initial={{ opacity: 0, x: pageDirection > 0 ? 42 : -42 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: pageDirection > 0 ? -42 : 42 }}
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                className="grid gap-4 md:grid-cols-2 xl:grid-cols-4"
+              >
               {visibleProjects.map((project) => {
                 const Icon = iconMap[project.title as keyof typeof iconMap] ?? FileSpreadsheet;
                 const projectImage = project.gallery[0];
@@ -206,27 +241,28 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
                   </motion.button>
                 );
               })}
-            </motion.div>
-          </AnimatePresence>
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
           <div className="mt-3 flex items-center justify-center gap-2">
             <button
               type="button"
               onClick={() => shiftProjectPage(-1)}
               disabled={!canGoUp}
-              className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--line)] bg-white text-[var(--heading)] shadow-[0_10px_24px_rgba(34,50,74,0.08)] disabled:opacity-35"
+              className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--line)] bg-white text-[var(--heading)] shadow-[0_10px_24px_rgba(34,50,74,0.08)] disabled:opacity-35 md:hidden"
               aria-label="Previous project page"
             >
-              <ChevronUp className="h-5 w-5" />
+              <ChevronLeft className="h-5 w-5" />
             </button>
             <button
               type="button"
               onClick={() => shiftProjectPage(1)}
               disabled={!canGoDown}
-              className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--line)] bg-white text-[var(--heading)] shadow-[0_10px_24px_rgba(34,50,74,0.08)] disabled:opacity-35"
+              className="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--line)] bg-white text-[var(--heading)] shadow-[0_10px_24px_rgba(34,50,74,0.08)] disabled:opacity-35 md:hidden"
               aria-label="Next project page"
             >
-              <ChevronDown className="h-5 w-5" />
+              <ChevronRight className="h-5 w-5" />
             </button>
           </div>
         </div>
@@ -242,13 +278,30 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
             className="fixed inset-0 z-[100] bg-[rgba(17,25,40,0.55)] p-4 pt-20 backdrop-blur-sm md:p-8 md:pt-24"
             onClick={() => setSelectedTitle(null)}
           >
+            <div className="relative mx-auto max-w-6xl" onClick={(event) => event.stopPropagation()}>
+              <button
+                type="button"
+                onClick={() => shiftSelectedProject(-1)}
+                className="focus-ring absolute left-0 top-1/2 z-30 hidden h-11 w-11 -translate-x-[135%] -translate-y-1/2 items-center justify-center rounded-full border border-[rgba(110,159,224,0.24)] bg-[rgba(255,255,255,0.94)] text-[var(--heading)] shadow-[0_16px_36px_rgba(34,50,74,0.14)] backdrop-blur md:inline-flex"
+                aria-label="Previous project"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                type="button"
+                onClick={() => shiftSelectedProject(1)}
+                className="focus-ring absolute right-0 top-1/2 z-30 hidden h-11 w-11 -translate-y-1/2 translate-x-[135%] items-center justify-center rounded-full border border-[rgba(110,159,224,0.24)] bg-[rgba(255,255,255,0.94)] text-[var(--heading)] shadow-[0_16px_36px_rgba(34,50,74,0.14)] backdrop-blur md:inline-flex"
+                aria-label="Next project"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
             <motion.div
+              key={selected.title}
               initial={{ opacity: 0, y: 18, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 18, scale: 0.98 }}
               transition={{ duration: 0.22 }}
-              className="mx-auto grid h-[calc(100dvh-6rem)] max-w-6xl overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.4)] bg-[var(--card-bg)] shadow-[0_28px_90px_rgba(17,25,40,0.25)] md:h-[calc(100dvh-7rem)] lg:grid-cols-[1.04fr_0.96fr]"
-              onClick={(event) => event.stopPropagation()}
+              className="grid h-[calc(100dvh-6rem)] overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.4)] bg-[var(--card-bg)] shadow-[0_28px_90px_rgba(17,25,40,0.25)] md:h-[calc(100dvh-7rem)] lg:grid-cols-[1.04fr_0.96fr]"
             >
               <div className="grid h-full min-h-0 border-b border-[var(--line)] bg-[var(--surface)] p-4 lg:border-b-0 lg:border-r">
                 <div className="relative min-h-0 overflow-hidden rounded-[24px] bg-[var(--surface)]">
@@ -336,6 +389,7 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
                 </Link>
               </div>
             </motion.div>
+            </div>
             </motion.div>
           ) : null}
         </AnimatePresence>
