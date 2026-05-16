@@ -118,6 +118,7 @@ export const siteConfig = {
   initials: "GF",
   role: "Data Analyst ",
   headline: "Data Analyst",
+  url: "https://portfolio-galih.vercel.app",
   location: "Surabaya, Indonesia",
   email: "galihfitriatmo2611@gmail.com",
   linkedin: "https://www.linkedin.com/in/galih-fitriatmo/",
