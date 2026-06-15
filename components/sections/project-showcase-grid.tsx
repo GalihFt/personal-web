@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { Chip } from "@/components/ui/chip";
 import { ModalPortal } from "@/components/ui/modal-portal";
 import { cn } from "@/lib/utils";
@@ -334,7 +334,7 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
                     </div>
                   ) : null}
                   <div className="absolute inset-x-0 bottom-0 p-5 text-white lg:p-6">
-                    <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[#dbeafe]">{selected.category}</p>
+                    <p className="text-xs font-extrabold uppercase tracking-[0.04em] text-[#dbeafe]">{selected.category}</p>
                     <h3 className="mt-2 text-3xl font-extrabold leading-tight">{selected.title}</h3>
                   </div>
                   <button
@@ -349,27 +349,32 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
               </div>
 
               <div className="panel-scroll min-h-0 overflow-y-auto p-5 lg:p-7">
-                <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--accent-strong)]">{selected.category}</p>
+                <p className="text-xs font-extrabold uppercase tracking-[0.04em] text-[var(--accent-strong)]">{selected.category}</p>
                 <h3 className="mt-2 text-3xl font-extrabold leading-tight text-[var(--heading)]">{selected.title}</h3>
                 <div className="mt-4 border-l-2 border-[var(--accent)] bg-[rgba(237,244,255,0.34)] px-4 py-3">
                   <p className="text-[0.98rem] font-semibold leading-7 text-[var(--heading)]">{selected.summary}</p>
                 </div>
 
-                <div className="mt-5">
-                  <div className="rounded-2xl border border-[rgba(110,159,224,0.16)] bg-[rgba(237,244,255,0.34)] p-4">
-                    <p className="mono text-[11px] font-bold uppercase tracking-widest text-[var(--accent-strong)]">Description</p>
-                    <p className="mt-2 text-[0.92rem] leading-7 text-[var(--text)]">
-                      {selected.description.map((part, index) =>
-                        part.strong ? (
-                          <strong key={`${selected.title}-description-${index}`} className="font-extrabold text-[var(--heading)]">
-                            {part.text}
-                          </strong>
-                        ) : (
-                          <span key={`${selected.title}-description-${index}`}>{part.text}</span>
-                        ),
-                      )}
-                    </p>
-                  </div>
+                <div className="mt-5 grid gap-3">
+                  <ProjectDetailBlock title="Problem">
+                    {selected.problem}
+                  </ProjectDetailBlock>
+
+                  <ProjectDetailBlock title="Approach">
+                    {selected.description.map((part, index) =>
+                      part.strong ? (
+                        <strong key={`${selected.title}-approach-${index}`} className="font-extrabold text-[var(--heading)]">
+                          {part.text}
+                        </strong>
+                      ) : (
+                        <span key={`${selected.title}-approach-${index}`}>{part.text}</span>
+                      ),
+                    )}
+                  </ProjectDetailBlock>
+
+                  <ProjectDetailBlock title="Impact">
+                    {selected.impact}
+                  </ProjectDetailBlock>
                 </div>
 
                 <div className="mt-5 flex flex-wrap gap-2">
@@ -395,5 +400,14 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
         </AnimatePresence>
       </ModalPortal>
     </>
+  );
+}
+
+function ProjectDetailBlock({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <section className="rounded-2xl border border-[rgba(110,159,224,0.16)] bg-[rgba(237,244,255,0.34)] p-4">
+      <p className="text-xs font-extrabold uppercase tracking-[0.04em] text-[var(--accent-strong)]">{title}</p>
+      <p className="mt-2 text-[0.92rem] leading-7 text-[var(--text)]">{children}</p>
+    </section>
   );
 }

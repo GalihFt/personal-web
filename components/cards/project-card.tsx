@@ -34,7 +34,7 @@ export function ProjectCard({ project, index = 0, compact = false }: ProjectCard
         </Link>
       </div>
 
-      <p className="mono mt-5 text-xs font-semibold uppercase tracking-widest text-[var(--accent-strong)]">
+      <p className="mt-5 text-xs font-extrabold uppercase tracking-[0.04em] text-[var(--accent-strong)]">
         {project.category}
       </p>
       <h3 className="mt-2 text-xl font-extrabold tracking-normal text-[var(--heading)]">{project.title}</h3>

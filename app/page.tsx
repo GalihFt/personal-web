@@ -154,13 +154,12 @@ export default function HomePage() {
             <SectionKicker number="02" label="Profile" />
             <h2 className="text-4xl font-extrabold tracking-normal text-[var(--heading)] md:text-6xl">Hi, I am Galih!</h2>
             <p className="mt-5 max-w-3xl text-base leading-[1.75] text-[var(--muted)] md:text-lg">
-              As a <strong className="font-extrabold text-[var(--heading)]">Statistics graduate from ITS</strong> with over a year of{" "}
-              <strong className="font-extrabold text-[var(--heading)]">practical analytics experience</strong>, I see data as a
-              strategic tool for bridging technical infrastructure and business operations. My work focuses on turning chaotic,
-              fragmented datasets into <strong className="font-extrabold text-[var(--heading)]">standardized insights</strong>,
-              automated workflows, and decision-ready outputs. Over the past year, I have applied{" "}
-              <strong className="font-extrabold text-[var(--heading)]">statistical analysis and process automation</strong>{" "}
-              to improve <strong className="font-extrabold text-[var(--heading)]">operational efficiency, financial accuracy, and measurable business impact</strong>.
+              As a <strong className="font-extrabold text-[var(--heading)]">Statistics graduate</strong> with over a year of{" "}
+              <strong className="font-extrabold text-[var(--heading)]">practical data analysis experience in the shipping and logistics industry</strong>,
+              I see data as a way to understand how operations move, where inefficiencies happen, and how business processes can be
+              improved. My work focuses on turning scattered information into{" "}
+              <strong className="font-extrabold text-[var(--heading)]">clear analysis, automated workflows, and meaningful outputs</strong>{" "}
+              that improve accuracy, efficiency, and business value.
             </p>
 
             <div className="mt-7 grid gap-4 lg:grid-cols-3">

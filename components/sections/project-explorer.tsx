@@ -115,7 +115,7 @@ export function ProjectExplorer({ projects }: ProjectExplorerProps) {
                       <Icon className="h-5 w-5" />
                     </span>
                     <span>
-                      <span className="mono text-xs font-semibold uppercase tracking-widest text-[var(--accent-strong)]">
+                      <span className="text-xs font-extrabold uppercase tracking-[0.04em] text-[var(--accent-strong)]">
                         {project.category}
                       </span>
                       <span className="mt-2 block text-xl font-extrabold text-[var(--heading)]">{project.title}</span>

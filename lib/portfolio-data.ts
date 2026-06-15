@@ -126,9 +126,9 @@ export const siteConfig = {
   cvHref: "/assets/documents/GALIH-FITRIATMO_CV.pdf",
   portrait: "/assets/profile/galih-portrait.jpg",
   heroImage: "/assets/profile/galih-analyst.png",
-  graduationImage: "/assets/profile/galih-graduation.jpg",
+  graduationImage: "/assets/profile/galih-logistics-port.jpg",
   description:
-    "Statistics graduate who turns operational, financial, and business data into clear analysis for reporting accuracy, cost control, and data-driven decision-making. Experienced in analyzing cross-functional data, identifying inefficiencies, and translating complex records into practical business insights, with a strong interest in continuous improvement and making work processes more effective.",
+    "Fresh graduate in Statistics from Institut Teknologi Sepuluh Nopember (ITS) with practical experience in data analytics and business process improvement. Passionate about turning data into meaningful insights that improve decision-making, optimize workflows, and support cost/time efficiency.",
 };
 
 export const socialLinks = [
@@ -429,10 +429,10 @@ export const workExperiences: TimelineItem[] = [
     type: "Internship",
     icon: Landmark,
     points: [
-      "Analyzed APBN data managed by KPPN Sanggau for Semester 1, 2024, providing actionable insights for reporting and decision-making.",
-      "Created visually engaging reports and graphics that were featured in the KPPN Sanggau bulletin to improve stakeholder communication.",
-      "Improved presentation materials with a focus on clarity and visual appeal.",
-      "Gained deeper insights into APBN and the related ministries/agencies.",
+      "Analyzed Semester 1 2024 APBN realization data managed by KPPN Sanggau, producing insights on budget absorption and performance across ministries and agencies.",
+      "Created a report with visually engaging, easy-to-understand graphics from the APBN data analysis, which was featured in their bulletin.",
+      "Designed the bulletin for KPPN Sanggau's publication.",
+      "Organized presentation materials with an improved, more attractive design.",
     ],
   },
   {
@@ -707,12 +707,10 @@ export const contactItems = [
 ];
 
 export const focusAreas = [
-  "Statistical Data Analysis",
-  "Operational Data Analysis",
-  "Business Reporting",
-  "Operational optimization",
-  "Statistical forecasting",
-  "Decision-support analytics",
+  "Data Analysis",
+  "Business Process Improvement",
+  "Predictive Modeling",
+
 ];
 
 export const visualSystem = {
