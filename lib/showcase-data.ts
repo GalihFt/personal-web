@@ -27,14 +27,14 @@ const projectGalleryMap: Record<string, string[]> = {
     "/assets/projects/container-repair/container-repair-02.png",
     "/assets/projects/container-repair/container-repair-03.png",
   ],
-  "Auto RK Branch": [
-    "/assets/projects/finance-covers/auto-rk-branch.svg",
+  "Auto Reconciliation Tools": [
+    "/assets/projects/finance-covers/auto-reconciliation-tools.png",
   ],
-  "Piutang Reconciliation Automation": [
-    "/assets/projects/finance-covers/piutang-reconciliation.svg",
+  "Port Cost Accrual Automation": [
+    "/assets/projects/finance-covers/port-cost-accrual.jpg",
   ],
-  "KBM Accrual Automation": [
-    "/assets/projects/finance-covers/kbm-accrual.svg",
+  "Dooring Optimizer": [
+    "/assets/projects/dooring/dooring-optimizer-trucks.jpg",
   ],
   "Hotel Reservation Cancellation Dashboard": [
     "/assets/projects/hotel/hotel-home-page.png",
@@ -81,20 +81,20 @@ const projectSignalMap: Record<string, { value: string; label: string }[]> = {
     { value: "Cost focus", label: "repair decision support" },
     { value: "Export-ready", label: "structured output delivery" },
   ],
-  "Auto RK Branch": [
+  "Auto Reconciliation Tools": [
+    { value: "30 hours", label: "manual work saved per month" },
     { value: "Matching", label: "transaction reconciliation flow" },
-    { value: "Excel output", label: "branch-level result files" },
-    { value: "Automation", label: "manual review reduced" },
+    { value: "Excel output", label: "branch and batch-level review" },
   ],
-  "Piutang Reconciliation Automation": [
-    { value: "GL matching", label: "receivable reconciliation flow" },
-    { value: "Batch check", label: "date-period processing" },
-    { value: "Excel output", label: "matched and unmatched review" },
-  ],
-  "KBM Accrual Automation": [
+  "Port Cost Accrual Automation": [
     { value: "Branch-level", label: "accrual output generation" },
     { value: "Excel-based", label: "operational accounting fit" },
     { value: "Repeatable", label: "monthly process support" },
+  ],
+  "Dooring Optimizer": [
+    { value: "CP-SAT", label: "constraint-based job selection" },
+    { value: "Trailer cap", label: "active capacity planning" },
+    { value: "Excel output", label: "summary and selected plan" },
   ],
   "Hotel Reservation Cancellation Dashboard": [
     { value: "Dashboard", label: "interactive cancellation view" },
@@ -177,34 +177,34 @@ const projectDescriptionMap: Record<string, { text: string; strong?: boolean }[]
     { text: "more consistent and transparent decision process", strong: true },
     { text: " while reducing manual comparison work." },
   ],
-  "Auto RK Branch": [
-    { text: "Auto RK Branch is a Streamlit reconciliation tool for " },
-    { text: "affiliate receivable and payable balances", strong: true },
-    { text: " between head office and branch records. The manual process requires checking documents, dates, descriptions, and values across branch-level worksheets, which is slow and prone to missed matches when the data grows. The application reads Excel input, separates branch records, standardizes key fields, matches related transactions, applies reconciliation logic with " },
-    { text: "OR-Tools support", strong: true },
-    { text: ", and exports a " },
-    { text: "structured Excel file with one worksheet per branch", strong: true },
-    { text: ". This gives accounting teams a repeatable workflow for reviewing intercompany balances and focusing attention on unresolved items." },
+  "Auto Reconciliation Tools": [
+    { text: "Auto Reconciliation Tools is a set of " },
+    { text: "Streamlit-based finance automation tools", strong: true },
+    { text: " built to reduce repetitive matching work across accounting reconciliation workflows. The tools read structured Excel inputs, standardize transaction fields, match related records, classify reconciliation results, separate unresolved differences, and generate " },
+    { text: "review-ready Excel outputs", strong: true },
+    { text: ". The workflow covers affiliate receivable and payable reconciliation between head office and branches, as well as accounts receivable reconciliation between " },
+    { text: "General Ledger records, payment data, and cancellation transactions", strong: true },
+    { text: ". By automating transaction matching, exception classification, and output generation, the tools improve traceability and monthly reporting efficiency while saving around " },
+    { text: "30 hours of manual work per month", strong: true },
+    { text: "." },
   ],
-  "Piutang Reconciliation Automation": [
-    { text: "Piutang Reconciliation Automation is a Streamlit app for reconciling " },
-    { text: "General Ledger accounts receivable", strong: true },
-    { text: " with payment and cancellation data from " },
-    { text: "Program Piutang BM", strong: true },
-    { text: ". The main challenge is comparing three fixed-order Excel sheets, standardizing transaction identifiers and nominal values, then identifying whether payment and cancellation records already match the GL. The application processes the data in " },
-    { text: "date-period batches", strong: true },
-    { text: ", separates matched and unmatched records, and generates a structured Excel output with " },
-    { text: "SELISIH, batch summary, payment, cancellation, DCN, giro, split payment, and logistics correction sections", strong: true },
-    { text: ". This helps finance users quickly see whether key checking values are zero and trace unresolved differences without manually rebuilding the reconciliation from scratch." },
+  "Port Cost Accrual Automation": [
+    { text: "Port Cost Accrual Automation is a web-based Streamlit application that automates accrual preparation for " },
+    { text: "loading and unloading costs", strong: true },
+    { text: " across branches. In the shipping operation, every loading and unloading activity creates costs that should be recognized based on the vessel departure date. The challenge is that some costs only appear in the following month, so finance teams need to accrue them accurately while avoiding duplicate accrual. The app processes loading and unloading reports, applicable tariff references, and General Ledger data to " },
+    { text: "automatically identify activities that need accrual, calculate the required cost, generate accrual journals, and compare the result against the ledger", strong: true },
+    { text: ". This creates an end-to-end workflow that improves accuracy, reduces repetitive checking, and helps prevent loading and unloading costs from being double accrued." },
   ],
-  "KBM Accrual Automation": [
-    { text: "KBM Accrual Automation is a local Streamlit application built to support " },
-    { text: "recurring accrual preparation", strong: true },
-    { text: " from KBM and General Ledger Excel files. The challenge is producing consistent branch-level details, JMH lists, journal-ready outputs, and total summaries without repeating the same manual checks every period. The app guides users through file upload and period or branch selection, processes the data with Python and Pandas, then generates a " },
-    { text: "downloadable Excel output", strong: true },
-    { text: ". It turns a repetitive accounting workflow into a " },
-    { text: "more standardized process", strong: true },
-    { text: " that helps reduce preparation time and makes the accrual result easier to review." },
+  "Dooring Optimizer": [
+    { text: "Dooring Optimizer is a " },
+    { text: "Streamlit-based logistics planning tool", strong: true },
+    { text: " for selecting profitable dooring jobs under active trailer capacity constraints. The application validates uploaded Excel input, enriches jobs with customer, cost, time, coordinate, and route master data, then calculates " },
+    { text: "travel distance, travel time, fuel cost, operational cost, toll cost, and optimizer-basis profit", strong: true },
+    { text: ". It uses " },
+    { text: "OR-Tools CP-SAT", strong: true },
+    { text: " to maximize planned profit while preventing schedule overlap beyond available trailers. The workflow also supports optional schedule shifting, eligible 20 ft combo activities, trailer assignment, final profit recalculation after trip-sequence costs, and " },
+    { text: "Excel exports containing summary, selected planned jobs, and all validation-stage data", strong: true },
+    { text: " for operational review." },
   ],
   "Hotel Reservation Cancellation Dashboard": [
     { text: "This R Shiny dashboard analyzes hotel reservation behavior and predicts the probability of " },
@@ -386,6 +386,7 @@ export const showcaseProjects: ShowcaseProject[] = orderedProjects.map((project)
     projectDescriptionMap[project.title] ?? [{ text: `${project.summary} ${project.problem} ${project.impact}` }],
   tools: project.tools,
   link: project.link,
+  confidential: project.confidential,
   gallery: projectGalleryMap[project.title] ?? ["/assets/profile/galih-portrait.jpg"],
   signals: projectSignalMap[project.title] ?? [
     { value: project.category, label: "project context" },

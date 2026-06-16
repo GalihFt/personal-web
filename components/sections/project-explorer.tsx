@@ -12,7 +12,6 @@ import {
   Landmark,
   Network,
   PackageCheck,
-  ReceiptText,
   Route,
   Search,
   Sparkles,
@@ -34,9 +33,9 @@ const projectIcons = {
   "Deepfake Speech Detection": BrainCircuit,
   "MoodMate Machine Learning": Sparkles,
   "Container Repair Optimizer": PackageCheck,
-  "Auto RK Branch": Network,
-  "Piutang Reconciliation Automation": ReceiptText,
-  "KBM Accrual Automation": FileSpreadsheet,
+  "Auto Reconciliation Tools": Network,
+  "Port Cost Accrual Automation": FileSpreadsheet,
+  "Dooring Optimizer": Route,
   "Hotel Reservation Cancellation Dashboard": Building2,
   "Inpatient Admission Forecasting": ChartNoAxesCombined,
   "TALAS SUPER": BarChart3,
@@ -143,13 +142,19 @@ export function ProjectExplorer({ projects }: ProjectExplorerProps) {
                           <p className="mono text-[11px] font-semibold uppercase tracking-widest text-[var(--muted)]">Impact</p>
                           <p className="mt-2 text-sm leading-7 text-[var(--text)]">{project.impact}</p>
                         </div>
-                        <Link
-                          href={project.link}
-                          className="focus-ring inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[var(--button-bg)] px-4 text-sm font-bold text-[var(--button-text)] hover:bg-[var(--button-hover)]"
-                        >
-                          Repo
-                          <ArrowUpRight className="h-4 w-4" />
-                        </Link>
+                        {project.confidential || !project.link ? (
+                          <span className="inline-flex h-11 items-center justify-center rounded-full border border-[rgba(110,159,224,0.22)] bg-[rgba(237,244,255,0.72)] px-4 text-sm font-bold text-[var(--heading)]">
+                            Confidential
+                          </span>
+                        ) : (
+                          <Link
+                            href={project.link}
+                            className="focus-ring inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[var(--button-bg)] px-4 text-sm font-bold text-[var(--button-text)] hover:bg-[var(--button-hover)]"
+                          >
+                            Repo
+                            <ArrowUpRight className="h-4 w-4" />
+                          </Link>
+                        )}
                       </div>
                       <div className="flex flex-wrap gap-2 px-5 pb-5">
                         {project.tools.map((tool) => (

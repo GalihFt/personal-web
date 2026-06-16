@@ -23,15 +23,21 @@ export function ProjectCard({ project, index = 0, compact = false }: ProjectCard
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[rgba(110,159,224,0.18)] bg-[rgba(255,255,255,0.95)] text-[var(--accent-strong)] shadow-[0_10px_24px_rgba(79,127,192,0.08)]">
           <Icon className="h-5 w-5" />
         </span>
-        <Link
-          href={project.link}
-          target="_blank"
-          rel="noreferrer"
-          className="focus-ring rounded-full border border-transparent p-2 text-[var(--muted)] transition-colors hover:border-[rgba(110,159,224,0.18)] hover:bg-[var(--surface)] hover:text-[var(--heading)]"
-          aria-label={`Open ${project.title} repository`}
-        >
-          <ArrowUpRight className="h-5 w-5" />
-        </Link>
+        {project.confidential || !project.link ? (
+          <span className="rounded-full border border-[rgba(110,159,224,0.18)] bg-[rgba(237,244,255,0.72)] px-3 py-2 text-xs font-bold text-[var(--heading)]">
+            Confidential
+          </span>
+        ) : (
+          <Link
+            href={project.link}
+            target="_blank"
+            rel="noreferrer"
+            className="focus-ring rounded-full border border-transparent p-2 text-[var(--muted)] transition-colors hover:border-[rgba(110,159,224,0.18)] hover:bg-[var(--surface)] hover:text-[var(--heading)]"
+            aria-label={`Open ${project.title} repository`}
+          >
+            <ArrowUpRight className="h-5 w-5" />
+          </Link>
+        )}
       </div>
 
       <p className="mt-5 text-xs font-extrabold uppercase tracking-[0.04em] text-[var(--accent-strong)]">

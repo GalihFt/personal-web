@@ -69,7 +69,7 @@ export default function HomePage() {
 
               <div className="mt-6 flex flex-wrap gap-3">
                 <ButtonLink href="/#projects" label="View projects" />
-                <ButtonLink href={siteConfig.cvHref} label="Download CV" variant="secondary" />
+                <ButtonLink href={siteConfig.cvHref} label="Download CV" variant="secondary" disabled />
               </div>
 
               <div className="mt-6 flex flex-wrap gap-4 text-sm font-semibold text-[var(--muted)]">
@@ -334,15 +334,13 @@ export default function HomePage() {
                 );
               })}
             </div>
-            <Link
-              href={siteConfig.cvHref}
-              target="_blank"
-              rel="noreferrer"
-              className="focus-ring mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--button-bg)] px-4 py-3 text-sm font-bold text-[var(--button-text)] hover:bg-[var(--button-hover)]"
+            <span
+              className="focus-ring mt-4 inline-flex w-full cursor-default items-center justify-center gap-2 rounded-full bg-[var(--button-bg)] px-4 py-3 text-sm font-bold text-[var(--button-text)] hover:bg-[var(--button-hover)]"
+              aria-disabled="true"
             >
               Download CV
               <Download className="h-4 w-4" />
-            </Link>
+            </span>
           </Reveal>
         </div>
       </section>

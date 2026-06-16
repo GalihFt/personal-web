@@ -18,7 +18,6 @@ import {
   MessageCircle,
   Network,
   PackageCheck,
-  ReceiptText,
   Route,
   Sigma,
   Sparkles,
@@ -46,7 +45,8 @@ export type Project = {
   problem: string;
   impact: string;
   tools: string[];
-  link: string;
+  link?: string;
+  confidential?: boolean;
   icon: LucideIcon;
 };
 
@@ -184,6 +184,48 @@ export const skillGroups: SkillGroup[] = [
 
 export const projects: Project[] = [
   {
+    title: "Dooring Optimizer",
+    category: "Logistics Optimization",
+    featured: true,
+    summary:
+      "A Streamlit optimization tool for selecting profitable dooring jobs based on trailer capacity, route cost, schedule constraints, and operational rules.",
+    problem:
+      "Dooring job planning can be difficult when teams need to evaluate many jobs with different customer locations, container sizes, delivery schedules, route distances, operational costs, and limited active trailer capacity.",
+    impact:
+      "Improves planning consistency by turning manual job selection into a constraint-based optimization workflow with transparent cost, profit, trailer assignment, and Excel reporting outputs.",
+    tools: ["Python", "Streamlit", "Pandas", "OR-Tools CP-SAT", "Excel", "Valhalla", "Route Cache"],
+    confidential: true,
+    icon: Route,
+  },
+  {
+    title: "Container Repair Optimizer",
+    category: "Cost Optimization",
+    featured: true,
+    summary:
+      "A Streamlit application that recommends container repair vendor allocation based on cost efficiency and capacity constraints.",
+    problem:
+      "Repair allocation decisions can be inconsistent when vendor costs, capacity, material references, and container types are checked manually.",
+    impact:
+      "The app calculates repair costs, compares vendors, validates material references, and exports structured allocation results for further review.",
+    tools: ["Python", "Streamlit", "Pandas", "Google Sheets API", "gspread"],
+    confidential: true,
+    icon: PackageCheck,
+  },
+  {
+    title: "Auto Reconciliation Tools",
+    category: "Finance Automation",
+    featured: true,
+    summary:
+      "A set of Streamlit-based tools that automate financial reconciliation by matching branch balances, General Ledger records, payment data, and cancellation transactions into structured Excel outputs.",
+    problem:
+      "Finance reconciliation often requires manually comparing records from different sources, such as branch balances, General Ledger data, payment records, and cancellation files.",
+    impact:
+      "Reduced repetitive reconciliation work by automating transaction matching, exception classification, and Excel output generation, saving around 30 hours of manual work per month.",
+    tools: ["Python", "Streamlit", "Pandas", "NumPy", "OpenPyXL", "XlsxWriter", "OR-Tools", "Excel"],
+    confidential: true,
+    icon: Network,
+  },
+  {
     title: "Deepfake Speech Detection",
     category: "Machine Learning Research",
     featured: true,
@@ -198,76 +240,6 @@ export const projects: Project[] = [
     icon: BrainCircuit,
   },
   {
-    title: "MoodMate Machine Learning",
-    category: "NLP Capstone",
-    featured: true,
-    summary:
-      "Machine learning component for a journaling app that classifies user mood and supports chatbot interaction.",
-    problem:
-      "The project required an NLP model that could understand journal text and classify emotional states into anger, sadness, fear, and joy.",
-    impact:
-      "Built a text emotion model with 92.60% testing accuracy and converted the model to TensorFlow.js for web deployment.",
-    tools: ["TensorFlow", "NLP", "Sastrawi", "Pandas", "TensorFlow.js", "Chatbot"],
-    link: "https://github.com/MoodMate-Bangkit-2024",
-    icon: Sparkles,
-  },
-  {
-    title: "Container Repair Optimizer",
-    category: "Cost Optimization",
-    featured: true,
-    summary:
-      "A Streamlit application that recommends container repair vendor allocation based on cost efficiency and capacity constraints.",
-    problem:
-      "Repair allocation decisions can be inconsistent when vendor costs, capacity, material references, and container types are checked manually.",
-    impact:
-      "The app calculates repair costs, compares vendors, validates material references, and exports structured allocation results for further review.",
-    tools: ["Python", "Streamlit", "Pandas", "Google Sheets API", "gspread"],
-    link: "https://github.com/GalihFt/container-repair-optimizer",
-    icon: PackageCheck,
-  },
-  {
-    title: "Auto RK Branch",
-    category: "Finance Reconciliation",
-    featured: true,
-    summary:
-      "A Streamlit reconciliation tool for affiliate receivable and payable balances between head office and branches.",
-    problem:
-      "Manual affiliate reconciliation requires matching documents, dates, descriptions, and values across branch records.",
-    impact:
-      "Automates transaction matching, classifies reconciliation groups, separates unresolved balances, and exports branch-level Excel results.",
-    tools: ["Python", "Streamlit", "Pandas", "NumPy", "OR-Tools", "Docker"],
-    link: "https://github.com/GalihFt/rk-reconciliation-automation",
-    icon: Network,
-  },
-  {
-    title: "KBM Accrual Automation",
-    category: "Accounting Automation",
-    featured: false,
-    summary:
-      "A local web app that processes KBM and General Ledger files to generate branch-level accrual outputs.",
-    problem:
-      "Accrual checking and journal preparation can take repetitive manual work across files, periods, and branch selections.",
-    impact:
-      "Creates downloadable Excel outputs containing details, JMH lists, accrual journals, and summary totals.",
-    tools: ["Python", "Streamlit", "Excel", "Pandas"],
-    link: "https://github.com/GalihFt/kbm-accrual-automation",
-    icon: FileSpreadsheet,
-  },
-  {
-    title: "Piutang Reconciliation Automation",
-    category: "Finance Reconciliation",
-    featured: false,
-    summary:
-      "A Streamlit reconciliation app for matching General Ledger accounts receivable records with Program Piutang BM transaction data.",
-    problem:
-      "Accounts receivable reconciliation requires comparing GL records, payment data, and payment cancellation data across fixed-format Excel sheets.",
-    impact:
-      "Generates structured Excel outputs with matched, unmatched, cancellation, batch summary, and checking sections so finance teams can trace differences faster.",
-    tools: ["Python", "Streamlit", "Pandas", "NumPy", "OpenPyXL", "XlsxWriter"],
-    link: "https://github.com/GalihFt/piutang-reconciliation-automation",
-    icon: ReceiptText,
-  },
-  {
     title: "Roundtrip Mapping Optimization",
     category: "Logistics Optimization",
     featured: false,
@@ -278,8 +250,36 @@ export const projects: Project[] = [
     impact:
       "Designed to reduce empty trips, optimize trucking routes, and support logistics teams with map-based visualization and downloadable mapping results.",
     tools: ["Next.js", "FastAPI", "Python", "TypeScript", "Leaflet", "Valhalla", "Hungarian Algorithm"],
-    link: "https://github.com/GalihFt/roundtrip-optimization",
+    confidential: true,
     icon: Route,
+  },
+  {
+    title: "Port Cost Accrual Automation",
+    category: "Accounting Automation",
+    featured: false,
+    summary:
+      "A local web app that automates end-to-end accrual preparation for ship loading and unloading costs across branches.",
+    problem:
+      "Loading and unloading costs are recognized based on vessel departure dates, but some costs appear in the following month and need to be accrued without being recorded twice.",
+    impact:
+      "Automatically identifies activities that need accrual, calculates costs based on applicable rates, generates accrual journals, and compares port activity reports with General Ledger data to prevent double accrual.",
+    tools: ["Python", "Streamlit", "Excel", "Pandas"],
+    confidential: true,
+    icon: FileSpreadsheet,
+  },
+  {
+    title: "MoodMate Machine Learning",
+    category: "NLP Capstone",
+    featured: false,
+    summary:
+      "Machine learning component for a journaling app that classifies user mood and supports chatbot interaction.",
+    problem:
+      "The project required an NLP model that could understand journal text and classify emotional states into anger, sadness, fear, and joy.",
+    impact:
+      "Built a text emotion model with 92.60% testing accuracy and converted the model to TensorFlow.js for web deployment.",
+    tools: ["TensorFlow", "NLP", "Sastrawi", "Pandas", "TensorFlow.js", "Chatbot"],
+    link: "https://github.com/MoodMate-Bangkit-2024",
+    icon: Sparkles,
   },
   {
     title: "Buletin Kapuas",
@@ -378,9 +378,9 @@ export const workExperiences: TimelineItem[] = [
     type: "Full-time",
     icon: BriefcaseBusiness,
     points: [
-      "Analyzed cross-functional operational, procurement, and financial data to support cost control, reporting accuracy, and strategic decision-making in a shipping and logistics business environment.",
-      "Developed web applications to automate end-to-end reconciliation and reporting workflows, reducing monthly reporting time by more than 30 hours and improving reporting accuracy.",
-      "Developed an anomaly detection framework for procurement data by standardizing and classifying highly unstructured item descriptions, helping the accounting department identify unusual transaction patterns and strengthen procurement control.",
+      "Analyzed operational, procurement, and financial data to understand business process flow, identify inefficiencies, and support improvements in process accuracy, efficiency, cost control, and operational decision-making.",
+      "Built web-based tools to automate financial reconciliation and port cost accrual processes, reducing monthly manual processing time by more than 45 hours and improving accuracy, traceability, and workflow consistency.",
+      "Developed a dooring optimization tool to evaluate job profitability, route costs, schedule constraints, and active trailer capacity, helping operations teams prioritize profitable jobs and improve planning decisions.",
       "Refined a handed-over roundtrip mapping prototype into a practical operational tool for analyzing unloading and loading activities, helping logistics teams identify more efficient trucking pairings and reduce empty-trip opportunities.",
       "Partnered with internal departments to clarify data issues, align reporting requirements, and turn unclear operational records into structured insights for stakeholder review.",
     ],

@@ -12,7 +12,6 @@ import {
   Landmark,
   Network,
   PackageCheck,
-  ReceiptText,
   Route,
   Sparkles,
   X,
@@ -34,7 +33,8 @@ export type ShowcaseProject = {
   impact: string;
   description: { text: string; strong?: boolean }[];
   tools: string[];
-  link: string;
+  link?: string;
+  confidential?: boolean;
   gallery: string[];
   signals: { value: string; label: string }[];
 };
@@ -48,9 +48,9 @@ const iconMap = {
   "Deepfake Speech Detection": BrainCircuit,
   "MoodMate Machine Learning": Sparkles,
   "Container Repair Optimizer": PackageCheck,
-  "Auto RK Branch": Network,
-  "Piutang Reconciliation Automation": ReceiptText,
-  "KBM Accrual Automation": FileSpreadsheet,
+  "Auto Reconciliation Tools": Network,
+  "Port Cost Accrual Automation": FileSpreadsheet,
+  "Dooring Optimizer": Route,
   "Hotel Reservation Cancellation Dashboard": Building2,
   "Inpatient Admission Forecasting": ChartNoAxesCombined,
   "TALAS SUPER": BarChart3,
@@ -204,7 +204,7 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
               {visibleProjects.map((project) => {
                 const Icon = iconMap[project.title as keyof typeof iconMap] ?? FileSpreadsheet;
                 const projectImage = project.gallery[0];
-                const cardDescription = `${project.summary} ${project.problem} ${project.impact}`;
+                const cardDescription = project.impact;
 
                 return (
                   <motion.button
@@ -216,11 +216,6 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
                   >
                     <div className="relative aspect-[16/9]">
                       <Image src={projectImage} alt={project.title} fill className="object-cover" sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw" />
-                      {project.featured ? (
-                        <span className="absolute left-3 top-3 border-l-2 border-[var(--accent)] bg-[rgba(255,255,255,0.82)] px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-widest text-[var(--heading)] shadow-[0_10px_24px_rgba(34,50,74,0.08)] backdrop-blur">
-                          Featured
-                        </span>
-                      ) : null}
                     </div>
                     <div className="flex flex-1 flex-col p-4">
                       <div className="flex items-center gap-3">
@@ -383,15 +378,21 @@ export function ProjectShowcaseGrid({ projects }: ProjectShowcaseGridProps) {
                   ))}
                 </div>
 
-                <Link
-                  href={selected.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="focus-ring mt-6 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[var(--button-bg)] px-5 text-sm font-bold text-[var(--button-text)] hover:bg-[var(--button-hover)]"
-                >
-                  Open repository
-                  <ArrowUpRight className="h-4 w-4" />
-                </Link>
+                {selected.confidential || !selected.link ? (
+                  <div className="mt-6 inline-flex h-11 w-fit items-center justify-center rounded-full border border-[rgba(110,159,224,0.22)] bg-[rgba(237,244,255,0.72)] px-5 text-sm font-bold text-[var(--heading)]">
+                    Confidential project
+                  </div>
+                ) : (
+                  <Link
+                    href={selected.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="focus-ring mt-6 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[var(--button-bg)] px-5 text-sm font-bold text-[var(--button-text)] hover:bg-[var(--button-hover)]"
+                  >
+                    Open repository
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                )}
               </div>
             </motion.div>
             </div>
